@@ -37,3 +37,8 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # Media files for uploaded submissions
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

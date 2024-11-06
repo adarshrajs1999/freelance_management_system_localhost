@@ -2,16 +2,21 @@
 
 {% extends "base.html" %}
 {% block content %}
-    <h1>Available Tasks</h1>
-    <ul>
+    <h1 class="text-center mb-4">Available Tasks</h1>
+    <div class="row">
         {% for task in tasks %}
-            <li>
-                <strong>{{ task.title }}</strong><br>
-                {{ task.description }}<br>
-                {{ task.description }}<br>
-                {{task.payment_amount}}<br>
-                <a href="{% url 'submit_task' task.id %}" class="btn btn-warning">Submit Task</a>
-            </li>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ task.title }}</h5>
+                        <p class="card-text">
+                            <strong>Task Description:</strong> {{ task.description }}<br>
+                            <strong>Payment Amount:</strong> {{ task.payment_amount }}<br>
+                        </p>
+                        <a href="{% url 'submit_task' task.id %}" class="btn btn-warning w-100">Submit Task</a>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock %}

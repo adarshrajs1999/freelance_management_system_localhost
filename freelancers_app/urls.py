@@ -11,4 +11,6 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('tasks/', views.task_list, name='task_list'),
     path('tasks/<int:task_id>/submit/', views.submit_task, name='submit_task'),
+    path('logout/', views.custom_logout, name='logout'),  # Custom logout URL
+
 ]

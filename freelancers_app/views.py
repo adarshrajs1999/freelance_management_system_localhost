@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Task, Submission
 from .forms import FreelancerRegisterForm, SubmissionForm
-
+from django.contrib.auth import logout
 
 def home(request):
     return render(request,'home.html')
@@ -53,3 +53,7 @@ def submit_task(request, task_id):
     else:
         form = SubmissionForm()
     return render(request, 'submit_task.html', {'form': form, 'task': task})
+
+def custom_logout(request):
+    logout(request)
+    return redirect('home')  # Redirect
