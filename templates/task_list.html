@@ -1,0 +1,17 @@
+<!-- main/templates/main/task_list.html -->
+
+{% extends "base.html" %}
+{% block content %}
+    <h1>Available Tasks</h1>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <strong>{{ task.title }}</strong><br>
+                {{ task.description }}<br>
+                {{ task.description }}<br>
+                {{task.payment_amount}}<br>
+                <a href="{% url 'submit_task' task.id %}" class="btn btn-warning">Submit Task</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

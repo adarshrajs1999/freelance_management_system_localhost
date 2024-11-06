@@ -1,0 +1,120 @@
+<!-- main/templates/main/home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancer Project Hub</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+<style>
+.hero-section {
+    position: relative;
+    height: 80vh;
+    background-image: url('/static/main/images/hero-bg.jpg'); /* Replace with a background image if available */
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-section .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.hero-section .content {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-section h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.hero-section .lead {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-section .btn {
+    margin: 0 0.5rem;
+    font-size: 1.1rem;
+}
+
+.features-section h2 {
+    font-weight: 700;
+}
+
+.card {
+    border: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+</style>
+
+</head>
+<body>
+    <div class="container-fluid hero-section text-center text-white">
+        <div class="overlay"></div>
+        <div class="content">
+            <h1>Welcome to Freelancer Project Hub</h1>
+            <p class="lead">Your gateway to freelancing opportunities and project success</p>
+            <div class="buttons">
+                <a href="{% url 'login' %}" class="btn btn-outline-light btn-lg">Login</a>
+                <a href="{% url 'register' %}" class="btn btn-outline-light btn-lg">Register</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container features-section my-5">
+        <h2 class="text-center mb-4">How It Works</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Register</h5>
+                        <p class="card-text">Create an account to get started. Once registered, you'll have access to a variety of freelancing tasks.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Browse Tasks</h5>
+                        <p class="card-text">Browse through available tasks posted by clients, with details about requirements and payment.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Submit Work</h5>
+                        <p class="card-text">Complete your task, submit your work through the platform, and earn payments upon approval.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
