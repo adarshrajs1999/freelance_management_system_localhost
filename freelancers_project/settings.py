@@ -123,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 
-
+AUTH_USER_MODEL = 'freelancers_app.User'
 
 # Media files (uploaded files) configuration
 MEDIA_URL = '/media/'  # URL to access the media files

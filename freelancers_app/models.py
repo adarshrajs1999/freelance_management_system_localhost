@@ -1,29 +1,28 @@
-# main/models.py
-
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
-
-
-
-
+class User(AbstractUser):
+    USER_TYPES = (
+        ('admin', 'Admin'),
+        ('freelancer', 'Freelancer'),
+        ('viewer', 'Viewer'),
+    )
+    user_type = models.CharField(max_length=10, choices=USER_TYPES, default='viewer')
+    phone_number = models.CharField(max_length=15, blank=True)
+    communication_address = models.TextField(blank=True)
+    resume = models.FileField(upload_to='resumes/', blank=True)
 
 class Task(models.Model):
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=255)
     description = models.TextField()
-    payment_amount = models.DecimalField(max_digits=10, decimal_places=2)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_tasks')
+    assigned_to = models.ForeignKey(User, null=True, blank=True, on_delete=models.SET_NULL, related_name='tasks')
+    is_approved = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
-    deadline = models.DateField()
 
-    def __str__(self):
-        return self.title
-
-class Submission(models.Model):
-    freelancer = models.ForeignKey(User, on_delete=models.CASCADE)
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    git_link = models.URLField()
-    file_upload = models.FileField(upload_to='submissions/', blank=True, null=True)
-    submitted_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return f"{self.freelancer.username} - {self.task.title}"
+class PaymentDetails(models.Model):
+    freelancer = models.OneToOneField(User, on_delete=models.CASCADE, related_name='payment_details')
+    bank_account_number = models.CharField(max_length=50, blank=True)
+    ifsc_code = models.CharField(max_length=11, blank=True)
+    google_pay_number = models.CharField(max_length=15, blank=True)
+    phone_pe_number = models.CharField(max_length=15, blank=True)

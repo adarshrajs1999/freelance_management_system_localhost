@@ -1,59 +1,38 @@
-# main/views.py
-
 from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.forms import AuthenticationForm
+from .models import Task, PaymentDetails, User
+from .forms import FreelancerRegistrationForm
 from django.contrib.auth.decorators import login_required
-from .models import Task, Submission
-from .forms import FreelancerRegisterForm, SubmissionForm
-from django.contrib.auth import logout
+from django.http import HttpResponseForbidden
+
 
 def home(request):
     return render(request,'home.html')
 
-
-def register(request):
+def register_freelancer(request):
     if request.method == 'POST':
-        form = FreelancerRegisterForm(request.POST)
+        form = FreelancerRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('task_list')
+            user = form.save(commit=False)
+            user.user_type = 'freelancer'
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('login')
     else:
-        form = FreelancerRegisterForm()
+        form = FreelancerRegistrationForm()
     return render(request, 'register.html', {'form': form})
-
-def login_view(request):
-    if request.method == 'POST':
-        form = AuthenticationForm(request, data=request.POST)
-        if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            return redirect('task_list')
-    else:
-        form = AuthenticationForm()
-    return render(request, 'login.html', {'form': form})
 
 @login_required
 def task_list(request):
-    tasks = Task.objects.all()
-    return render(request, 'task_list.html', {'tasks': tasks})
+    if request.user.user_type == 'freelancer' or request.user.user_type == 'viewer':
+        tasks = Task.objects.filter(assigned_to__isnull=True, is_approved=False)
+        return render(request, 'task_list.html', {'tasks': tasks})
+    return HttpResponseForbidden("You don't have permission to view this page.")
 
-@login_required
 def submit_task(request, task_id):
     task = Task.objects.get(id=task_id)
-    if request.method == 'POST':
-        form = SubmissionForm(request.POST, request.FILES)
-        if form.is_valid():
-            submission = form.save(commit=False)
-            submission.freelancer = request.user
-            submission.task = task
-            submission.save()
-            return redirect('task_list')
-    else:
-        form = SubmissionForm()
-    return render(request, 'submit_task.html', {'form': form, 'task': task})
+    if request.user.user_type == 'freelancer':
+        task.assigned_to = request.user
+        task.save()
+        return redirect('task_list')
 
-def custom_logout(request):
-    logout(request)
-    return redirect('home')  # Redirect
+
