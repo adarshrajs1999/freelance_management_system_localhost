@@ -4,148 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelance Management System</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome for Icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Additional styling */
-        .hero-section {
-            background: url('https://via.placeholder.com/1600x900') no-repeat center center;
-            background-size: cover;
-            color: #fff;
-            text-align: center;
-            padding: 100px 20px;
-        }
-        .hero-section h1 {
-            font-size: 2.5rem;
-        }
-        .features {
-            padding: 60px 20px;
-        }
-        .testimonials {
+        body {
             background-color: #f8f9fa;
-            padding: 60px 20px;
+        }
+        .container {
+            margin-top: 100px;
+        }
+        .btn-custom {
+            width: 100%;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="#">FreelanceMS</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#features">Features</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#testimonials">Testimonials</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" href="{% url 'register_freelancer' %}">Join as Freelancer</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Hero Section -->
-<section id="home" class="hero-section d-flex align-items-center">
     <div class="container text-center">
-        <h1>Manage Your Freelance Projects Efficiently</h1>
-        <p class="lead">A simple platform to manage tasks, submit work, and get paid easily.</p>
-        <a href="{% url 'register_freelancer' %}" class="btn btn-primary btn-lg mt-3">Get Started</a>
-    </div>
-</section>
+        <h1>Welcome to the Freelance Management System</h1>
+        <p class="lead">Manage and connect with freelancers easily</p>
 
-<!-- Features Section -->
-<section id="features" class="features text-center">
-    <div class="container">
-        <h2 class="mb-5">Features</h2>
-        <div class="row">
+        <div class="row justify-content-center mt-4">
             <div class="col-md-4">
-                <i class="fas fa-tasks fa-3x text-primary mb-3"></i>
-                <h5>Task Management</h5>
-                <p>Admins can create tasks, assign them to freelancers, and approve submissions.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-user-check fa-3x text-primary mb-3"></i>
-                <h5>Easy Approval</h5>
-                <p>Freelancers are notified once tasks are approved and payments are confirmed.</p>
-            </div>
-            <div class="col-md-4">
-                <i class="fas fa-credit-card fa-3x text-primary mb-3"></i>
-                <h5>Secure Payments</h5>
-                <p>Freelancers can securely submit payment details for a hassle-free experience.</p>
+                <a href="{% url 'register_freelancer' %}" class="btn btn-primary btn-custom">Freelancer Register</a>
+                <a href="{% url 'register_customer' %}" class="btn btn-secondary btn-custom">Customer Register</a>
+                <a href="{% url 'freelancer_login' %}" class="btn btn-success btn-custom">Freelancer Login</a>
+                <a href="{% url 'customer_login' %}" class="btn btn-info btn-custom">Customer Login</a>
             </div>
         </div>
     </div>
-</section>
 
-<!-- Testimonials Section -->
-<section id="testimonials" class="testimonials text-center">
-    <div class="container">
-        <h2 class="mb-5">What Our Freelancers Say</h2>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <div class="card-body">
-                        <p class="card-text">"This platform has streamlined my workflow and helped me get paid faster!"</p>
-                        <h5 class="card-title">- Alex, Backend Developer</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <div class="card-body">
-                        <p class="card-text">"Managing projects and submissions has never been easier. Highly recommend!"</p>
-                        <h5 class="card-title">- Jamie, Data Scientist</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-3">
-                    <div class="card-body">
-                        <p class="card-text">"Easy to use, and the payment process is so smooth. Love it!"</p>
-                        <h5 class="card-title">- Taylor, App Developer</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="contact text-center py-5">
-    <div class="container">
-        <h2 class="mb-5">Get In Touch</h2>
-        <p>Follow us on social media or reach out for any questions or assistance.</p>
-        <div class="social-icons">
-            <a href="#" class="btn btn-outline-dark rounded-circle me-2"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="btn btn-outline-dark rounded-circle me-2"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="btn btn-outline-dark rounded-circle me-2"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-    </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-dark text-white text-center py-3">
-    <p>&copy; 2023 Freelance Management System. All rights reserved.</p>
-</footer>
-
-<!-- Bootstrap and FontAwesome JS -->
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!-- Add necessary Bootstrap JS files -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register as Customer</title>
+</head>
+<body>
+    <h1>Customer Registration</h1>
+    <p>Please fill out the form to create your customer account.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

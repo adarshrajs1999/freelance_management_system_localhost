@@ -1,22 +1,46 @@
-<!-- main/templates/main/task_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List - Freelance Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container" style="margin-top: 50px;">
+        <h2 class="text-center mb-4">Available Tasks</h2>
 
-{% extends "base.html" %}
-{% block content %}
-    <h1 class="text-center mb-4">Available Tasks</h1>
-    <div class="row">
-        {% for task in tasks %}
-            <div class="col-md-4 mb-4">
-                <div class="card shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ task.title }}</h5>
-                        <p class="card-text">
-                            <strong>Task Description:</strong> {{ task.description }}<br>
-                            <strong>Payment Amount:</strong> {{ task.payment_amount }}<br>
-                        </p>
-                        <a href="{% url 'submit_task' task.id %}" class="btn btn-warning w-100">Submit Task</a>
-                    </div>
-                </div>
+        <!-- Display messages -->
+        {% if messages %}
+            <div class="alert alert-info">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             </div>
-        {% endfor %}
+        {% endif %}
+
+        <!-- Task List -->
+        <div class="list-group">
+            {% for task in tasks %}
+                <div class="list-group-item">
+                    <h5 class="mb-1">{{ task.title }}</h5>
+                    <p class="mb-1">{{ task.description }}</p>
+                    <p class="mb-1"><strong>Budget:</strong> {{ task.budget }} </p>
+                    <p class="mb-1"><strong>Deadline:</strong> {{ task.deadline }}</p>
+                    <!-- Button to assign the task -->
+                    <a href="{% url 'submit_task' task.id %}" class="btn btn-primary btn-sm float-right">Submit  Task</a>
+                </div>
+            {% empty %}
+                <div class="alert alert-warning">
+                    There are no unassigned tasks at the moment.
+                </div>
+            {% endfor %}
+        </div>
+
     </div>
-{% endblock %}
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
