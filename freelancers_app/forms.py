@@ -3,6 +3,8 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, FreelancerProfile, Task, PaymentDetail
+from .models import TaskSubmission
+
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
@@ -57,3 +59,12 @@ class CustomerRegistrationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+
+
+
+class TaskSubmissionForm(forms.ModelForm):
+    class Meta:
+        model = TaskSubmission
+        fields = ['git_link', 'file_upload','description']

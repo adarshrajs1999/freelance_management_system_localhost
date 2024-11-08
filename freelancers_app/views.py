@@ -2,8 +2,9 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .models import User, FreelancerProfile, Task, PaymentDetail
-from .forms import UserRegistrationForm, FreelancerProfileForm, CustomerRegistrationForm, TaskForm, PaymentDetailForm
+from .models import User, FreelancerProfile, Task, PaymentDetail, TaskSubmission
+from .forms import UserRegistrationForm, FreelancerProfileForm, CustomerRegistrationForm, TaskForm, PaymentDetailForm, \
+    TaskSubmissionForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -111,27 +112,34 @@ def customer_dashboard(request):
     return render(request, 'customer_dashboard.html', {'tasks': tasks})
 
 
-# Freelancer views tasks
 @login_required
 def view_tasks(request):
-    if request.user.role != 'freelancer':
-        return redirect('home')
-    tasks = Task.objects.filter(is_completed=False, assigned_to=None)
+    # Tasks that are not completed and have no submissions
+    tasks = Task.objects.filter(is_completed=False).exclude(submissions__isnull=False)
     return render(request, 'task_list.html', {'tasks': tasks})
 
-
-# Freelancer submits task completion
-@login_required
 def submit_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
     if request.user.role != 'freelancer':
         return redirect('home')
-    task = get_object_or_404(Task, id=task_id, assigned_to=request.user.freelancer_profile)
+
+    freelancer_profile = FreelancerProfile.objects.get(user=request.user)
+
     if request.method == 'POST':
-        task.is_completed = True
-        task.save()
-        messages.success(request, "Task submitted successfully!")
-        return redirect('task_list')
-    return render(request, 'submit_task.html', {'task': task})
+        form = TaskSubmissionForm(request.POST, request.FILES)
+        if form.is_valid():
+            task_submission = form.save(commit=False)
+            task_submission.freelancer = freelancer_profile
+            task_submission.task = task
+            task_submission.save()
+
+            return redirect('task_list')
+    else:
+        form = TaskSubmissionForm()
+
+    return render(request, 'submit_task.html', {'form': form, 'task': task})
+
 
 
 # Freelancer payment form

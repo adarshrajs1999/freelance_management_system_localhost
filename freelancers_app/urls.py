@@ -26,4 +26,6 @@ urlpatterns = [
 
     # Payment details
     path('tasks/<int:task_id>/payment/', views.payment_details, name='payment_details'),
+
+
 ]

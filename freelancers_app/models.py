@@ -28,15 +28,18 @@ class CustomerProfile(models.Model):
     def __str__(self):
         return f"{self.user.username}'s Customer Profile"
 
+
 class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name="tasks_created")
-    assigned_to = models.ForeignKey(FreelancerProfile, null=True, blank=True, on_delete=models.SET_NULL)
+    deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
+    assigned_to = models.ForeignKey(FreelancerProfile, null=True, blank=True,
+                                    on_delete=models.SET_NULL)  # New field added
 
     def __str__(self):
         return self.title
+
 
 class PaymentDetail(models.Model):
     freelancer = models.ForeignKey(FreelancerProfile, on_delete=models.CASCADE)
@@ -48,3 +51,15 @@ class PaymentDetail(models.Model):
 
     def __str__(self):
         return f"Payment Detail for Task {self.task.title} by {self.freelancer.user.username}"
+
+class TaskSubmission(models.Model):
+    freelancer = models.ForeignKey(FreelancerProfile, on_delete=models.CASCADE, related_name='submissions')
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='submissions')
+    git_link = models.URLField(max_length=200)
+    file_upload = models.FileField(upload_to='task_submissions/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)  # New text field
+    submission_date = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"Submission by {self.freelancer.user.username} for task: {self.task.title}"
