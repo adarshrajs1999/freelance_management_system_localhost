@@ -49,13 +49,20 @@ def register_customer(request):
     return render(request, 'register_customer.html', {'user_form': user_form})
 
 
-# Freelancer login view
 def freelancer_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
         if user is not None and user.role == 'freelancer':
+            # Check if freelancer is approved
+            freelancer_profile = FreelancerProfile.objects.get(user=user)
+            if not freelancer_profile.is_approved:
+                messages.error(request, "You are not approved by the admin yet.")
+                return render(request, 'login.html', {'user_type': 'freelancer'})
+
+            # If approved, log in the user
             login(request, user)
             messages.success(request, "Login successful!")
             return redirect('freelancer_dashboard')
@@ -116,7 +123,7 @@ def customer_dashboard(request):
 def view_tasks(request):
     # Tasks that are not completed and have no submissions
     tasks = Task.objects.filter(is_completed=False).exclude(submissions__isnull=False)
-    return render(request, 'task_list.html', {'tasks': tasks})
+    return render(request, 'freelancer_task_list.html', {'tasks': tasks})
 
 def submit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
@@ -160,3 +167,9 @@ def payment_details(request, task_id):
     else:
         form = PaymentDetailForm()
     return render(request, 'payment_form.html', {'form': form})
+
+@login_required
+def customer_task_list(request):
+    # Only display tasks that are not completed
+    tasks = Task.objects.filter(is_completed=False)
+    return render(request, 'customer_task_list.html', {'tasks': tasks})

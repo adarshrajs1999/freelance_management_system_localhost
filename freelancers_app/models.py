@@ -1,4 +1,5 @@
 # freelancers/models.py
+from email.policy import default
 
 from django.contrib.auth.models import AbstractUser
 from django.db import models
@@ -29,13 +30,20 @@ class CustomerProfile(models.Model):
         return f"{self.user.username}'s Customer Profile"
 
 
+from django.db import models
+
 class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
-    assigned_to = models.ForeignKey(FreelancerProfile, null=True, blank=True,
-                                    on_delete=models.SET_NULL)  # New field added
+    assigned_to = models.ForeignKey(
+        'FreelancerProfile',
+        null=True,
+        blank=True,
+        on_delete=models.SET_NULL
+    )
+    payment_amount = models.PositiveIntegerField(default=0)  # New field added
 
     def __str__(self):
         return self.title

@@ -1,0 +1,21 @@
+<!-- freelancers/customer_dashboard.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Welcome to the Customer Dashboard</h1>
+        <p>Hello, {{ request.user.username }}! Here you can browse available tasks and manage your account.</p>
+
+        <!-- Add links to view available tasks or other customer-specific actions -->
+        <a href="{% url 'customer_task_list' %}" class="btn btn-primary">View Available Tasks</a>
+        <a href="{% url 'customer_logout' %}" class="btn btn-secondary">Logout</a>
+    </div>
+</body>
+</html>

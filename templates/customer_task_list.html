@@ -1,0 +1,45 @@
+<!-- freelancers/templates/freelancers/customer_task_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Tasks</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Available Tasks</h1>
+        <p>Here are the tasks currently available for viewing.</p>
+
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Deadline</th>
+                    <th>Budget</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.deadline }}</td>
+                        <td>Rs. {{ task.payment_amount }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No tasks are currently available.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Back to Customer Dashboard Button -->
+        <a href="{% url 'customer_dashboard' %}" class="btn btn-primary mt-3">Back to Dashboard</a>
+    </div>
+</body>
+</html>
