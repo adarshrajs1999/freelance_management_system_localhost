@@ -1,61 +1,103 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task List - Freelance Management System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container" style="margin-top: 50px;">
-        <h2 class="text-center mb-4">Available Tasks</h2>
+{% extends 'home.html' %}
 
-        <!-- Display messages -->
-        {% if messages %}
-            <div class="alert alert-info">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+{% block content %}
+<div class="container task-list mt-5">
+    <h2 class="text-center mb-4">Available Tasks</h2>
 
-        <!-- Task List Table -->
-        <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
+
+
+    <!-- Task List Table -->
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Budget</th>
+                <th>Deadline</th>
+                <th>View Task Details</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
                 <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Budget</th>
-                    <th>Deadline</th>
-                    <th>View Task Details</th>
-                    <th>Action</th>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>Rs. {{ task.payment_amount }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>
+                        <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm">View Details</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for task in tasks %}
-                    <tr>
-                        <td>{{ task.title }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>Rs. {{ task.payment_amount }}</td>
-                        <td>{{ task.deadline }}</td>
-                        <td>
-                            <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm">View Details</a>
-                        </td>
-                        <td>
-                            <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
-                        </td>
-                    </tr>
-                {% empty %}
-                    <tr>
-                        <td colspan="6" class="text-center alert alert-warning">There are no unassigned tasks at the moment.</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+            {% empty %}
+                <tr>
+                    <td colspan="6" class="text-center alert alert-warning">There are no unassigned tasks at the moment.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+<style>
+    /* Scoped CSS to avoid conflicts */
+    .task-list {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+
+    .task-list h2 {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #FF6A13; /* Dark Orange */
+    }
+
+    .task-list .table {
+        margin-top: 30px;
+        border-radius: 10px;
+    }
+
+    .task-list .table th,
+    .task-list .table td {
+        vertical-align: middle;
+    }
+
+    .task-list .btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+        border-radius: 50px;
+    }
+
+    .task-list .btn-info {
+        background-color: #17a2b8; /* Info Blue */
+        border-color: #17a2b8;
+    }
+
+    .task-list .btn-info:hover {
+        background-color: #138496; /* Slightly Darker Blue */
+        border-color: #138496;
+    }
+
+    .task-list .btn-primary {
+        background-color: #FF6A13; /* Dark Orange */
+        border-color: #FF6A13;
+    }
+
+    .task-list .btn-primary:hover {
+        background-color: #e85d0f; /* Slightly Darker Orange */
+        border-color: #e85d0f;
+    }
+
+    .task-list .alert-info {
+        font-size: 1rem;
+    }
+
+    .task-list .alert-warning {
+        font-size: 1.1rem;
+        color: #856404;
+        background-color: #fff3cd;
+    }
+</style>
+{% endblock %}

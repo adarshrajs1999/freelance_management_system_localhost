@@ -1,17 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register as Customer</title>
-</head>
-<body>
-    <h1>Customer Registration</h1>
-    <p>Please fill out the form to create your customer account.</p>
-    <form method="post">
-        {% csrf_token %}
-        {{ user_form.as_p }}
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container mt-5 customer-registration">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Customer Registration</h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <table class="table">
+                            <tr>
+                                <th><label for="username">Username</label></th>
+                                <td>{{ user_form.username }}</td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="email">Email</label></th>
+                                <td>{{ user_form.email }}</td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="password1">Password</label></th>
+                                <td>{{ user_form.password1 }}</td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="password2">Confirm Password</label></th>
+                                <td>{{ user_form.password2 }}</td>
+                            </tr>
+                        </table>
+
+                        <button type="submit" class="btn btn-primary mt-4">Register</button>
+                    </form>
+
+                    {% if messages %}
+                        <div class="alert alert-success mt-3" role="alert">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p>Already have an account? <a href="{% url 'customer_login' %}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scoped CSS to avoid conflicts with other pages */
+    .customer-registration {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+
+    .customer-registration .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .customer-registration .card-header {
+        background-color: #FF6A13; /* Dark Orange */
+        color: white;
+        font-size: 1.5rem;
+        text-align: center;
+        padding: 1.5rem;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .customer-registration .form-control {
+        border-radius: 0.5rem;
+        box-shadow: none;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease;
+    }
+
+    .customer-registration .form-control:focus {
+        border-color: #FF6A13; /* Dark Orange Focus */
+        box-shadow: 0 0 5px rgba(255, 106, 19, 0.25);
+    }
+
+    .customer-registration .btn-primary {
+        background-color: #FF6A13; /* Dark Orange */
+        border-color: #FF6A13;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        width: 100%;
+    }
+
+    .customer-registration .btn-primary:hover {
+        background-color: #e85d0f; /* Slightly Darker Orange */
+        border-color: #e85d0f;
+    }
+
+    .customer-registration .alert {
+        font-size: 1rem;
+    }
+
+    .customer-registration .table th,
+    .customer-registration .table td {
+        vertical-align: middle;
+    }
+
+    .customer-registration .form-group label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .customer-registration .text-center a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .customer-registration .text-center a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock %}

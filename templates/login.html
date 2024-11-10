@@ -1,45 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Freelance Management System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container" style="max-width: 400px; margin-top: 100px;">
-        <h2 class="text-center mb-4">Login as {{ user_type|capfirst }}</h2>
+{% extends 'home.html' %}
 
-        <!-- Display messages -->
-        {% if messages %}
-            <div class="alert alert-info">
-                {% for message in messages %}
-                    <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-        {% endif %}
+{% block content %}
+    <div class="container" style="max-width: 450px; margin-top: 100px;">
+        <!-- Card Container for a more professional look -->
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Login as {{ user_type|capfirst }}</h2>
 
-        <!-- Login form -->
-        <form method="post">
-            {% csrf_token %}
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
-        </form>
+            <!-- Display messages -->
+            {% if messages %}
+                <div class="alert alert-info mb-4">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
-        <div class="text-center mt-3">
-            <p>Don't have an account? <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}">Register here</a></p>
+            <!-- Login form -->
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group mb-3">
+                    <label for="username" class="font-weight-bold">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-user" style="color: #FF6A13;"></i></span>
+                        </div>
+                        <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
+                    </div>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label for="password" class="font-weight-bold">Password</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fas fa-lock" style="color: #FF6A13;"></i></span>
+                        </div>
+                        <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
+                    </div>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block py-2" style="background-color: #FF6A13; border-color: #FF6A13; font-size: 16px;">Login</button>
+            </form>
+
+            <!-- Register link -->
+            <div class="text-center mt-4">
+                <p style="font-size: 14px;">Don't have an account? <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-primary">Register here</a></p>
+            </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Add custom styles or icons -->
+    <style>
+        body {
+            background-color: #f7f9fc;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #FF6A13;
+            border-color: #FF6A13;
+        }
+        .btn-primary:hover {
+            background-color: #e85d0f;
+            border-color: #e85d0f;
+        }
+        .input-group-text {
+            background-color: #f1f3f5;
+            border-right: 0;
+        }
+        .input-group-text i {
+            color: #FF6A13;
+        }
+    </style>
+{% endblock %}

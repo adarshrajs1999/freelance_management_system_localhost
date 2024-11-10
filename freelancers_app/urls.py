@@ -21,13 +21,14 @@ urlpatterns = [
     path('dashboard/customer/', views.customer_dashboard, name='customer_dashboard'),
 
     # Task management
-    path('tasks/', views.view_tasks, name='task_list'),
+    path('freelancer_task_list/', views.freelancer_task_list, name='freelancer_task_list'),
     path('tasks/submit/<int:task_id>/', views.submit_task, name='submit_task'),
 
     # Payment details
     path('tasks/<int:task_id>/payment/', views.payment_details, name='payment_details'),
     path('customer/tasks/', views.customer_task_list, name='customer_task_list'),
     path('task/<int:task_id>/details/', views.task_detail_view, name='task_detail'),
+    path('logout/', views.logout_view, name='logout'),
 
 
 ]

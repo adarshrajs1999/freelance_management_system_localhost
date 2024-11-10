@@ -1,30 +1,88 @@
-<div class="container my-5">
-    <h2 class="text-center mb-4">Submit Your Task</h2>
-    <div class="card p-4">
-        <form method="POST" action="{% url 'submit_task' task_id=task.id %}" enctype="multipart/form-data">
-            {% csrf_token %}
+{% extends 'home.html' %}
 
-            <!-- Git Repository Link Field -->
-            <div class="form-group">
-                <label for="git_link">Git Repository Link</label>
-                <input type="url" class="form-control" id="git_link" name="git_link" placeholder="https://github.com/your-repo" required>
-            </div>
+{% block content %}
+    <div class="container" style="max-width: 600px; margin-top: 100px;">
+        <!-- Card Container with shadow for a professional look -->
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Submit Your Task</h2>
 
-            <!-- File Upload Field -->
-            <div class="form-group">
-                <label for="file_upload">Upload Project Files (optional)</label>
-                <input type="file" class="form-control-file" id="file_upload" name="file_upload" accept=".zip,.rar,.tar.gz,.jpg,.jpeg,.png,.pdf">
-                <small class="form-text text-muted">Accepted file formats: .zip, .rar, .tar.gz, .jpg, .jpeg, .png, .pdf</small>
-            </div>
 
-            <!-- Description Field -->
-            <div class="form-group">
-                <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="4" placeholder="Add a detailed description of your submission"></textarea>
-            </div>
+            <!-- Task Submission Form -->
+            <form method="POST" action="{% url 'submit_task' task_id=task.id %}" enctype="multipart/form-data">
+                {% csrf_token %}
 
-            <!-- Submit Button -->
-            <button type="submit" class="btn btn-success btn-block">Submit Task</button>
-        </form>
+                <!-- Table-like Layout for Form -->
+                <table class="table table-bordered">
+                    <!-- Git Repository Link Row -->
+                    <tr>
+                        <td class="font-weight-bold" style="width: 150px;">Git Repository Link</td>
+                        <td>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-link" style="color: #FF6A13;"></i></span>
+                                </div>
+                                <input type="url" class="form-control" id="git_link" name="git_link" placeholder="https://github.com/your-repo" required>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- File Upload Row -->
+                    <tr>
+                        <td class="font-weight-bold">Upload Project Files (optional)</td>
+                        <td>
+                            <input type="file" class="form-control-file" id="file_upload" name="file_upload" accept=".zip,.rar,.tar.gz,.jpg,.jpeg,.png,.pdf">
+                            <small class="form-text text-muted">Accepted file formats: .zip, .rar, .tar.gz, .jpg, .jpeg, .png, .pdf</small>
+                        </td>
+                    </tr>
+
+                    <!-- Description Row -->
+                    <tr>
+                        <td class="font-weight-bold">Description</td>
+                        <td>
+                            <textarea class="form-control" id="description" name="description" rows="4" placeholder="Add a detailed description of your submission"></textarea>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- Submit Button -->
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-primary btn-block py-2" style="background-color: #FF6A13; border-color: #FF6A13; font-size: 16px;">Submit Task</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
+
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #f7f9fc;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #FF6A13;
+            border-color: #FF6A13;
+        }
+        .btn-primary:hover {
+            background-color: #e85d0f;
+            border-color: #e85d0f;
+        }
+        .input-group-text {
+            background-color: #f1f3f5;
+            border-right: 0;
+        }
+        .input-group-text i {
+            color: #FF6A13;
+        }
+        .table {
+            margin-top: 20px;
+        }
+        .table td {
+            padding: 15px;
+        }
+        .form-group {
+            margin-top: 20px;
+        }
+    </style>
+{% endblock %}

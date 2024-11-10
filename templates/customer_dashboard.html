@@ -1,21 +1,63 @@
-<!-- freelancers/customer_dashboard.html -->
+{% extends 'home.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Dashboard</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-</head>
-<body>
-    <div class="container mt-5">
-        <h1>Welcome to the Customer Dashboard</h1>
-        <p>Hello, {{ request.user.username }}! Here you can browse available tasks and manage your account.</p>
+{% block content %}
+<div class="container customer-dashboard mt-5">
+    <h1 class="text-center mb-4">Welcome to the Customer Dashboard</h1>
+    <p class="text-center">Hello, {{ request.user.username }}! Here you can browse available tasks and manage your account.</p>
 
+    <div class="text-center">
         <!-- Add links to view available tasks or other customer-specific actions -->
-        <a href="{% url 'customer_task_list' %}" class="btn btn-primary">View Available Tasks</a>
-        <a href="{% url 'customer_logout' %}" class="btn btn-secondary">Logout</a>
+        <a href="{% url 'customer_task_list' %}" class="btn btn-primary btn-lg mx-3">View Available Tasks</a>
+        <a href="{% url 'customer_logout' %}" class="btn btn-secondary btn-lg mx-3">Logout</a>
     </div>
-</body>
-</html>
+</div>
+
+<style>
+    /* Scoped CSS to avoid conflicts */
+    .customer-dashboard {
+        background-color: #f7f7f7;
+        font-family: Arial, sans-serif;
+    }
+
+    .customer-dashboard h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #FF6A13; /* Dark Orange */
+    }
+
+    .customer-dashboard p {
+        font-size: 1.25rem;
+        color: #333;
+    }
+
+    .customer-dashboard .btn {
+        font-size: 1.2rem;
+        padding: 12px 30px;
+        border-radius: 50px;
+    }
+
+    .customer-dashboard .btn-primary {
+        background-color: #FF6A13; /* Dark Orange */
+        border-color: #FF6A13;
+    }
+
+    .customer-dashboard .btn-primary:hover {
+        background-color: #e85d0f; /* Slightly Darker Orange */
+        border-color: #e85d0f;
+    }
+
+    .customer-dashboard .btn-secondary {
+        background-color: #6c757d; /* Gray */
+        border-color: #6c757d;
+    }
+
+    .customer-dashboard .btn-secondary:hover {
+        background-color: #5a6268; /* Darker Gray */
+        border-color: #5a6268;
+    }
+
+    .customer-dashboard .text-center {
+        margin-top: 30px;
+    }
+</style>
+{% endblock %}

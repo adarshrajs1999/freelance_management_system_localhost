@@ -65,7 +65,7 @@ def freelancer_login(request):
             # If approved, log in the user
             login(request, user)
             messages.success(request, "Login successful!")
-            return redirect('freelancer_dashboard')
+            return redirect('freelancer_task_list')
         else:
             messages.error(request, "Invalid username or password.")
     return render(request, 'login.html', {'user_type': 'freelancer'})
@@ -80,7 +80,7 @@ def customer_login(request):
         if user is not None and user.role == 'viewer':
             login(request, user)
             messages.success(request, "Login successful!")
-            return redirect('customer_dashboard')
+            return redirect('customer_task_list')
         else:
             messages.error(request, "Invalid username or password.")
     return render(request, 'login.html', {'user_type': 'customer'})
@@ -120,14 +120,17 @@ def customer_dashboard(request):
 
 
 @login_required
-def view_tasks(request):
+def freelancer_task_list(request):
     # Tasks that are not completed and have no submissions
-    tasks = Task.objects.filter(is_completed=False).exclude(submissions__isnull=False)
+    tasks = Task.objects.filter(is_completed=False)
     return render(request, 'freelancer_task_list.html', {'tasks': tasks})
+
+
 
 def submit_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
 
+    # Ensure only freelancers can submit tasks
     if request.user.role != 'freelancer':
         return redirect('home')
 
@@ -136,16 +139,23 @@ def submit_task(request, task_id):
     if request.method == 'POST':
         form = TaskSubmissionForm(request.POST, request.FILES)
         if form.is_valid():
+            # Save the task submission
             task_submission = form.save(commit=False)
             task_submission.freelancer = freelancer_profile
             task_submission.task = task
             task_submission.save()
 
-            return redirect('task_list')
+            # Mark the task as completed
+            task.is_completed = True
+            task.save()  # Save the task after updating the is_completed field
+
+            # Redirect to the freelancer task list after submission
+            return redirect('freelancer_task_list')
     else:
         form = TaskSubmissionForm()
 
     return render(request, 'submit_task.html', {'form': form, 'task': task})
+
 
 
 
@@ -179,3 +189,7 @@ def task_detail_view(request, task_id):
     # Fetch the task or return a 404 if it doesn't exist
     task = get_object_or_404(Task, id=task_id)
     return render(request, 'task_detail.html', {'task': task})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')  # Redirect to the home page after logging out

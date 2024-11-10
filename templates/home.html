@@ -7,262 +7,181 @@
     <title>Freelance Management System</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Google Fonts for better typography -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
         body {
-            background-color: #e6f7ff; /* Light, clean WhatsApp-like background */
+            background-color: #f5f9fd;
             font-family: 'Poppins', sans-serif;
-            color: #333; /* Dark text color for better readability */
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
-        /* Adjust the margin-top here to ensure content is not covered */
-        .content {
-            margin-top: 150px; /* Adjusted for better mobile compatibility */
-            padding-left: 10px;
-            padding-right: 10px;
+            color: #333;
+            padding: 15px;
         }
 
         .navbar {
-            background-color: #25D366; /* WhatsApp-like green color */
-            padding: 20px;
-        }
-
-        .navbar-brand {
-            font-size: 1.8rem;
-            font-weight: 600;
-            color: #ffffff; /* White text for the brand */
+            background-color: #00796b;
+            padding: 15px 0;
         }
 
         .navbar-nav .nav-link {
-            color: #ffffff !important; /* White navbar links */
+            color: #fff !important;
             font-size: 1.1rem;
-            padding: 10px 20px;
-            transition: background-color 0.3s ease;
+            font-weight: 500;
+            margin-right: 10px;
         }
 
         .navbar-nav .nav-link:hover {
-            background-color: #1da34a; /* Slightly darker green on hover */
-            border-radius: 50px;
+            color: #ff9800 !important;
         }
 
-        .container {
-            text-align: center;
-            padding-left: 10px;
-            padding-right: 10px;
+        .content {
+            margin-top: 90px;
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 2.8rem;
             font-weight: 600;
             margin-bottom: 20px;
+            color: #00796b;
         }
 
         .lead {
             font-size: 1.2rem;
             font-weight: 400;
+            color: #666;
             margin-bottom: 40px;
         }
 
         .btn-custom {
-            width: 100%;
-            margin-top: 15px;
-            padding: 15px;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            background-color: #ff7f00; /* Dark Orange */
+            margin-top: 20px;
+            padding: 12px 30px;
+            font-size: 1rem;
+            border-radius: 30px;
             color: white;
             transition: all 0.3s ease;
             border: none;
         }
 
-        .btn-custom:hover {
-            background-color: #ffb84d; /* Light Orange on hover */
-            transform: scale(1.05);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        .btn-primary-custom {
+            background-color: #ff9800;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #ffb74d;
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.4rem;
             font-weight: 600;
-            margin-bottom: 30px;
+            margin: 40px 0;
+            color: #333;
         }
 
         .feature-card {
             background-color: #ffffff;
-            color: #333333;
             border-radius: 10px;
-            padding: 20px;
+            padding: 25px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
         }
 
-        .feature-card h5 {
-            font-weight: 600;
-        }
-
-        .feature-card p {
-            font-size: 1.1rem;
-            color: #666;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
         .testimonial {
-            margin-top: 50px;
-            background-color: #ffffff;
+            margin-top: 60px;
+            background-color: #f8f8f8;
             border-radius: 10px;
-            padding: 40px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            color: #333;
+            padding: 30px;
+            color: #555;
+            text-align: center;
         }
 
         .testimonial h5 {
-            font-weight: 600;
-            margin-bottom: 10px;
+            color: #00796b;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        .testimonial p {
-            font-style: italic;
-            color: #777;
-        }
-
-        /* Mobile responsiveness */
+        /* Responsive adjustments */
         @media (max-width: 768px) {
-            body {
-                margin-top: 100px; /* Adjust space for smaller screens */
-            }
-
-            .container {
-                margin-top: 50px;
-            }
-
             h1 {
                 font-size: 2rem;
             }
 
-            .lead {
-                font-size: 1rem;
+            .section-title {
+                font-size: 1.8rem;
             }
 
             .btn-custom {
-                font-size: 1rem;
-                padding: 12px;
-            }
-
-            .feature-card {
-                margin-bottom: 20px;
-            }
-
-            /* Stack the register/login columns vertically */
-            .register-login-column {
-                flex-direction: column;
-                align-items: center;
-                width: 100%;
-            }
-
-            .register-login-column div {
-                width: 90%; /* Reduced the width slightly to prevent overflow */
-                margin-bottom: 20px;
+                font-size: 0.9rem;
             }
         }
-
-        /* Get Started Section */
-        .get-started {
-            margin-top: 60px;
-        }
-
-        .get-started .btn-custom {
-            width: 100%;
-        }
-
-        .register-login-column {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .register-login-column div {
-            width: 45%;
-        }
-
     </style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #25D366;">
-    <a class="navbar-brand" href="#">Freelance Management</a>
-    <!-- Navbar Toggler for Mobile View -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register_freelancer' %}">Freelancer Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'register_customer' %}">Customer Register</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'freelancer_login' %}">Freelancer Login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'customer_login' %}">Customer Login</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-<!--navbar ends-->
-
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <a class="navbar-brand" href="{% url 'home' %}" style="margin-left:40px;">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'register_freelancer' %}">Register Freelancer</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register_customer' %}">Register Customer</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'freelancer_login' %}">Freelancer Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'customer_login' %}">Customer Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <!-- Content Section -->
     <div class="content">
-        <!-- Welcome Section -->
-        <div class="container">
-            <h1>Welcome to the Freelance Management System</h1>
-            <p class="lead">Manage and connect with freelancers easily. Whether you are a freelancer or a customer, our platform provides all the tools you need to succeed.</p>
+        <div class="container text-center">
+            {% block content %}
+            <h1>Connect with Top Freelancers Effortlessly</h1>
+            <p class="lead">Discover talent, track projects, and streamline payments—all in one place.</p>
+            {% endblock %}
         </div>
 
         <!-- Get Started Section -->
-        <div class="container get-started">
+        <div class="container text-center">
             <div class="section-title">Get Started</div>
-            <div class="register-login-column">
-                <!-- Register Column -->
-                <div>
-                    <h3>Register Here</h3>
-                    <a href="{% url 'register_freelancer' %}" class="btn btn-primary btn-custom">Freelancer Register</a>
-                    <a href="{% url 'register_customer' %}" class="btn btn-secondary btn-custom">Customer Register</a>
-                </div>
-                <!-- Login Column -->
-                <div>
-                    <h3>Login Here</h3>
-                    <a href="{% url 'freelancer_login' %}" class="btn btn-success btn-custom">Freelancer Login</a>
-                    <a href="{% url 'customer_login' %}" class="btn btn-info btn-custom">Customer Login</a>
-                </div>
-            </div>
+            <a href="{% url 'register_freelancer' %}" class="btn btn-primary-custom btn-custom mx-2">Freelancer Register</a>
+            <a href="{% url 'register_customer' %}" class="btn btn-primary-custom btn-custom mx-2">Customer Register</a>
+            <a href="{% url 'freelancer_login' %}" class="btn btn-primary-custom btn-custom mx-2">Freelancer Login</a>
+            <a href="{% url 'customer_login' %}" class="btn btn-primary-custom btn-custom mx-2">Customer Login</a>
         </div>
 
         <!-- Features Section -->
         <div class="container">
             <div class="section-title">Key Features</div>
             <div class="row">
-                <div class="col-md-4 col-12">
+                <div class="col-md-4 col-12 mb-4">
                     <div class="feature-card">
+                        <i class="fas fa-tachometer-alt fa-3x mb-3" style="color: #00796b;"></i>
                         <h5>Freelancer Dashboard</h5>
-                        <p>Manage your projects, clients, and earnings in one place with an intuitive freelancer dashboard.</p>
+                        <p>Organize projects, track income, and manage client interactions in a seamless dashboard.</p>
                     </div>
                 </div>
-                <div class="col-md-4 col-12">
+                <div class="col-md-4 col-12 mb-4">
                     <div class="feature-card">
+                        <i class="fas fa-users fa-3x mb-3" style="color: #00796b;"></i>
                         <h5>Customer Management</h5>
-                        <p>As a customer, easily find skilled freelancers, track progress, and make payments securely.</p>
+                        <p>Easily find skilled freelancers, monitor progress, and handle secure payments—all from your dashboard.</p>
                     </div>
                 </div>
-                <div class="col-md-4 col-12">
+                <div class="col-md-4 col-12 mb-4">
                     <div class="feature-card">
+                        <i class="fas fa-lock fa-3x mb-3" style="color: #00796b;"></i>
                         <h5>Secure Payments</h5>
-                        <p>Our platform ensures secure transactions for both freelancers and customers, with payment tracking.</p>
+                        <p>Protected payment solutions that ensure every transaction is safe and smooth for both parties.</p>
                     </div>
                 </div>
             </div>
@@ -271,15 +190,20 @@
         <!-- Testimonials Section -->
         <div class="container testimonial">
             <h5>What Our Users Say</h5>
-            <p>"The platform has helped me connect with amazing freelancers who have elevated my projects to new heights!"</p>
-            <footer>- Satisfied Customer</footer>
+            <p>"Freelance Management has connected me with incredible talent who brought my projects to life."</p>
+            <footer>- Happy Client</footer>
         </div>
     </div>
 
-    <!-- Bootstrap and JS -->
+    <!-- Bootstrap JS and jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+       <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
 </body>
 
 </html>
