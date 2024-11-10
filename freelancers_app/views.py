@@ -173,3 +173,9 @@ def customer_task_list(request):
     # Only display tasks that are not completed
     tasks = Task.objects.filter(is_completed=False)
     return render(request, 'customer_task_list.html', {'tasks': tasks})
+
+
+def task_detail_view(request, task_id):
+    # Fetch the task or return a 404 if it doesn't exist
+    task = get_object_or_404(Task, id=task_id)
+    return render(request, 'task_detail.html', {'task': task})

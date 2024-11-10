@@ -27,6 +27,7 @@ urlpatterns = [
     # Payment details
     path('tasks/<int:task_id>/payment/', views.payment_details, name='payment_details'),
     path('customer/tasks/', views.customer_task_list, name='customer_task_list'),
+    path('task/<int:task_id>/details/', views.task_detail_view, name='task_detail'),
 
 
 ]

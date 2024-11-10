@@ -27,6 +27,7 @@
                     <th>Description</th>
                     <th>Budget</th>
                     <th>Deadline</th>
+                    <th>View Task Details</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -38,12 +39,15 @@
                         <td>Rs. {{ task.payment_amount }}</td>
                         <td>{{ task.deadline }}</td>
                         <td>
+                            <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm">View Details</a>
+                        </td>
+                        <td>
                             <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
                         </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5" class="text-center alert alert-warning">There are no unassigned tasks at the moment.</td>
+                        <td colspan="6" class="text-center alert alert-warning">There are no unassigned tasks at the moment.</td>
                     </tr>
                 {% endfor %}
             </tbody>

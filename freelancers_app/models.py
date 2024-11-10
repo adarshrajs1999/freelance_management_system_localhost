@@ -44,6 +44,8 @@ class Task(models.Model):
         on_delete=models.SET_NULL
     )
     payment_amount = models.PositiveIntegerField(default=0)  # New field added
+    file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
+
 
     def __str__(self):
         return self.title

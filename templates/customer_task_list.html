@@ -1,5 +1,3 @@
-<!-- freelancers/templates/freelancers/customer_task_list.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,16 +8,19 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1>Available Tasks</h1>
-        <p>Here are the tasks currently available for viewing.</p>
+        <h2 class="text-center mb-4">Available Tasks</h2>
+        <p class="text-center">Here are the tasks currently available for viewing.</p>
 
-        <table class="table table-bordered table-striped mt-3">
-            <thead>
+
+        <!-- Task List Table -->
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
                 <tr>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Deadline</th>
                     <th>Budget</th>
+                    <th>View Task Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,10 +30,14 @@
                         <td>{{ task.description }}</td>
                         <td>{{ task.deadline }}</td>
                         <td>Rs. {{ task.payment_amount }}</td>
+                        <td>
+                            <!-- View Details Button -->
+                            <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm">View Details</a>
+                        </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="4" class="text-center">No tasks are currently available.</td>
+                        <td colspan="5" class="text-center alert alert-warning">No tasks are currently available.</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -41,5 +46,9 @@
         <!-- Back to Customer Dashboard Button -->
         <a href="{% url 'customer_dashboard' %}" class="btn btn-primary mt-3">Back to Dashboard</a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
