@@ -16,10 +16,6 @@ urlpatterns = [
     path('login/customer/', views.customer_login, name='customer_login'),
     path('logout/customer/', views.customer_logout, name='customer_logout'),
 
-    # Dashboards
-    path('dashboard/freelancer/', views.freelancer_dashboard, name='freelancer_dashboard'),
-    path('dashboard/customer/', views.customer_dashboard, name='customer_dashboard'),
-
     # Task management
     path('freelancer_task_list/', views.freelancer_task_list, name='freelancer_task_list'),
     path('tasks/submit/<int:task_id>/', views.submit_task, name='submit_task'),

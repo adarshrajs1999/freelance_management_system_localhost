@@ -6,15 +6,6 @@
         <div class="card shadow-lg p-4">
             <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Login as {{ user_type|capfirst }}</h2>
 
-            <!-- Display messages -->
-            {% if messages %}
-                <div class="alert alert-info mb-4">
-                    {% for message in messages %}
-                        <p>{{ message }}</p>
-                    {% endfor %}
-                </div>
-            {% endif %}
-
             <!-- Login form -->
             <form method="post">
                 {% csrf_token %}
@@ -23,7 +14,7 @@
                     <label for="username" class="font-weight-bold">Username</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-user" style="color: #FF6A13;"></i></span>
+                            <span class="input-group-text"><i class="fas fa-user" style="color: #00796b;"></i></span>
                         </div>
                         <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
                     </div>
@@ -33,14 +24,14 @@
                     <label for="password" class="font-weight-bold">Password</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fas fa-lock" style="color: #FF6A13;"></i></span>
+                            <span class="input-group-text"><i class="fas fa-lock" style="color: #00796b;"></i></span>
                         </div>
                         <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
                     </div>
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block py-2" style="background-color: #FF6A13; border-color: #FF6A13; font-size: 16px;">Login</button>
+                <button type="submit" class="btn btn-primary btn-block py-2" style="background-color: #00796b; border-color: #00796b; font-size: 16px;">Login</button>
             </form>
 
             <!-- Register link -->
@@ -59,19 +50,19 @@
             border-radius: 10px;
         }
         .btn-primary {
-            background-color: #FF6A13;
-            border-color: #FF6A13;
+            background-color: #00796b;
+            border-color: #00796b;
         }
         .btn-primary:hover {
-            background-color: #e85d0f;
-            border-color: #e85d0f;
+            background-color: #00695c;
+            border-color: #00695c;
         }
         .input-group-text {
             background-color: #f1f3f5;
             border-right: 0;
         }
         .input-group-text i {
-            color: #FF6A13;
+            color: #00796b;
         }
     </style>
 {% endblock %}

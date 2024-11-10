@@ -102,23 +102,6 @@ def customer_logout(request):
     return redirect('customer_login')
 
 
-# Freelancer dashboard view
-@login_required
-def freelancer_dashboard(request):
-    if request.user.role != 'freelancer':
-        return redirect('home')
-    return render(request, 'freelancer_dashboard.html')
-
-
-# Customer dashboard view
-@login_required
-def customer_dashboard(request):
-    if request.user.role != 'viewer':
-        return redirect('home')
-    tasks = Task.objects.filter(is_completed=False)
-    return render(request, 'customer_dashboard.html', {'tasks': tasks})
-
-
 @login_required
 def freelancer_task_list(request):
     # Tasks that are not completed and have no submissions
