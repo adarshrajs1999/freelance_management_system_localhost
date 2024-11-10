@@ -1,41 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freelance Management System</title>
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
-            background-color: #f8f9fa;
+            background-color: #e6f7ff; /* Light, clean WhatsApp-like background */
+            font-family: 'Poppins', sans-serif;
+            color: #333; /* Dark text color for better readability */
+            padding-left: 15px;
+            padding-right: 15px;
         }
+
+        /* Adjust the margin-top here to ensure content is not covered */
+        .content {
+            margin-top: 150px; /* Adjusted for better mobile compatibility */
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .navbar {
+            background-color: #25D366; /* WhatsApp-like green color */
+            padding: 20px;
+        }
+
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffffff; /* White text for the brand */
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important; /* White navbar links */
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #1da34a; /* Slightly darker green on hover */
+            border-radius: 50px;
+        }
+
         .container {
-            margin-top: 100px;
+            text-align: center;
+            padding-left: 10px;
+            padding-right: 10px;
         }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .lead {
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 40px;
+        }
+
         .btn-custom {
             width: 100%;
-            margin-top: 10px;
+            margin-top: 15px;
+            padding: 15px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            background-color: #ff7f00; /* Dark Orange */
+            color: white;
+            transition: all 0.3s ease;
+            border: none;
         }
+
+        .btn-custom:hover {
+            background-color: #ffb84d; /* Light Orange on hover */
+            transform: scale(1.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            color: #333333;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card h5 {
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .testimonial {
+            margin-top: 50px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+
+        .testimonial h5 {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            color: #777;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            body {
+                margin-top: 100px; /* Adjust space for smaller screens */
+            }
+
+            .container {
+                margin-top: 50px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+            }
+
+            .btn-custom {
+                font-size: 1rem;
+                padding: 12px;
+            }
+
+            .feature-card {
+                margin-bottom: 20px;
+            }
+
+            /* Stack the register/login columns vertically */
+            .register-login-column {
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            .register-login-column div {
+                width: 90%; /* Reduced the width slightly to prevent overflow */
+                margin-bottom: 20px;
+            }
+        }
+
+        /* Get Started Section */
+        .get-started {
+            margin-top: 60px;
+        }
+
+        .get-started .btn-custom {
+            width: 100%;
+        }
+
+        .register-login-column {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .register-login-column div {
+            width: 45%;
+        }
+
     </style>
 </head>
-<body>
-    <div class="container text-center">
-        <h1>Welcome to the Freelance Management System</h1>
-        <p class="lead">Manage and connect with freelancers easily</p>
 
-        <div class="row justify-content-center mt-4">
-            <div class="col-md-4">
-                <a href="{% url 'register_freelancer' %}" class="btn btn-primary btn-custom">Freelancer Register</a>
-                <a href="{% url 'register_customer' %}" class="btn btn-secondary btn-custom">Customer Register</a>
-                <a href="{% url 'freelancer_login' %}" class="btn btn-success btn-custom">Freelancer Login</a>
-                <a href="{% url 'customer_login' %}" class="btn btn-info btn-custom">Customer Login</a>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #25D366;">
+    <a class="navbar-brand" href="#">Freelance Management</a>
+    <!-- Navbar Toggler for Mobile View -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_freelancer' %}">Freelancer Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'register_customer' %}">Customer Register</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'freelancer_login' %}">Freelancer Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'customer_login' %}">Customer Login</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<!--navbar ends-->
+
+
+    <!-- Content Section -->
+    <div class="content">
+        <!-- Welcome Section -->
+        <div class="container">
+            <h1>Welcome to the Freelance Management System</h1>
+            <p class="lead">Manage and connect with freelancers easily. Whether you are a freelancer or a customer, our platform provides all the tools you need to succeed.</p>
+        </div>
+
+        <!-- Get Started Section -->
+        <div class="container get-started">
+            <div class="section-title">Get Started</div>
+            <div class="register-login-column">
+                <!-- Register Column -->
+                <div>
+                    <h3>Register Here</h3>
+                    <a href="{% url 'register_freelancer' %}" class="btn btn-primary btn-custom">Freelancer Register</a>
+                    <a href="{% url 'register_customer' %}" class="btn btn-secondary btn-custom">Customer Register</a>
+                </div>
+                <!-- Login Column -->
+                <div>
+                    <h3>Login Here</h3>
+                    <a href="{% url 'freelancer_login' %}" class="btn btn-success btn-custom">Freelancer Login</a>
+                    <a href="{% url 'customer_login' %}" class="btn btn-info btn-custom">Customer Login</a>
+                </div>
             </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="container">
+            <div class="section-title">Key Features</div>
+            <div class="row">
+                <div class="col-md-4 col-12">
+                    <div class="feature-card">
+                        <h5>Freelancer Dashboard</h5>
+                        <p>Manage your projects, clients, and earnings in one place with an intuitive freelancer dashboard.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-card">
+                        <h5>Customer Management</h5>
+                        <p>As a customer, easily find skilled freelancers, track progress, and make payments securely.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 col-12">
+                    <div class="feature-card">
+                        <h5>Secure Payments</h5>
+                        <p>Our platform ensures secure transactions for both freelancers and customers, with payment tracking.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials Section -->
+        <div class="container testimonial">
+            <h5>What Our Users Say</h5>
+            <p>"The platform has helped me connect with amazing freelancers who have elevated my projects to new heights!"</p>
+            <footer>- Satisfied Customer</footer>
         </div>
     </div>
 
-    <!-- Add necessary Bootstrap JS files -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap and JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
