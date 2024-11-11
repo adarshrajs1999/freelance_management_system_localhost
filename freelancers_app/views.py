@@ -2,9 +2,9 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from .models import User, FreelancerProfile, Task, PaymentDetail, TaskSubmission
-from .forms import UserRegistrationForm, FreelancerProfileForm, CustomerRegistrationForm, TaskForm, PaymentDetailForm, \
-    TaskSubmissionForm
+from .models import User, FreelancerProfile, Task, TaskSubmission
+from .forms import UserRegistrationForm, FreelancerProfileForm, CustomerRegistrationForm, TaskSubmissionForm
+
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
@@ -141,24 +141,6 @@ def submit_task(request, task_id):
 
 
 
-# Freelancer payment form
-@login_required
-def payment_details(request, task_id):
-    if request.user.role != 'freelancer':
-        return redirect('home')
-    task = get_object_or_404(Task, id=task_id, assigned_to=request.user.freelancer_profile)
-    if request.method == 'POST':
-        form = PaymentDetailForm(request.POST)
-        if form.is_valid():
-            payment_detail = form.save(commit=False)
-            payment_detail.freelancer = request.user.freelancer_profile
-            payment_detail.task = task
-            payment_detail.save()
-            messages.success(request, "Payment details submitted!")
-            return redirect('task_list')
-    else:
-        form = PaymentDetailForm()
-    return render(request, 'payment_form.html', {'form': form})
 
 @login_required
 def customer_task_list(request):

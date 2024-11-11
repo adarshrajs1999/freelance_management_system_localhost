@@ -2,7 +2,7 @@
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from .models import User, FreelancerProfile, Task, PaymentDetail
+from .models import User, FreelancerProfile, Task
 from .models import TaskSubmission
 
 
@@ -21,10 +21,7 @@ class TaskForm(forms.ModelForm):
         model = Task
         fields = ['title', 'description']
 
-class PaymentDetailForm(forms.ModelForm):
-    class Meta:
-        model = PaymentDetail
-        fields = ['bank_account', 'gpay_number', 'phonepe_number']
+
 
 class FreelancerRegistrationForm(UserCreationForm):
     phone_number = forms.CharField(max_length=15, required=True)
