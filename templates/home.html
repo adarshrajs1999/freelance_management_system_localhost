@@ -132,64 +132,8 @@
             box-shadow: 0 8px 25px var(--card-hover-shadow);
         }
 
-        .feature-card .icon-container {
-            flex-grow: 1;
-        }
-
         .feature-card .icon-container i {
             color: var(--primary-color);
-        }
-
-        .feature-card h5 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            font-size: 1rem;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        .row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: center;
-        }
-
-        .col-md-4, .col-12 {
-            display: flex;
-            justify-content: center;
-            align-items: stretch;
-            flex: 1;
-            max-width: 30%;
-            min-width: 270px;
-        }
-
-        .col-md-4 .feature-card {
-            width: 100%;
-            height: 100%;
-        }
-
-        @media (max-width: 768px) {
-            .col-md-4 {
-                max-width: 100%;
-            }
-
-            h1 {
-                font-size: 2rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            .btn-custom {
-                font-size: 0.9rem;
-            }
         }
 
         .testimonial {
@@ -206,22 +150,45 @@
             font-size: 1.5rem;
             margin-bottom: 20px;
         }
+
+        .contact-section {
+            margin-top: 60px;
+            padding: 40px;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-section h5 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            color: #555;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'home' %}">Freelance Management</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Freelance Work</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'register_freelancer' %}"><i class="fas fa-user-plus"></i> Register as Freelancer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'register_customer' %}"><i class="fas fa-user-plus"></i> Register as Customer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'freelancer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Freelancer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'customer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Customer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
             </ul>
         </div>
     </nav>
@@ -229,8 +196,8 @@
     <div class="content">
         <div class="container text-center">
             {% block content %}
-            <h1>Get Freelance Work Done Easily</h1>
-            <p class="lead">Find expert freelancers to handle your projects quickly and efficiently.</p>
+            <h1>Get Freelance Works Easily</h1>
+            <p class="lead">Find your freelance project works quickly.</p>
             {% endblock %}
         </div>
 
@@ -271,23 +238,32 @@
             <h5>Testimonials</h5>
             <p>"Freelance Management System has transformed the way we work with freelancers. Efficient, organized, and user-friendly!"</p>
         </div>
+
+        <!-- Contact Section -->
+        <!-- Contact Section -->
+<div class="container contact-section mt-5" id="contact">
+    <h5>Contact Us</h5>
+    <p><i class="fas fa-phone-alt" style="color:orange;"></i>
+        <a href="tel:+918891966916" style=" text-decoration: none;" >+91 8891 9669 16</a>
+    </p>
+    <p><i class="fas fa-envelope" style="color:orange;"></i>
+        <a href="mailto:omkaartouristhome@gmail.com" style=" text-decoration: none;" >omkaartouristhome@gmail.com</a>
+    </p>
+    <p ><i class="fas fa-map-marker-alt"></i> Omkaar Tourist Home, Near Mariyamman Kovil, <br> Tali Cross Road Palayam - 673002, Calicut, India</p>
+</div>
+
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-        function goBack() {
-            window.history.back();
-        }
-
-    </script>
-  <script>
+    <script>
         function confirmLogout() {
-            return confirm("Are you sure you want to log out?");
+            return confirm("Are you sure you want to logout?");
         }
     </script>
+
+    <!-- Bootstrap and JQuery Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
