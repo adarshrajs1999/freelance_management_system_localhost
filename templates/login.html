@@ -6,6 +6,20 @@
         <div class="card shadow-lg p-4">
             <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Login as {{ user_type|capfirst }}</h2>
 
+            <!-- Message section (if any) -->
+            {% if messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+
             <!-- Login form -->
             <form method="post">
                 {% csrf_token %}

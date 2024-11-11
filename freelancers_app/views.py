@@ -64,7 +64,6 @@ def freelancer_login(request):
 
             # If approved, log in the user
             login(request, user)
-            messages.success(request, "Login successful!")
             return redirect('freelancer_task_list')
         else:
             messages.error(request, "Invalid username or password.")
