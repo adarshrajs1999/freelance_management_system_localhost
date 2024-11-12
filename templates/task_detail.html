@@ -29,7 +29,7 @@
                             <th scope="row" class="font-weight-bold">Document:</th>
                             <td>
                                 {% if task.file_upload %}
-                                    <a href="{{ task.file_upload.url }}" target="_blank" class="btn btn-warning btn-sm">Download</a>
+                                    <a href="{{ task.file_upload.url }}" target="_blank" class="btn btn-success btn-sm">View Document</a>
                                 {% else %}
                                     <span class="text-muted">No document available for this task.</span>
                                 {% endif %}

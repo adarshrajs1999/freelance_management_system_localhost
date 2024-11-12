@@ -2,19 +2,15 @@
 
 {% block content %}
 
-
 <a href="{% url 'edit_freelancer_profile' %}" class="btn btn-info" style="text-decoration:none;">
-        <!-- Add the Bootstrap icon for a user profile -->
-        <i class="fas fa-user-plus mr-2"></i> <!-- User icon -->
-        View & Edit Your Profile
+    <!-- Add the Bootstrap icon for a user profile -->
+    <i class="fas fa-user-plus mr-2"></i> <!-- User icon -->
+    View & Edit Your Profile
 </a>
-
 
 <div class="container task-list mt-5">
 
     <h2 class="text-center mb-4">Available Tasks</h2>
-
-
 
     <!-- Task List Table -->
     <table class="table table-bordered table-striped">
@@ -36,10 +32,10 @@
                     <td>Rs. {{ task.payment_amount }}</td>
                     <td>{{ task.deadline }}</td>
                     <td>
-                        <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm">View Details</a>
+                        <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-lg custom-btn">View Details</a>
                     </td>
                     <td>
-                        <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
+                        <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-lg custom-btn">Submit Task</a>
                     </td>
                 </tr>
             {% empty %}
@@ -76,8 +72,12 @@
 
     .task-list .btn {
         font-size: 1rem;
-        padding: 8px 16px;
-        border-radius: 50px;
+        padding: 12px 20px;
+        border-radius: 30px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap; /* Prevents text wrapping */
     }
 
     .task-list .btn-info {
@@ -109,18 +109,9 @@
         color: #856404;
         background-color: #fff3cd;
     }
- .no-underline {
-        text-decoration: none; /* Remove underline from anchor */
-    }
 
     .custom-btn {
         transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
-        padding: 12px 20px;
-        border-radius: 30px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
     }
 
     .custom-btn:hover {
@@ -139,9 +130,10 @@
 
 </style>
 
- <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
 {% endblock %}
