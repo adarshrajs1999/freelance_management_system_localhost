@@ -250,7 +250,7 @@ def forgot_username(request):
                 fail_silently=False,
             )
             messages.success(request, 'Your username has been sent to your email.')
-            return redirect('login')
+
         except User.DoesNotExist:
             messages.error(request, 'No account found with this email address.')
     return render(request, 'forgot_username.html')
