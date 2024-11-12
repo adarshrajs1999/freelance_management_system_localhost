@@ -23,6 +23,8 @@ urlpatterns = [
     path('customer/tasks/', views.customer_task_list, name='customer_task_list'),
     path('task/<int:task_id>/details/', views.task_detail_view, name='task_detail'),
     path('logout/', views.logout_view, name='logout'),
+    path('edit_freelancer_profile/', views.edit_freelancer_profile, name='edit_freelancer_profile'),
+    path('edit_customer_profile/', views.edit_customer_profile, name='edit_customer_profile'),
 
 
 ]

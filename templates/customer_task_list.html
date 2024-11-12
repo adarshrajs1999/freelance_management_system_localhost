@@ -1,6 +1,14 @@
 {% extends 'home.html' %}
 
 {% block content %}
+
+<a href="{% url 'edit_customer_profile' %}" class="btn btn-info" style="text-decoration:none;">
+        <!-- Add the Bootstrap icon for a user profile -->
+        <i class="fas fa-user-plus mr-2"></i> <!-- User icon -->
+        View & Edit Your Profile
+</a>
+
+
 <div class="container available-tasks mt-5">
     <h2 class="text-center mb-4">Available Tasks</h2>
     <p class="text-center mb-5">Here are the tasks currently available for viewing.</p>

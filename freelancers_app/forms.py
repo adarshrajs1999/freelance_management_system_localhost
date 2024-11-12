@@ -65,3 +65,34 @@ class TaskSubmissionForm(forms.ModelForm):
     class Meta:
         model = TaskSubmission
         fields = ['git_link', 'file_upload','description']
+
+    # freelancers/forms.py
+
+
+from django import forms
+from django.contrib.auth.forms import PasswordChangeForm
+from .models import User, FreelancerProfile, CustomerProfile
+
+
+# Form to edit user info (username, email, and password)
+class UserEditForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+
+class FreelancerProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = FreelancerProfile
+        fields = ['phone_number', 'communication_address', 'resume']
+
+
+class CustomerProfileEditForm(forms.ModelForm):
+    class Meta:
+        model = CustomerProfile
+        fields = ['company_name', 'business_area']
+
+
+# Form for updating password
+class PasswordUpdateForm(PasswordChangeForm):
+    pass

@@ -157,3 +157,74 @@ def task_detail_view(request, task_id):
 def logout_view(request):
     logout(request)
     return redirect('home')  # Redirect to the home page after logging out
+
+# freelancers/views.py
+
+from django.contrib.auth import update_session_auth_hash
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .forms import UserEditForm, FreelancerProfileEditForm, CustomerProfileEditForm, PasswordUpdateForm
+from .models import FreelancerProfile, CustomerProfile
+
+
+@login_required
+def edit_freelancer_profile(request):
+    # Check if the freelancer profile exists, create if not
+    freelancer_profile, created = FreelancerProfile.objects.get_or_create(user=request.user)
+
+    user_form = UserEditForm(instance=request.user)
+    profile_form = FreelancerProfileEditForm(instance=freelancer_profile)
+    password_form = PasswordUpdateForm(user=request.user)
+
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = FreelancerProfileEditForm(request.POST, request.FILES, instance=freelancer_profile)
+        password_form = PasswordUpdateForm(request.user, request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid() and password_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            password_form.save()
+            update_session_auth_hash(request, password_form.user)  # Keeps the user logged in after password change
+            messages.success(request, "Your profile has been updated successfully!")
+            return redirect('edit_freelancer_profile')
+
+    return render(request, 'edit_freelancer_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'password_form': password_form
+    })
+
+
+
+@login_required
+def edit_customer_profile(request):
+    # Check if the customer profile exists, create if not
+    customer_profile, created = CustomerProfile.objects.get_or_create(user=request.user)
+
+    # Initialize the forms with the current user and customer profile
+    user_form = UserEditForm(instance=request.user)
+    profile_form = CustomerProfileEditForm(instance=customer_profile)
+    password_form = PasswordUpdateForm(user=request.user)
+
+    if request.method == 'POST':
+        # Handle POST data for all forms
+        user_form = UserEditForm(request.POST, instance=request.user)
+        profile_form = CustomerProfileEditForm(request.POST, request.FILES, instance=customer_profile)
+        password_form = PasswordUpdateForm(request.user, request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid() and password_form.is_valid():
+            # Save the changes
+            user_form.save()
+            profile_form.save()
+            password_form.save()
+            update_session_auth_hash(request, password_form.user)  # Keep the user logged in after password change
+            messages.success(request, "Your profile has been updated successfully!")
+            return redirect('edit_customer_profile')  # Redirect to the same page after success
+
+    return render(request, 'edit_customer_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form,
+        'password_form': password_form
+    })

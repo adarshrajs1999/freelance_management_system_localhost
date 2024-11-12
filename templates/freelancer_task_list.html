@@ -1,7 +1,17 @@
 {% extends 'home.html' %}
 
 {% block content %}
+
+
+<a href="{% url 'edit_freelancer_profile' %}" class="btn btn-info" style="text-decoration:none;">
+        <!-- Add the Bootstrap icon for a user profile -->
+        <i class="fas fa-user-plus mr-2"></i> <!-- User icon -->
+        View & Edit Your Profile
+</a>
+
+
 <div class="container task-list mt-5">
+
     <h2 class="text-center mb-4">Available Tasks</h2>
 
 
@@ -99,6 +109,34 @@
         color: #856404;
         background-color: #fff3cd;
     }
+ .no-underline {
+        text-decoration: none; /* Remove underline from anchor */
+    }
+
+    .custom-btn {
+        transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+        padding: 12px 20px;
+        border-radius: 30px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .custom-btn:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: translateY(-3px); /* Slight upward movement on hover */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+    }
+
+    .custom-btn:focus {
+        outline: none; /* Remove focus outline */
+    }
+
+    .custom-btn i {
+        font-size: 1.25rem; /* Icon size */
+    }
+
 </style>
 
  <script>
