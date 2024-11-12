@@ -228,3 +228,29 @@ def edit_customer_profile(request):
         'profile_form': profile_form,
         'password_form': password_form
     })
+
+
+# freelancers/views.py
+
+from django.shortcuts import render, redirect
+from django.core.mail import send_mail
+from django.contrib import messages
+from .models import User
+
+def forgot_username(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+            send_mail(
+                'Your Username',
+                f'Hello {user.username},\n\nYour username is: {user.username}',
+                'your-email@gmail.com',
+                [email],
+                fail_silently=False,
+            )
+            messages.success(request, 'Your username has been sent to your email.')
+            return redirect('login')
+        except User.DoesNotExist:
+            messages.error(request, 'No account found with this email address.')
+    return render(request, 'forgot_username.html')

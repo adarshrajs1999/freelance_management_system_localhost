@@ -51,6 +51,11 @@
             <!-- Register link -->
             <div class="text-center mt-4">
                 <p style="font-size: 14px;">Don't have an account? <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-primary">Register here</a></p>
+                <!-- templates/login.html -->
+
+<p><a href="{% url 'password_reset' %}">Forgot Password?</a></p>
+<p><a href="{% url 'forgot_username' %}">Forgot Username?</a></p>
+
             </div>
         </div>
     </div>
