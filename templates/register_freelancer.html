@@ -3,56 +3,55 @@
 {% block content %}
 <div class="container mt-5 freelancer-registration">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center">
                     <h3>Freelancer Registration</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th><label for="username">Username</label></th>
+                                    <td>{{ user_form.username }}</td>
+                                </tr>
 
-                        <table class="table">
-                            <tr>
-                                <th><label for="username">Username</label></th>
-                                <td>{{ user_form.username }}</td>
-                            </tr>
+                                <tr>
+                                    <th><label for="email">Email</label></th>
+                                    <td>{{ user_form.email }}</td>
+                                </tr>
 
-                            <tr>
-                                <th><label for="email">Email</label></th>
-                                <td>{{ user_form.email }}</td>
-                            </tr>
+                                <tr>
+                                    <th><label for="password1">Password</label></th>
+                                    <td>{{ user_form.password1 }}</td>
+                                </tr>
 
-                            <tr>
-                                <th><label for="password1">Password</label></th>
-                                <td>{{ user_form.password1 }}</td>
-                            </tr>
+                                <tr>
+                                    <th><label for="password2">Confirm Password</label></th>
+                                    <td>{{ user_form.password2 }}</td>
+                                </tr>
 
-                            <tr>
-                                <th><label for="password2">Confirm Password</label></th>
-                                <td>{{ user_form.password2 }}</td>
-                            </tr>
+                                <tr>
+                                    <th><label for="phone_number">Phone Number</label></th>
+                                    <td>{{ profile_form.phone_number }}</td>
+                                </tr>
 
-                            <tr>
-                                <th><label for="phone_number">Phone Number</label></th>
-                                <td>{{ profile_form.phone_number }}</td>
-                            </tr>
+                                <tr>
+                                    <th><label for="communication_address">Communication Address</label></th>
+                                    <td>{{ profile_form.communication_address }}</td>
+                                </tr>
 
-                            <tr>
-                                <th><label for="communication_address">Communication Address</label></th>
-                                <td>{{ profile_form.communication_address }}</td>
-                            </tr>
-
-                            <tr>
-                                <th><label for="resume">Resume</label></th>
-                                <td>{{ profile_form.resume }}</td>
-                            </tr>
-                        </table>
+                                <tr>
+                                    <th><label for="resume">Resume</label></th>
+                                    <td>{{ profile_form.resume }}</td>
+                                </tr>
+                            </table>
+                        </div>
 
                         <button type="submit" class="btn btn-primary w-100 mt-4">Register</button>
                     </form>
-
-
                 </div>
             </div>
 
@@ -63,7 +62,6 @@
     </div>
 </div>
 
-<style>
 <style>
     /* Scoped CSS to avoid conflicts with other pages */
     .freelancer-registration {
@@ -79,7 +77,6 @@
         background-color: #00796b;
         color: white;
         font-size: 1.5rem;
-        text-align: center;
         padding: 1.5rem;
         border-radius: 15px 15px 0 0;
     }
@@ -131,8 +128,71 @@
         text-decoration: underline;
     }
 
-    /* Add any other page-specific styles here */
-</style>
+    @media (max-width: 992px) {
+        .freelancer-registration .card {
+            padding: 10px;
+        }
 
+        .freelancer-registration .card-header {
+            font-size: 1.3rem;
+            padding: 1.2rem;
+        }
+
+        .freelancer-registration .btn-primary {
+            font-size: 1rem;
+            padding: 8px 16px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .freelancer-registration .table-responsive {
+            overflow-x: auto;
+        }
+
+        .freelancer-registration .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .freelancer-registration .table th,
+        .freelancer-registration .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .freelancer-registration .table td {
+            padding: 8px;
+            border: none;
+        }
+
+        .freelancer-registration .form-control {
+            width: 100%;
+        }
+
+        .freelancer-registration .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        .freelancer-registration .text-center {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .freelancer-registration .card {
+            padding: 8px;
+        }
+
+        .freelancer-registration .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .freelancer-registration .btn-primary {
+            font-size: 1rem;
+            padding: 8px 16px;
+        }
+    }
 </style>
 {% endblock %}

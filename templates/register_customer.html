@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-5 customer-registration">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 col-lg-6">
             <div class="card">
                 <div class="card-header">
                     <h3>Customer Registration</h3>
@@ -12,7 +12,7 @@
                     <form method="POST">
                         {% csrf_token %}
 
-                        <table class="table">
+                        <table class="table table-responsive">
                             <tr>
                                 <th><label for="username">Username</label></th>
                                 <td>{{ user_form.username }}</td>
@@ -34,7 +34,7 @@
                             </tr>
                         </table>
 
-                        <button type="submit" class="btn btn-primary mt-4">Register</button>
+                        <button type="submit" class="btn btn-primary mt-4 w-100">Register</button>
                     </form>
 
                     {% if messages %}
@@ -59,6 +59,7 @@
     .customer-registration {
         background-color: #f7f7f7;
         font-family: Arial, sans-serif;
+        padding: 15px;
     }
 
     .customer-registration .card {
@@ -67,11 +68,11 @@
     }
 
     .customer-registration .card-header {
-        background-color: #00796b; /* Dark Orange */
+        background-color: #00796b; /* Dark Green */
         color: white;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
         text-align: center;
-        padding: 1.5rem;
+        padding: 1.2rem;
         border-radius: 15px 15px 0 0;
     }
 
@@ -89,10 +90,9 @@
 
     .customer-registration .btn-primary {
         background-color: #00796b;
-        padding: 10px 20px;
-        font-size: 1.1rem;
+        padding: 10px;
+        font-size: 1rem;
         border-radius: 50px;
-        width: 100%;
     }
 
     .customer-registration .btn-primary:hover {
@@ -106,11 +106,7 @@
     .customer-registration .table th,
     .customer-registration .table td {
         vertical-align: middle;
-    }
-
-    .customer-registration .form-group label {
-        font-weight: 600;
-        color: #333;
+        padding: 0.5rem;
     }
 
     .customer-registration .text-center a {
@@ -120,6 +116,30 @@
 
     .customer-registration .text-center a:hover {
         text-decoration: underline;
+    }
+
+    @media (max-width: 576px) {
+        .customer-registration .card-header {
+            font-size: 1.2rem;
+            padding: 1rem;
+        }
+
+        .customer-registration .btn-primary {
+            font-size: 0.9rem;
+        }
+
+        .customer-registration .table th,
+        .customer-registration .table td {
+            display: block;
+            width: 100%;
+            text-align: left;
+        }
+
+        .customer-registration .table th {
+            font-weight: bold;
+            color: #333;
+            padding-top: 10px;
+        }
     }
 </style>
 

@@ -17,7 +17,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Include Bootstrap Icons -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
     <style>
         :root {
@@ -63,7 +63,7 @@
         }
 
         .content {
-            margin-top: 200px;
+            margin-top: 150px; /* Reduced to ensure better spacing on mobile */
         }
 
         h1 {
@@ -174,6 +174,63 @@
             font-size: 1.1rem;
             margin-bottom: 10px;
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .lead {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .feature-card {
+                padding: 15px;
+            }
+
+            .feature-card .icon-container i {
+                font-size: 3rem;
+            }
+
+            .testimonial h5 {
+                font-size: 1.3rem;
+            }
+
+            .contact-section h5 {
+                font-size: 1.3rem;
+            }
+
+            .navbar-nav .nav-link {
+                font-size: 1rem;
+                margin-right: 10px;
+            }
+
+            .content {
+                margin-top: 100px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn-custom {
+                width: 100%;
+            }
+
+            .navbar-brand {
+                font-size: 1.6rem;
+                margin-left: 10px;
+            }
+
+            .feature-card {
+                padding: 10px;
+            }
+
+            .testimonial {
+                margin-top: 40px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 
@@ -191,7 +248,6 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'freelancer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Freelancer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'customer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Customer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
-
             </ul>
         </div>
     </nav>
@@ -210,67 +266,51 @@
                 <div class="col-md-4">
                     <div class="feature-card">
                         <div class="icon-container">
-                            <i class="fas fa-users fa-3x"></i>
+                            <i class="bi bi-person-check" style="font-size: 3rem;"></i>
                         </div>
-                        <h5>Collaborate with Teams</h5>
-                        <p>Seamless team collaboration features to connect freelancers with clients and project teams.</p>
+                        <h5>Register as a Freelancer</h5>
+                        <p>Showcase your skills and get hired for projects that match your expertise.</p>
+                        <a href="{% url 'register_freelancer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <div class="icon-container">
-                            <i class="fas fa-project-diagram fa-3x"></i>
+                            <i class="bi bi-person-lines-fill" style="font-size: 3rem;"></i>
                         </div>
-                        <h5>Track Project Progress</h5>
-                        <p>Monitor milestones and deadlines to keep your project on track from start to finish.</p>
+                        <h5>Register as a Customer</h5>
+                        <p>Find skilled freelancers to execute your projects seamlessly.</p>
+                        <a href="{% url 'register_customer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="feature-card">
                         <div class="icon-container">
-                            <i class="fas fa-chart-line fa-3x"></i>
+                            <i class="bi bi-chat-dots" style="font-size: 3rem;"></i>
                         </div>
-                        <h5>Performance Analytics</h5>
-                        <p>Get insightful analytics on your project's performance to ensure quality and timely delivery.</p>
+                        <h5>Connect with Freelancers</h5>
+                        <p>Start conversations and discuss your project details with top freelancers.</p>
+                        <a href="{% url 'freelancer_login' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container testimonial mt-5">
-            <h5>Testimonials</h5>
-            <p>"Freelance Management System has transformed the way we work with freelancers. Efficient, organized, and user-friendly!"</p>
+        <div class="testimonial">
+            <h5>"This platform has made freelance work so much easier!"</h5>
+            <p>Our users love how easy it is to find and collaborate with skilled freelancers.</p>
         </div>
 
-        <!-- Contact Section -->
-        <!-- Contact Section -->
-<div class="container contact-section mt-5" id="contact">
-    <h5>Contact Us</h5>
-    <p><i class="fas fa-phone-alt" style="color:orange;"></i>
-        <a href="tel:+918891966916" style=" text-decoration: none;" >+91 8891 9669 16</a>
-    </p>
-    <p><i class="fas fa-envelope" style="color:orange;"></i>
-        <a href="mailto:omkaartouristhome@gmail.com" style=" text-decoration: none;" >omkaartouristhome@gmail.com</a>
-    </p>
-    <p ><i class="fas fa-map-marker-alt"></i> Omkaar Tourist Home, Near Mariyamman Kovil, <br> Tali Cross Road Palayam - 673002, Calicut, India</p>
-</div>
-
+        <div class="contact-section" id="contact">
+            <h5>Contact Us</h5>
+            <p>Email: info@freelance.com</p>
+            <p>Phone: 123-456-7890</p>
+        </div>
     </div>
 
-    <script>
-        function confirmLogout() {
-            return confirm("Are you sure you want to logout?");
-        }
-    </script>
-        <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
-
-    <!-- Bootstrap and JQuery Scripts -->
+    <!-- Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
