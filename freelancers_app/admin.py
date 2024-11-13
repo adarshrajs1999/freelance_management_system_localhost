@@ -37,10 +37,19 @@ class UserAdmin(BaseUserAdmin):
         return form
 
 
+class TaskSubmissionAdmin(admin.ModelAdmin):
+    readonly_fields = ('freelancer',)
+
+# Register your model with the custom admin class
+admin.site.register(TaskSubmission, TaskSubmissionAdmin)
+
+
+
 # Register UserAdmin with the custom User model
 admin.site.register(User, UserAdmin)
 admin.site.register(Task)
-admin.site.register(TaskSubmission)
+# Register your model with the custom admin class
+
 
 
 # Register other models like FreelancerProfile and CustomerProfile
