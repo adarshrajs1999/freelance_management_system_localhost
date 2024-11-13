@@ -4,7 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from .models import User, FreelancerProfile, Task, TaskSubmission
 from .forms import UserRegistrationForm, FreelancerProfileForm, CustomerRegistrationForm, TaskSubmissionForm
-
+from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required

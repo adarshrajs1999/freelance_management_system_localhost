@@ -1,20 +1,62 @@
-<!-- templates/forgot_username.html -->
+{% extends 'home.html' %}
 
-<h2>Forgot Username</h2>
+{% block content %}
+    <div class="container" style="max-width: 450px; margin-top: 100px;">
+        <!-- Card Container for a more professional look -->
+        <div class="card shadow-lg p-4">
+            <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Forgot Username</h2>
 
-{% if messages %}
-    <div>
-        {% for message in messages %}
-            <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
-        {% endfor %}
+            <!-- Message section (if any) -->
+            {% if messages %}
+                <div class="alert alert-info alert-dismissible fade show" role="alert">
+                    {% for message in messages %}
+                        <p class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+                    {% endfor %}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+
+            <p class="text-center">Please enter the email address associated with your account. We will send you an email with your username if it exists in our system.</p>
+
+            <!-- Forgot Username Form -->
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group mb-4">
+                    <label for="email" style="font-weight: 500; color: #555;">Enter your email address:</label>
+                    <input type="email" name="email" id="email" class="form-control" required>
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block py-2" style="font-size: 16px;">Retrieve Username</button>
+            </form>
+        </div>
     </div>
-{% endif %}
 
-<p>Please enter the email address associated with your account. We will send you an email with your username if it exists in our system.</p>
-
-<form method="post">
-    {% csrf_token %}
-    <label for="email">Enter your email address:</label>
-    <input type="email" name="email" required>
-    <button type="submit">Retrieve Username</button>
-</form>
+    <!-- Add custom styles -->
+    <style>
+        body {
+            background-color: #f7f9fc;
+        }
+        .card {
+            border-radius: 10px;
+        }
+        .btn-primary {
+            background-color: #00796b;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            width: 100%;
+        }
+        .btn-primary:hover {
+            background-color: green;
+        }
+        .form-control {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+    </style>
+{% endblock %}
