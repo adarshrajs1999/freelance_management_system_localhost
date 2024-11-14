@@ -4,12 +4,26 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User, FreelancerProfile, Task
 from .models import TaskSubmission
+from django.core.exceptions import ValidationError
 
 
 class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'password1', 'password2', 'email']
+
+
+
+    # Custom email validation
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("This email address is already registered.")
+        return email
+
+
+
+
 
 class FreelancerProfileForm(forms.ModelForm):
     class Meta:
@@ -57,7 +71,13 @@ class CustomerRegistrationForm(UserCreationForm):
             user.save()
         return user
 
+        # Custom email validation
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("This email address is already registered.")
+        return email
 
 
 

@@ -12,38 +12,47 @@
                     <form method="POST">
                         {% csrf_token %}
 
+                        {% if user_form.errors %}
+    <div class="alert alert-danger">
+        {% for field in user_form %}
+            {% for error in field.errors %}
+                <p>{{ error }}</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+{% endif %}
+
+
                         <table class="table table-responsive">
                             <tr>
                                 <th><label for="username">Username</label></th>
                                 <td>{{ user_form.username }}</td>
                             </tr>
 
+
                             <tr>
                                 <th><label for="email">Email</label></th>
                                 <td>{{ user_form.email }}</td>
                             </tr>
+
 
                             <tr>
                                 <th><label for="password1">Password</label></th>
                                 <td>{{ user_form.password1 }}</td>
                             </tr>
 
+
                             <tr>
                                 <th><label for="password2">Confirm Password</label></th>
                                 <td>{{ user_form.password2 }}</td>
                             </tr>
+
                         </table>
 
                         <button type="submit" class="btn btn-primary mt-4 w-100">Register</button>
                     </form>
 
-                    {% if messages %}
-                        <div class="alert alert-success mt-3" role="alert">
-                            {% for message in messages %}
-                                <p>{{ message }}</p>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
+
                 </div>
             </div>
 
@@ -55,6 +64,15 @@
 </div>
 
 <style>
+
+       /* Custom CSS for error messages */
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+
     /* Scoped CSS to avoid conflicts with other pages */
     .customer-registration {
         background-color: #f7f7f7;
@@ -116,6 +134,10 @@
 
     .customer-registration .text-center a:hover {
         text-decoration: underline;
+    }
+
+    .text-danger {
+        color: red;
     }
 
     @media (max-width: 576px) {

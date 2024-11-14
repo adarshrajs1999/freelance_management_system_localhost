@@ -21,7 +21,41 @@
 
     <style>
 
+ /* General footer styling */
+    #contact {
+        padding: 40px 20px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+    }
+    /* Icon and text alignment */
+    .contact-item i {
+        margin-right: 12px;
+    }
 
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+        #contact h5 {
+            font-size: 1.5em;
+        }
+        .contact-item p {
+            font-size: 1em;
+        }
+        .contact-item {
+            flex-direction: column;
+            text-align: center;
+        }
+        .contact-item i {
+            margin-right: 0;
+            margin-bottom: 8px;
+        }
+        #contact p {
+            font-size: 0.9em;
+        }
+    }
 
 
 
@@ -312,7 +346,7 @@
     </div>
 
 <!-- Footer start -->
-<footer class="container-fluid" id="contact" style="background-color: var(--primary-color); color: #fff; padding: 80px 0; font-family: Arial, sans-serif; width: 100%; position: absolute; left: 0; box-sizing: border-box;">
+<footer class="container-fluid" id="contact" style="background-color: var(--primary-color); color: #fff; padding: 80px 0; font-family: Arial, sans-serif; width: 100%; box-sizing: border-box;">
     <div style="text-align: center; margin-bottom: 20px;">
         <h5 style="color: white; font-size: 1.8em;">Contact Us</h5>
     </div>
@@ -327,14 +361,14 @@
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
         <i class="fas fa-phone-alt" style="font-size: 1.6em; margin-right: 12px; color: white;"></i>
         <p style="margin: 0; font-size: 1.1em; color: #fff;">
-            <a href="tel:+919074598533" style="color: white; text-decoration: none;">+919074598533</a>
+            <a href="tel:+919074598533" style="color: white; text-decoration: none;">+91 90745 98533</a>
         </p>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
         <i class="fas fa-map-marker-alt" style="font-size: 1.6em; margin-right: 12px; color: white;"></i>
         <p style="margin: 0; font-size: 1.1em; color: #fff;">
-            Ground Floor,Omkar Tower,Palayam,Kozhikode 673002,Kerala
+            Ground Floor, Omkar Tower, Palayam, Kozhikode 673002, Kerala
         </p>
     </div>
 
