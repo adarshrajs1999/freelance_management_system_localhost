@@ -11,9 +11,19 @@
 
     <h2 class="text-center mb-4">Available Tasks</h2>
 
+    <!-- Search Box with Icon Button -->
+    <div class="input-group mb-3" style="max-width: 300px; margin: 0 auto;">
+        <input type="text" id="taskSearch" class="form-control" placeholder="Search by Title..." onkeyup="filterTasks()">
+        <div class="input-group-append">
+            <a class="btn btn-outline-secondary" type="button" onclick="filterTasks()">
+                <i class="fas fa-search"></i>
+            </a>
+        </div>
+    </div>
+
     <!-- Task List Table -->
     <div class="table-responsive-lg"> <!-- Larger table container for responsive behavior -->
-        <table class="table table-bordered table-striped" style="width: 100%; font-size: 1.1rem;"> <!-- Increased font size -->
+        <table class="table table-bordered table-striped" style="width: 100%; font-size: 1.1rem;" id="taskTable">
             <thead class="thead-dark">
                 <tr>
                     <th>Title</th>
@@ -48,6 +58,26 @@
     </div>
 </div>
 
+<script>
+    // JavaScript function to filter tasks by title
+    function filterTasks() {
+        var input, filter, table, rows, title, i, txtValue;
+        input = document.getElementById("taskSearch");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("taskTable");
+        rows = table.getElementsByTagName("tr");
+
+        // Loop through all rows except the header row
+        for (i = 1; i < rows.length; i++) {
+            title = rows[i].getElementsByTagName("td")[0];
+            if (title) {
+                txtValue = title.textContent || title.innerText;
+                rows[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+            }
+        }
+    }
+</script>
+
 <style>
     .task-list {
         background-color: #f7f7f7;
@@ -73,6 +103,7 @@
         font-size: 1.1rem; /* Larger font for readability */
     }
 
+    /* Button and Search Box Styling */
     .task-list .btn {
         font-size: 1rem;
         padding: 10px 15px;
