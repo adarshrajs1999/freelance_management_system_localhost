@@ -30,7 +30,7 @@
                             <th scope="row" class="font-weight-bold">Task URL:</th>
                             <td>
                                 {% if task.task_url %}
-                                    <a href="{{ task.task_url }}" target="_blank" class="btn btn-success btn-sm">View Document</a>
+                                    {{ task.task_url }}
                                 {% else %}
                                     <span class="text-muted">No task url available for this task.</span>
                                 {% endif %}
