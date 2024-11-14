@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="container mt-5">
-        <h2 class="text-center mb-5 text-primary font-weight-bold">Task Details</h2>
+        <h2 class="text-center mb-5  font-weight-bold" style="color: #00796b;">Task Details</h2>
         <div class="card shadow-lg rounded">
             <div class="card-body">
                 <!-- Task Information in Table Structure -->
@@ -25,6 +25,18 @@
                             <th scope="row" class="font-weight-bold">Deadline:</th>
                             <td>{{ task.deadline }}</td>
                         </tr>
+
+                            <tr>
+                            <th scope="row" class="font-weight-bold">Task URL:</th>
+                            <td>
+                                {% if task.task_url %}
+                                    <a href="{{ task.task_url }}" target="_blank" class="btn btn-success btn-sm">View Document</a>
+                                {% else %}
+                                    <span class="text-muted">No task url available for this task.</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+
                         <tr>
                             <th scope="row" class="font-weight-bold">Document:</th>
                             <td>
@@ -35,6 +47,7 @@
                                 {% endif %}
                             </td>
                         </tr>
+
                     </tbody>
                 </table>
 
