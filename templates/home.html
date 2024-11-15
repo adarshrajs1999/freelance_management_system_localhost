@@ -289,9 +289,11 @@
                 <li class="nav-item"><a class="nav-link" href="#contact"><i class="fas fa-address-book"></i> Contact</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'register_freelancer' %}"><i class="fas fa-user-plus"></i> Register as Freelancer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'register_customer' %}"><i class="fas fa-user-plus"></i> Register as Customer</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'freelancer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Freelancer</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'customer_login' %}"><i class="fas fa-sign-in-alt"></i> Login as Customer</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}" onclick="return confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login_view' %}"><i class="fas fa-sign-in-alt"></i> Login </a></li>
+
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout_view' %}" onclick="return confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+
+
             </ul>
         </div>
     </nav>
@@ -340,7 +342,7 @@
                         </div>
                         <h5>Connect with Us</h5>
                         <p>Find your freelancer works so that you can collaborate with live projects and earn.</p>
-                        <a href="{% url 'freelancer_login' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
+                        <a href="{% url 'login_view' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
                     </div>
                 </div>
             </div>
