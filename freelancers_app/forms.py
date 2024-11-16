@@ -65,6 +65,12 @@ class FreelancerProfileForm(forms.ModelForm):
         model = FreelancerProfile
         fields = ['phone_number', 'communication_address', 'resume']
 
+class CustomerProfileForm(forms.ModelForm):
+    class Meta:
+        model = CustomerProfile
+        fields = ['phone_number', 'communication_address', 'company_name','business_area']
+
+
 
 class CustomerProfileEditForm(forms.ModelForm):
     class Meta:
@@ -98,3 +104,5 @@ class FreelancerProfileEditForm(forms.ModelForm):
 
 class PasswordUpdateForm(PasswordChangeForm):
     pass
+
+

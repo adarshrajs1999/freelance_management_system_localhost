@@ -3,56 +3,65 @@
 {% block content %}
 <div class="container mt-5 customer-registration">
     <div class="row justify-content-center">
-        <div class="col-md-8 col-lg-6">
+        <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card">
-                <div class="card-header">
+                <div class="card-header text-center">
                     <h3>Customer Registration</h3>
                 </div>
                 <div class="card-body">
-                    <form method="POST">
+                    <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
-                        {% if user_form.errors %}
-    <div class="alert alert-danger">
-        {% for field in user_form %}
-            {% for error in field.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-{% endif %}
+                        {% if user_form.errors or profile_form.errors %}
+                            <div class="alert alert-danger">
+                                {% for field in user_form %}
+                                    {% for error in field.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
 
+                            </div>
+                        {% endif %}
 
-                        <table class="table table-responsive">
-                            <tr>
-                                <th><label for="username">Username</label></th>
-                                <td>{{ user_form.username }}</td>
-                            </tr>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th><label for="username">Username</label></th>
+                                    <td>{{ user_form.username }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="email">Email</label></th>
+                                    <td>{{ user_form.email }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="password1">Password</label></th>
+                                    <td>{{ user_form.password1 }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="password2">Confirm Password</label></th>
+                                    <td>{{ user_form.password2 }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="phone_number">Phone Number</label></th>
+                                    <td>{{ profile_form.phone_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="communication_address">Communication Address</label></th>
+                                    <td>{{ profile_form.communication_address }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="company_name">Company Name</label></th>
+                                    <td>{{ profile_form.company_name }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="business_area">Business Area</label></th>
+                                    <td>{{ profile_form.business_area }}</td>
+                                </tr>
+                            </table>
+                        </div>
 
-
-                            <tr>
-                                <th><label for="email">Email</label></th>
-                                <td>{{ user_form.email }}</td>
-                            </tr>
-
-
-                            <tr>
-                                <th><label for="password1">Password</label></th>
-                                <td>{{ user_form.password1 }}</td>
-                            </tr>
-
-
-                            <tr>
-                                <th><label for="password2">Confirm Password</label></th>
-                                <td>{{ user_form.password2 }}</td>
-                            </tr>
-
-                        </table>
-
-                        <button type="submit" class="btn btn-primary mt-4 w-100">Register</button>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Register</button>
                     </form>
-
-
                 </div>
             </div>
 
@@ -64,34 +73,21 @@
 </div>
 
 <style>
-
-       /* Custom CSS for error messages */
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-
-    /* Scoped CSS to avoid conflicts with other pages */
+    /* Scoped CSS for customer registration */
     .customer-registration {
         background-color: #f7f7f7;
-        font-family: Arial, sans-serif;
-
     }
 
     .customer-registration .card {
         border-radius: 15px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-
     }
 
     .customer-registration .card-header {
-        background-color: #00796b; /* Dark Green */
+        background-color: #00796b;
         color: white;
-        font-size: 1.3rem;
-        text-align: center;
-        padding: 1.2rem;
+        font-size: 1.5rem;
+        padding: 1.5rem;
         border-radius: 15px 15px 0 0;
     }
 
@@ -103,15 +99,16 @@
     }
 
     .customer-registration .form-control:focus {
-        border-color: #FF6A13; /* Dark Orange Focus */
+        border-color: #FF6A13;
         box-shadow: 0 0 5px rgba(255, 106, 19, 0.25);
     }
 
     .customer-registration .btn-primary {
         background-color: #00796b;
-        padding: 10px;
-        font-size: 1rem;
+        padding: 10px 20px;
+        font-size: 1.1rem;
         border-radius: 50px;
+        transition: background-color 0.3s;
     }
 
     .customer-registration .btn-primary:hover {
@@ -125,7 +122,11 @@
     .customer-registration .table th,
     .customer-registration .table td {
         vertical-align: middle;
-        padding: 0.5rem;
+    }
+
+    .customer-registration .form-group label {
+        font-weight: 600;
+        color: #333;
     }
 
     .customer-registration .text-center a {
@@ -137,33 +138,71 @@
         text-decoration: underline;
     }
 
-    .text-danger {
-        color: red;
-    }
+    @media (max-width: 992px) {
+        .customer-registration .card {
+            padding: 10px;
+        }
 
-    @media (max-width: 576px) {
         .customer-registration .card-header {
-            font-size: 1.2rem;
-            padding: 1rem;
+            font-size: 1.3rem;
+            padding: 1.2rem;
         }
 
         .customer-registration .btn-primary {
-            font-size: 0.9rem;
+            font-size: 1rem;
+            padding: 8px 16px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .customer-registration .table-responsive {
+            overflow-x: auto;
+        }
+
+        .customer-registration .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
         }
 
         .customer-registration .table th,
         .customer-registration .table td {
             display: block;
             width: 100%;
-            text-align: left;
         }
 
-        .customer-registration .table th {
-            font-weight: bold;
-            color: #333;
-            padding-top: 10px;
+        .customer-registration .table td {
+            padding: 8px;
+            border: none;
+        }
+
+        .customer-registration .form-control {
+            width: 100%;
+        }
+
+        .customer-registration .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        .customer-registration .text-center {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .customer-registration .card {
+            padding: 8px;
+        }
+
+        .customer-registration .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .customer-registration .btn-primary {
+            font-size: 1rem;
+            padding: 8px 16px;
         }
     }
 </style>
-
 {% endblock %}

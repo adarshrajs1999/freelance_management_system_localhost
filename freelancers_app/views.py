@@ -14,7 +14,7 @@ from .forms import (
     UserEditForm,
     FreelancerProfileEditForm,
     CustomerProfileEditForm,
-    PasswordUpdateForm
+    PasswordUpdateForm, CustomerProfileForm
 )
 
 
@@ -43,24 +43,54 @@ def register_user(request, user_form_class, profile_form_class=None, role=None, 
 
 
 def register_freelancer(request):
-    return register_user(
-        request,
-        user_form_class=UserRegistrationForm,
-        profile_form_class=FreelancerProfileForm,
-        role='freelancer',
-        redirect_url='freelancer_login',
-        template_name='register_freelancer.html'
-    )
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = FreelancerProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            # Save user form without committing to the database yet
+            user = user_form.save(commit=False)
+            user.role = 'freelancer'  # Set the role to 'freelancer' for the freelancer user
+            user.save()
+
+            # Save the freelancer profile linked to the user
+            profile = profile_form.save(commit=False)
+            profile.user = user  # Link the profile to the newly created user
+            profile.save()
+
+            # Send a success message after successful registration
+            messages.success(request, "Freelancer registration successful! Please log in.")
+            return redirect('login_view')  # Redirect to the login page after successful registration
+    else:
+        user_form = UserRegistrationForm()
+        profile_form = FreelancerProfileForm()
+
+    # Render the registration page with the forms
+    return render(request, 'register_freelancer.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 
 def register_customer(request):
-    return register_user(
-        request,
-        user_form_class=CustomerRegistrationForm,
-        role='viewer',
-        redirect_url='customer_login',
-        template_name='register_customer.html'
-    )
+    if request.method == 'POST':
+        user_form = UserRegistrationForm(request.POST)
+        profile_form = CustomerProfileForm(request.POST, request.FILES)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save(commit=False)
+            user.role = 'viewer'  # Set the role to 'viewer' for customers
+            user.save()
+
+            # Save the customer profile linked to the user
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            profile.save()
+
+            messages.success(request, "Customer registration successful! Please log in.")
+            return redirect('login_view')
+    else:
+        user_form = UserRegistrationForm()
+        profile_form = CustomerProfileForm()
+
+    return render(request, 'register_customer.html', {'user_form': user_form, 'profile_form': profile_form})
+
 
 
 def login_view(request):
