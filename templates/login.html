@@ -3,9 +3,12 @@
 {% block content %}
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
     <!-- Card Container -->
-    <div class="card shadow-lg p-4" style="border-radius: 16px; background: linear-gradient(135deg, #00796b, #004d40); color: #fff; width: 100%; max-width: 400px;">
-        <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; font-weight: 700;">Login Here</h2>
-        <p class="text-center mb-4" style="font-size: 14px; opacity: 0.85;">Login to continue your journey with us!</p>
+    <div class="card shadow-lg p-4" style="border-radius: 16px; background-color: #fff; color: #333; width: 100%; max-width: 400px;">
+        <!-- Top portion with primary color -->
+        <div class="text-center mb-4" style="background-color: #00796b; padding: 20px; border-radius: 12px 12px 0 0;">
+            <h2 style="font-family: 'Roboto', sans-serif; font-weight: 700; color: #fff;">Login Here</h2>
+            <p style="font-size: 14px; opacity: 0.85; color: #fff;">Login to continue your journey with us!</p>
+        </div>
 
         <!-- Message section -->
         {% if messages %}
@@ -30,10 +33,10 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-transparent border-light">
-                            <i class="fas fa-user" style="color: #fff;"></i>
+                            <i class="fas fa-user" style="color: #333;"></i>
                         </span>
                     </div>
-                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username" style="background-color: #f9f9f9; color: #333; border: 1px solid #ddd;">
                 </div>
             </div>
 
@@ -42,24 +45,24 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-transparent border-light">
-                            <i class="fas fa-lock" style="color: #fff;"></i>
+                            <i class="fas fa-lock" style="color: #333;"></i>
                         </span>
                     </div>
-                    <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);">
+                    <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password" style="background-color: #f9f9f9; color: #333; border: 1px solid #ddd;">
                 </div>
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-block py-2" style="background: #f9a826; border: none; color: #fff; font-weight: bold; border-radius: 25px;">Login</button>
+            <button type="submit" class="btn btn-block py-2" style="background: #00796b; border: none; color: #fff; font-weight: bold; border-radius: 25px;">Login</button>
         </form>
 
         <!-- Register and Forgot links -->
         <div class="text-center mt-4">
             <p class="mb-1">Don't have an account?
-                <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-warning">Register here</a>
+                <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-primary">Register here</a>
             </p>
-            <p><a href="{% url 'password_reset' %}" class="text-light">Forgot Password?</a></p>
-            <p><a href="{% url 'forgot_username' %}" class="text-light">Forgot Username?</a></p>
+            <p><a href="{% url 'password_reset' %}" class="text-dark">Forgot Password?</a></p>
+            <p><a href="{% url 'forgot_username' %}" class="text-dark">Forgot Username?</a></p>
         </div>
     </div>
 </div>
@@ -78,24 +81,24 @@
         transition: background 0.3s ease-in-out, transform 0.2s ease;
     }
     .btn:hover {
-        background: #ff8c00;
+        background: #004d40;
         transform: translateY(-2px);
     }
     .form-control:focus {
-        background-color: rgba(255, 255, 255, 0.15);
-        color: #fff;
-        border: 1px solid #fff;
+        background-color: #fff;
+        color: #333;
+        border: 1px solid #00796b;
         outline: none;
         box-shadow: none;
     }
-    a.text-warning {
+    a.text-primary {
         text-decoration: underline;
     }
-    a.text-warning:hover {
-        color: #f9a826;
+    a.text-primary:hover {
+        color: #004d40;
     }
-    a.text-light:hover {
-        color: #f0f0f0;
+    a.text-dark:hover {
+        color: #333;
     }
 </style>
 {% endblock %}
