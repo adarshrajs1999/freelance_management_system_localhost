@@ -1,99 +1,101 @@
 {% extends 'home.html' %}
 
 {% block content %}
-    <div class="container" style="max-width: 400px; margin-top: 100px;">
-        <!-- Card Container -->
-        <div class="card shadow-lg p-4" style="border-radius: 12px;">
-            <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #00796b;">Login Here</h2>
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <!-- Card Container -->
+    <div class="card shadow-lg p-4" style="border-radius: 16px; background: linear-gradient(135deg, #00796b, #004d40); color: #fff; width: 100%; max-width: 400px;">
+        <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; font-weight: 700;">Login Here</h2>
+        <p class="text-center mb-4" style="font-size: 14px; opacity: 0.85;">Login to continue your journey with us!</p>
 
-            <!-- Message section -->
-            {% if messages %}
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <ul class="mb-0">
-                        {% for message in messages %}
-                            <li>{{ message }}</li>
-                        {% endfor %}
-                    </ul>
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-            {% endif %}
-
-            <!-- Login form -->
-            <form method="post">
-                {% csrf_token %}
-
-                <div class="form-group mb-3">
-                    <label for="username" class="font-weight-bold">Username</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-light"><i class="fas fa-user" style="color: #00796b;"></i></span>
-                        </div>
-                        <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username">
-                    </div>
-                </div>
-
-                <div class="form-group mb-4">
-                    <label for="password" class="font-weight-bold">Password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-light"><i class="fas fa-lock" style="color: #00796b;"></i></span>
-                        </div>
-                        <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
-                    </div>
-                </div>
-
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block py-2">Login</button>
-            </form>
-
-            <!-- Register and Forgot links -->
-            <div class="text-center mt-4">
-                <p class="mb-1">Don't have an account? <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-primary">Register here</a></p>
-                <p><a href="{% url 'password_reset' %}" class="text-secondary">Forgot Password?</a></p>
-                <p><a href="{% url 'forgot_username' %}" class="text-secondary">Forgot Username?</a></p>
+        <!-- Message section -->
+        {% if messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul class="mb-0">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
+        {% endif %}
+
+        <!-- Login form -->
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group mb-3">
+                <label for="username" class="font-weight-bold">Username</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent border-light">
+                            <i class="fas fa-user" style="color: #fff;"></i>
+                        </span>
+                    </div>
+                    <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);">
+                </div>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="password" class="font-weight-bold">Password</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-transparent border-light">
+                            <i class="fas fa-lock" style="color: #fff;"></i>
+                        </span>
+                    </div>
+                    <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.3);">
+                </div>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-block py-2" style="background: #f9a826; border: none; color: #fff; font-weight: bold; border-radius: 25px;">Login</button>
+        </form>
+
+        <!-- Register and Forgot links -->
+        <div class="text-center mt-4">
+            <p class="mb-1">Don't have an account?
+                <a href="{% if user_type == 'freelancer' %}{% url 'register_freelancer' %}{% else %}{% url 'register_customer' %}{% endif %}" class="text-warning">Register here</a>
+            </p>
+            <p><a href="{% url 'password_reset' %}" class="text-light">Forgot Password?</a></p>
+            <p><a href="{% url 'forgot_username' %}" class="text-light">Forgot Username?</a></p>
         </div>
     </div>
+</div>
 
-    <!-- Custom styles -->
-    <style>
-        body {
-            background-color: #f7f9fc;
-        }
-        .card {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .btn-primary {
-            background-color: #00796b;
-            border: none;
-            font-size: 16px;
-            border-radius: 25px;
-        }
-        .btn-primary:hover {
-            background-color: #004d40;
-        }
-        .input-group-text {
-            border-right: 0;
-            background-color: #f1f3f5;
-        }
-        .input-group-text i {
-            color: #00796b;
-        }
-        .text-primary {
-            color: #00796b !important;
-        }
-        .text-primary:hover {
-            color: #004d40 !important;
-        }
-        .text-secondary {
-            color: #666 !important;
-        }
-        .text-secondary:hover {
-            color: #333 !important;
-        }
-    </style>
+<!-- Custom styles -->
+<style>
+    body {
+        background-color: #f4f8fc;
+        font-family: 'Roboto', sans-serif;
+    }
+    .card {
+        border: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .btn {
+        transition: background 0.3s ease-in-out, transform 0.2s ease;
+    }
+    .btn:hover {
+        background: #ff8c00;
+        transform: translateY(-2px);
+    }
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.15);
+        color: #fff;
+        border: 1px solid #fff;
+        outline: none;
+        box-shadow: none;
+    }
+    a.text-warning {
+        text-decoration: underline;
+    }
+    a.text-warning:hover {
+        color: #f9a826;
+    }
+    a.text-light:hover {
+        color: #f0f0f0;
+    }
+</style>
 {% endblock %}
