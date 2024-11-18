@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<a href="{% url 'edit_freelancer_profile' %}" class="btn btn-info d-block mb-4 mx-auto" style="text-decoration:none; width: fit-content;">
+<a href="{% url 'edit_freelancer_profile' %}" class="btn btn-info d-block mb-4 mx-auto" style="text-decoration:none; width: fit-content;margin-top:150px !important;">
     <i class="fas fa-user-plus mr-2"></i>
     View & Edit Your Profile
 </a>
@@ -22,7 +22,7 @@
     </div>
 
     <!-- Task List Table -->
-    <div class="table-responsive-lg"> <!-- Larger table container for responsive behavior -->
+    <div class="table-responsive-lg" > <!-- Larger table container for responsive behavior -->
         <table class="table table-bordered table-striped" style="width: 100%; font-size: 1.1rem;" id="taskTable">
             <thead class="thead-dark">
                 <tr>
@@ -42,10 +42,10 @@
                         <td>Rs. {{ task.payment_amount }}</td>
                         <td>{{ task.deadline }}</td>
                         <td>
-                            <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm custom-btn">View Details</a>
+                            <a href="{% url 'task_detail' task_id=task.id %}" class="btn btn-info btn-sm custom-btn same-size-btn">View Details</a>
                         </td>
                         <td>
-                            <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm custom-btn">Submit Task</a>
+                            <a href="{% url 'submit_task' task_id=task.id %}" class="btn btn-primary btn-sm custom-btn same-size-btn">Submit Task</a>
                         </td>
                     </tr>
                 {% empty %}
@@ -79,6 +79,17 @@
 </script>
 
 <style>
+
+    /* Define a shared class for buttons */
+.same-size-btn {
+    width: 100px; /* Set a fixed width for both buttons */
+    text-align: center; /* Center the text within the button */
+    font-size: 1rem; /* Ensure consistent font size */
+    padding: 10px 15px; /* Adjust padding for a balanced look */
+    border-radius: 20px; /* Keep the rounded style */
+}
+
+
     .task-list {
         background-color: #f7f7f7;
         font-family: Arial, sans-serif;
