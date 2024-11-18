@@ -1,7 +1,7 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div class="container" style="max-width: 600px; margin-top: 80px;">
+<div class="container" style="max-width: 600px; margin-top: 150px !important;">
     <!-- Card container for a professional look -->
     <div class="card shadow-lg p-4">
         <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Edit Customer Profile</h2>
@@ -9,6 +9,23 @@
         <!-- Form for editing profile -->
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
+
+
+        <!-- Message section -->
+        {% if messages %}
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul class="mb-0">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endif %}
+
+
 
             <!-- User Form Fields -->
             <h5 class="text-secondary mt-3">Account Details</h5>
