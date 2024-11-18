@@ -102,7 +102,7 @@ def login_view(request):
                 messages.error(request, "Your account is not approved by the admin yet.")
             else:
                 login(request, user)
-                return redirect('freelancer_task_list' if user.role == 'freelancer' else 'customer_task_list')
+                return redirect('freelancer_task_list' if user.role == 'freelancer' else 'create_customer_task')
         else:
             messages.error(request, "Invalid username or password.")
     return render(request, 'login.html')
@@ -111,7 +111,7 @@ def login_view(request):
 @login_required
 def freelancer_task_list(request):
     tasks = Task.objects.filter(is_completed=False)
-    return render(request, 'freelancer_task_list.html', {'tasks': tasks})
+    return render(request, 'freelancer_dashboard.html', {'tasks': tasks})
 
 
 @login_required
@@ -135,10 +135,6 @@ def submit_task(request, task_id):
     return render(request, 'submit_task.html', {'form': form, 'task': task})
 
 
-@login_required
-def customer_task_list(request):
-    tasks = Task.objects.filter(is_completed=False)
-    return render(request, 'customer_task_list.html', {'tasks': tasks})
 
 
 def task_detail_view(request, task_id):
@@ -217,3 +213,27 @@ def forgot_username(request):
         except User.DoesNotExist:
             messages.error(request, 'No account found with this email address.')
     return render(request, 'forgot_username.html')
+
+
+# views.py
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import CustomerTaskForm
+from .models import Customer_Tasks
+
+
+@login_required
+def create_customer_task(request):
+    customer_profile = CustomerProfile.objects.get(user=request.user)
+    if request.method == 'POST':
+        form = CustomerTaskForm(request.POST, request.FILES)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.customer = customer_profile  # Assuming CustomerProfile is related to the User model
+            task.save()
+            messages.success(request, 'Task created successfully!')
+            return redirect('create_customer_task')  # Redirect to the customer's dashboard or success page
+    else:
+        form = CustomerTaskForm()
+
+    return render(request, 'customer_dashboard.html', {'form': form})

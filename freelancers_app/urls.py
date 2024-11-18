@@ -2,6 +2,8 @@ from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_views
 
+from .views import create_customer_task
+
 urlpatterns = [
     # Home and Auth
     path('', views.home, name='home'),
@@ -19,7 +21,7 @@ urlpatterns = [
     # Task Management (Freelancer and Customer)
     path('freelancer/tasks/', views.freelancer_task_list, name='freelancer_task_list'),
     path('tasks/submit/<int:task_id>/', views.submit_task, name='submit_task'),
-    path('customer/tasks/', views.customer_task_list, name='customer_task_list'),
+    path('customer/create-task/', create_customer_task, name='create_customer_task'),
     path('task/<int:task_id>/details/', views.task_detail_view, name='task_detail'),
 
     # Password Reset

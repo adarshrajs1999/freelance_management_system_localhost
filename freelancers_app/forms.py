@@ -105,4 +105,25 @@ class FreelancerProfileEditForm(forms.ModelForm):
 class PasswordUpdateForm(PasswordChangeForm):
     pass
 
+# forms.py
+from django import forms
+from .models import Customer_Tasks
+
+class CustomerTaskForm(forms.ModelForm):
+    class Meta:
+        model = Customer_Tasks
+        exclude = ['customer', 'is_approved', 'is_completed']
+        widgets = {
+            'deadline': forms.DateInput(attrs={'type': 'date'}),
+            'payment_amount': forms.NumberInput(attrs={'step': '1'}),
+            'file_upload': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+        }
+        labels = {
+            'title': 'Task Title',
+            'description': 'Task Description',
+            'deadline': 'Deadline',
+            'payment_amount': 'Payment Amount (Rs.)',
+            'file_upload': 'Upload File (Optional)',
+            'task_url': 'Task URL (Optional)',
+        }
 

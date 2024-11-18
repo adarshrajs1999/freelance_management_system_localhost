@@ -1,0 +1,242 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div class="container mt-5 customer-task" style="margin-top:150px !important;">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 col-sm-12">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Create Task</h3>
+                </div>
+                <div class="card-body">
+
+                    <!-- Display Success Message -->
+                    {% if messages %}
+                        <div class="alert alert-success">
+                            {% for message in messages %}
+                                <p>{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                    <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+
+                        {% if form.errors %}
+                            <div class="alert alert-danger">
+                                {% for field in form %}
+                                    {% for error in field.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tr>
+                                    <th><label for="title">Task Title</label></th>
+                                    <td>{{ form.title }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="description">Task Description</label></th>
+                                    <td>{{ form.description }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="deadline">Deadline</label></th>
+                                    <td>{{ form.deadline }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="payment_amount">Payment Amount (Rs.)</label></th>
+                                    <td>{{ form.payment_amount }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="file_upload">Upload File (Optional)</label></th>
+                                    <td>{{ form.file_upload }}</td>
+                                </tr>
+                                <tr>
+                                    <th><label for="task_url">Task URL (Optional)</label></th>
+                                    <td>{{ form.task_url }}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Create Task</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-4">
+                <p>Need help? <a href="#contact">Contact Support</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Scoped CSS for customer task page */
+    .customer-task {
+        background-color: #f7f7f7;
+    }
+
+    .customer-task .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .customer-task .card-header {
+        background-color: #00796b;
+        color: white;
+        font-size: 1.5rem;
+        padding: 1.5rem;
+        border-radius: 15px 15px 0 0;
+    }
+
+    .customer-task .form-control {
+        border-radius: 0.5rem;
+        box-shadow: none;
+        border: 1px solid #ced4da;
+        transition: border-color 0.3s ease;
+        width: 100%; /* Ensures form fields take up full width */
+    }
+
+    .customer-task .form-control:focus {
+        border-color: #FF6A13;
+        box-shadow: 0 0 5px rgba(255, 106, 19, 0.25);
+    }
+
+    .customer-task .btn-primary {
+        background-color: #00796b;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        transition: background-color 0.3s;
+    }
+
+    .customer-task .btn-primary:hover {
+        background-color: green;
+    }
+
+    .customer-task .alert {
+        font-size: 1rem;
+    }
+
+    .customer-task .table th,
+    .customer-task .table td {
+        vertical-align: middle;
+    }
+
+    .customer-task .form-group label {
+        font-weight: 600;
+        color: #333;
+    }
+
+    .customer-task .text-center a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .customer-task .text-center a:hover {
+        text-decoration: underline;
+    }
+
+    /* Mobile and tablet responsive styling */
+    @media (max-width: 992px) {
+        .customer-task .card {
+            padding: 15px;
+        }
+
+        .customer-task .card-header {
+            font-size: 1.3rem;
+            padding: 1.2rem;
+        }
+
+        .customer-task .btn-primary {
+            font-size: 1rem;
+            padding: 8px 16px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .customer-task .table-responsive {
+            overflow-x: auto;
+        }
+
+        .customer-task .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .customer-task .table th,
+        .customer-task .table td {
+            display: block;
+            width: 100%;
+        }
+
+        .customer-task .table td {
+            padding: 8px;
+            border: none;
+        }
+
+        .customer-task .form-control {
+            width: 100%;
+            /* This ensures the fields take up equal width on smaller screens */
+        }
+
+        .customer-task .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        .customer-task .text-center {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .customer-task .card {
+            padding: 10px;
+        }
+
+        .customer-task .card-header {
+            font-size: 1.1rem;
+            padding: 1rem;
+        }
+
+        .customer-task .btn-primary {
+            font-size: 1rem;
+            padding: 10px 20px;
+        }
+
+        .customer-task .table th,
+        .customer-task .table td {
+            padding: 12px 5px;
+        }
+
+        .customer-task .table td {
+            font-size: 0.9rem;
+        }
+    }
+
+    @media (max-width: 400px) {
+        .customer-task .card {
+            padding: 5px;
+        }
+
+        .customer-task .card-header {
+            font-size: 1rem;
+            padding: 0.8rem;
+        }
+
+        .customer-task .btn-primary {
+            font-size: 0.9rem;
+            padding: 6px 12px;
+        }
+
+        .customer-task .table th,
+        .customer-task .table td {
+            font-size: 0.85rem;
+        }
+    }
+</style>
+{% endblock %}

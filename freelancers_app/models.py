@@ -50,6 +50,22 @@ class Task(models.Model):
         return f"{self.title} - Deadline: {self.deadline if self.deadline else 'No Deadline'}"  # Show deadline if present
 
 
+class Customer_Tasks(models.Model):
+    customer = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='customer_tasks')
+    is_approved = models.BooleanField(default=False,null=True,blank=True)
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    deadline = models.DateField(null=True, blank=True)
+    is_completed = models.BooleanField(default=False)
+    payment_amount = models.PositiveIntegerField(default=0)
+    file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
+    task_url = models.URLField(max_length=200, null=True, blank=True)  # New field for task URL
+
+    def __str__(self):
+        return f"{self.customer} - Deadline: {self.deadline if self.deadline else 'No Deadline'}"  # Show deadline if present
+
+
+
 
 
 class TaskSubmission(models.Model):
