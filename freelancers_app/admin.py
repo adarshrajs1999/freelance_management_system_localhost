@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import AdminPasswordChangeForm
-from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission
+from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission, Customer_Tasks
 
 
 # Custom User Admin to manage the User model
@@ -56,3 +56,5 @@ class FreelancerProfileAdmin(admin.ModelAdmin):
 @admin.register(CustomerProfile)
 class CustomerProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'company_name', 'business_area')
+
+admin.site.register(Customer_Tasks)

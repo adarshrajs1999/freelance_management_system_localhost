@@ -42,7 +42,7 @@ class Task(models.Model):
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
-    payment_amount = models.PositiveIntegerField(default=0)
+    payment_amount = models.CharField(null=True,blank=True,default="Amount not specified.")
     file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
     task_url = models.URLField(max_length=200, null=True, blank=True)  # New field for task URL
 
@@ -52,12 +52,12 @@ class Task(models.Model):
 
 class Customer_Tasks(models.Model):
     customer = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='customer_tasks')
-    is_approved = models.BooleanField(default=False,null=True,blank=True)
+    is_approved = models.BooleanField(default=False)
     title = models.CharField(max_length=200)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
-    payment_amount = models.PositiveIntegerField(default=0)
+    payment_amount = models.CharField(null=True,blank=True)
     file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
     task_url = models.URLField(max_length=200, null=True, blank=True)  # New field for task URL
 

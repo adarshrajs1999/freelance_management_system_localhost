@@ -112,11 +112,14 @@ from .models import Customer_Tasks
 class CustomerTaskForm(forms.ModelForm):
     class Meta:
         model = Customer_Tasks
-        exclude = ['customer', 'is_approved', 'is_completed']
+        exclude = ['customer', 'is_approved', 'is_completed']  # Exclude system-managed fields
         widgets = {
-            'deadline': forms.DateInput(attrs={'type': 'date'}),
-            'payment_amount': forms.NumberInput(attrs={'step': '1'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter task title'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter task description', 'rows': 4}),
+            'deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'payment_amount': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter payment amount'}),
             'file_upload': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'task_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter task URL (optional)'}),
         }
         labels = {
             'title': 'Task Title',
