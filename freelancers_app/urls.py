@@ -35,4 +35,8 @@ urlpatterns = [
 
     # Username Retrieval
     path('forgot_username/', views.forgot_username, name='forgot_username'),
+    path('apply/<int:task_id>/', views.apply_for_task, name='apply_for_task'),
+
+
+
 ]

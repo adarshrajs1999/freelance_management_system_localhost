@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout, update_session_auth
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.contrib import messages
-from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission
+from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission, TaskApplication
 from .forms import (
     UserRegistrationForm,
     FreelancerProfileForm,
@@ -111,8 +111,13 @@ def login_view(request):
 @login_required
 def freelancer_task_list(request):
     tasks = Task.objects.filter(is_completed=False)
-    return render(request, 'freelancer_dashboard.html', {'tasks': tasks})
+    applications = TaskApplication.objects.filter(freelancer=request.user)
+    applied_tasks = {application.task.id: application.status for application in TaskApplication.objects.filter(freelancer=request.user)}
 
+    return render(request, 'freelancer_dashboard.html', {
+        'tasks': tasks,
+        'applied_tasks': applied_tasks,  # Task IDs mapped to statuses
+    })
 
 @login_required
 def submit_task(request, task_id):
@@ -237,3 +242,11 @@ def create_customer_task(request):
         form = CustomerTaskForm()
 
     return render(request, 'customer_dashboard.html', {'form': form})
+
+@login_required
+def apply_for_task(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    application, created = TaskApplication.objects.get_or_create(
+        task=task, freelancer=request.user
+    )
+    return redirect('freelancer_task_list')

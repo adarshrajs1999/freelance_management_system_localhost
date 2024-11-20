@@ -78,3 +78,29 @@ class TaskSubmission(models.Model):
 
     def __str__(self):
         return f"Submission by {self.freelancer.user.username} for task: {self.task.title} on {self.submission_date.strftime('%Y-%m-%d %H:%M:%S')}"
+
+
+class TaskApplication(models.Model):
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Approved', 'Approved'),
+        ('Rejected', 'Rejected'),
+    ]
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    freelancer = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
+    applied_on = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.freelancer.username} - {self.task.title} - {self.status}"
+
+
+
+
+
+
+
+
+
+
+
