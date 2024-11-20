@@ -7,9 +7,7 @@
     View & Edit Your Profile
 </a>
 
-
-
-<div class="container mt-5 customer-task" style="margin-top:150px !important;">
+<div class="container-fluid mt-5 customer-task" style="width:100%;margin-top:150px !important;">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card">
@@ -17,7 +15,6 @@
                     <h3>Create Task</h3>
                 </div>
                 <div class="card-body">
-
                     <!-- Display Success Message -->
                     {% if messages %}
                         <div class="alert alert-success">
@@ -29,7 +26,6 @@
 
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
-
                         {% if form.errors %}
                             <div class="alert alert-danger">
                                 {% for field in form %}
@@ -41,7 +37,7 @@
                         {% endif %}
 
                         <div class="table-responsive">
-                            <table class="table">
+                            <table class="table table-striped table-hover">
                                 <tr>
                                     <th><label for="title">Task Title</label></th>
                                     <td>{{ form.title }}</td>
@@ -72,6 +68,52 @@
                         <button type="submit" class="btn btn-primary w-100 mt-4">Create Task</button>
                     </form>
                 </div>
+            </div>
+        </div>
+            <!-- Table to display customer's tasks -->
+            <div class="container-fluid" style="width:100% position:absolute;margin-top:50px; !important;">
+                <div class="card-header text-center">
+                    <h3>Your Created Tasks</h3>
+                </div>
+
+                <div class="card-body">
+                    {% if tasks %}
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Task Title</th>
+                                        <th>Task Description</th>
+                                        <th>Deadline</th>
+                                        <th>Payment Amount</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for task in tasks %}
+                                        <tr>
+                                            <td>{{ task.title }}</td>
+                                            <td>{{ task.description }}</td>
+                                            <td>{{ task.deadline }}</td>
+                                            <td>Rs.{{ task.payment_amount }}</td>
+                                            <td>
+                                                <a href="" class="btn btn-warning btn-sm">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </a>
+                                                <a href="" class="btn btn-danger btn-sm">
+                                                    <i class="fas fa-trash-alt"></i> Delete
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p>No tasks created yet. Create a task now!</p>
+                    {% endif %}
+                </div>
+
             </div>
 
             <div class="text-center mt-4">
@@ -132,6 +174,18 @@
     .customer-task .table th,
     .customer-task .table td {
         vertical-align: middle;
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+    }
+
+    .customer-task .table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    .customer-task .table-hover tbody tr:hover {
+        background-color: #f1f1f1;
     }
 
     .customer-task .form-group label {
@@ -188,7 +242,6 @@
 
         .customer-task .form-control {
             width: 100%;
-            /* This ensures the fields take up equal width on smaller screens */
         }
 
         .customer-task .btn-primary {
@@ -247,4 +300,5 @@
         }
     }
 </style>
+
 {% endblock %}

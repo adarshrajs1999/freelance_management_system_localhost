@@ -230,6 +230,7 @@ from .models import Customer_Tasks
 @login_required
 def create_customer_task(request):
     customer_profile = CustomerProfile.objects.get(user=request.user)
+    tasks = Customer_Tasks.objects.filter(customer=customer_profile)
     if request.method == 'POST':
         form = CustomerTaskForm(request.POST, request.FILES)
         if form.is_valid():
@@ -241,7 +242,7 @@ def create_customer_task(request):
     else:
         form = CustomerTaskForm()
 
-    return render(request, 'customer_dashboard.html', {'form': form})
+    return render(request, 'customer_dashboard.html', {'form': form,'tasks': tasks})
 
 
 from django.shortcuts import get_object_or_404, redirect
