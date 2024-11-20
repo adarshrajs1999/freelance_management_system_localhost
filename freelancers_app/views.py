@@ -14,7 +14,7 @@ from .forms import (
     UserEditForm,
     FreelancerProfileEditForm,
     CustomerProfileEditForm,
-    PasswordUpdateForm, CustomerProfileForm
+    PasswordUpdateForm, CustomerProfileForm, TaskForm
 )
 
 
@@ -271,3 +271,24 @@ def apply_for_task(request, task_id):
 
     # Redirect to the task list or task details page
     return redirect('freelancer_task_list')  # Adjust the redirection as needed
+
+
+def update_task(request, task_id):
+    task = get_object_or_404(Customer_Tasks, id=task_id)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Task updated successfully!')
+            return redirect('create_customer_task')  # Redirect to dashboard after update
+    else:
+        form = TaskForm(instance=task)
+
+    return render(request, 'update_task.html', {'form': form, 'task': task})
+
+
+def delete_task(request, task_id):
+    task = get_object_or_404(Customer_Tasks, id=task_id)
+    task.delete()
+    messages.success(request, 'Task deleted successfully!')
+    return redirect('create_customer_task')  # Redirect to dashboard after deletion

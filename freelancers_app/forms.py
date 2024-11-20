@@ -130,3 +130,8 @@ class CustomerTaskForm(forms.ModelForm):
             'task_url': 'Task URL (Optional)',
         }
 
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ['title', 'description', 'deadline', 'payment_amount', 'file_upload', 'task_url']
