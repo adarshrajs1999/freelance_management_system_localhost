@@ -12,53 +12,51 @@
                     <form method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
 
-{% if user_form.errors %}
-    <div class="alert alert-danger">
-        {% for field in user_form %}
-            {% for error in field.errors %}
-                <p>{{ error }}</p>
-            {% endfor %}
-        {% endfor %}
-    </div>
-{% endif %}
-
-
+                        {% if user_form.errors %}
+                            <div class="alert alert-danger">
+                                {% for field in user_form %}
+                                    {% for error in field.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
 
                         <div class="table-responsive">
                             <table class="table">
                                 <tr>
                                     <th><label for="username">Username</label></th>
-                                    <td>{{ user_form.username }}</td>
+                                    <td class="text-right">{{ user_form.username }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="email">Email</label></th>
-                                    <td>{{ user_form.email }}</td>
+                                    <td class="text-right">{{ user_form.email }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="password1">Password</label></th>
-                                    <td>{{ user_form.password1 }}</td>
+                                    <td class="text-right">{{ user_form.password1 }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="password2">Confirm Password</label></th>
-                                    <td>{{ user_form.password2 }}</td>
+                                    <td class="text-right">{{ user_form.password2 }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="phone_number">Phone Number</label></th>
-                                    <td>{{ profile_form.phone_number }}</td>
+                                    <td class="text-right">{{ profile_form.phone_number }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="communication_address">Communication Address</label></th>
-                                    <td>{{ profile_form.communication_address }}</td>
+                                    <td class="text-right">{{ profile_form.communication_address }}</td> <!-- Added class text-right -->
                                 </tr>
 
                                 <tr>
                                     <th><label for="resume">Resume</label></th>
-                                    <td>{{ profile_form.resume }}</td>
+                                    <td class="text-right">{{ profile_form.resume }}</td> <!-- Added class text-right -->
                                 </tr>
                             </table>
                         </div>
@@ -76,16 +74,12 @@
 </div>
 
 <style>
-
-
-        /* Custom CSS for error messages */
-        .error-message {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-        }
-
-
+    /* Custom CSS for error messages */
+    .error-message {
+        color: red;
+        font-size: 0.9em;
+        margin-top: 5px;
+    }
 
     /* Scoped CSS to avoid conflicts with other pages */
     .freelancer-registration {

@@ -1,17 +1,45 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div class="container mt-5" style="margin-top:250px !important;">
-    <div class="card">
-        <div class="card-header text-center">
-            <h3>Edit Task</h3>
+<div class="container mt-5" style="max-width: 600px; margin-top: 150px !important;">
+    <div class="card shadow-lg border-0 rounded">
+        <div class="card-header bg-primary text-white text-center rounded-top" style="background-color:#00796b !important;">
+            <h3 class="mb-0">Edit Task</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body p-4">
             <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
-
-                <button type="submit" class="btn btn-primary">Update Task</button>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td><strong>{{ form.title.label }}</strong></td>
+                                <td>{{ form.title }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{ form.description.label }}</strong></td>
+                                <td>{{ form.description }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{ form.deadline.label }}</strong></td>
+                                <td>{{ form.deadline }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{ form.payment_amount.label }}</strong></td>
+                                <td>{{ form.payment_amount }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{ form.file_upload.label }}</strong></td>
+                                <td>{{ form.file_upload }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>{{ form.task_url.label }}</strong></td>
+                                <td>{{ form.task_url }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" class="btn btn-success w-100 mt-3">Update Task</button>
             </form>
         </div>
     </div>
