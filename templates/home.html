@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Freelance Management System - Connecting top freelancers with customers for seamless project execution.">
+    <link rel="icon" href="{% static 'images/title_logo.png' %}" type="image/png">
     <title>Deityom Freelance</title>
 
     <!-- Bootstrap CSS (minified version for better performance) -->
@@ -278,8 +280,9 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <i class="bi bi-briefcase"></i>Deityom Freelance
+           <!-- Logo -->
+        <a class="navbar-brand logo_h" href="{% url 'home' %}" >
+            <img src="/static/images/logo.png" alt="Logo" style="margin-left:10px;height: 80px; max-height: 80px;" />
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -298,19 +301,91 @@
         </div>
     </nav>
 {% block content %}
-   <div class="content">
-    <div class="container text-center">
 
-        <h1>
-            <i class="bi bi-briefcase"></i> Get Freelance Works Easily
-        </h1>
-        <p class="lead">
-            <i class="bi bi-search"></i> Find your freelance project works quickly.
-        </p>
+<!-- Banner Area Starts -->
+<div
+    style="background-image: url('{% static 'images/home-banner.jpg' %}');
+           background-size: cover;
+           background-position: center;
+           width: 100%;
+           height: 600px;
+           position: relative;
+           color: white;
+           box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.7);
+           border-radius: 20px;
+           overflow: hidden;"
+    class="d-flex justify-content-center align-items-center">
 
+    <div class="content text-center">
+        <div class="container">
+            <!-- Title Section -->
+            <h1
+                style="font-family: 'Poppins', sans-serif;
+                       font-size: 4.5rem;
+                       font-weight: 700;
+                       margin-bottom: 20px;
+                       letter-spacing: 3px;
+                       text-transform: uppercase;
+                       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;"
+                class="animated fadeIn">
+                <span
+                    style="color: #fff;
+                           cursor: pointer;
+                           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;"
+                    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 20px rgba(255, 255, 255, 0.7)'"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                    DEITYOM FREELANCE
+                </span>
+            </h1>
+
+            <!-- Sub-Title / Tagline -->
+            <p
+                class="lead"
+                style="font-family: 'Roboto', sans-serif;
+                       font-size: 1.8rem;
+                       font-weight: 400;
+                       margin-top: 15px;
+                       text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.5);
+                       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;"
+                class="animated fadeIn">
+                <i
+                    class="bi bi-search"
+                    style="font-size: 1.6rem;
+                           vertical-align: middle;
+                           margin-right: 12px;
+                           color: #fff;">
+                </i>
+                <span
+                    style="color: #fff;
+                           cursor: pointer;
+                           transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;"
+                    onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 0 20px rgba(255, 255, 255, 0.6)'"
+                    onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='none'">
+                    Find your freelance project works quickly.
+                </span>
+            </p>
+
+
+            </div>
+        </div>
     </div>
 </div>
+<!-- Banner Area Ends -->
+
+
+
+
+
+
+
  {% endblock %}
+
+
+
+
+
+
+
 
         <div class="container">
             <div class="section-title">Features</div>
