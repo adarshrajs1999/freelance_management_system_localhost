@@ -55,13 +55,13 @@
             <!-- If the task was rejected, show the Apply Again button -->
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">Rejected</span>
 
-            <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm">Apply Again</a>
+            <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm" onclick="return confirmApply()">Apply Again</a>
         {% else %}
             <span class="badge badge-info">{{ applied_tasks|get_item:task.id }}</span>
         {% endif %}
     {% else %}
         <!-- If the task has not been applied for, show the Apply button -->
-        <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm">Apply</a>
+        <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm" onclick="return confirmApply()" >Apply</a>
     {% endif %}
 </td>
 
