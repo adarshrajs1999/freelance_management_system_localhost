@@ -243,10 +243,30 @@ def create_customer_task(request):
 
     return render(request, 'customer_dashboard.html', {'form': form})
 
+
+from django.shortcuts import get_object_or_404, redirect
+from .models import Task, TaskApplication
+
 @login_required
 def apply_for_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
-    application, created = TaskApplication.objects.get_or_create(
-        task=task, freelancer=request.user
-    )
-    return redirect('freelancer_task_list')
+
+    # Check if the user has already applied for the task
+    existing_application = TaskApplication.objects.filter(task=task, freelancer=request.user).first()
+
+    if existing_application:
+        if existing_application.status == 'Rejected':
+            # Update the status to 'Pending' if it was rejected
+            existing_application.status = 'Pending'
+            existing_application.save()
+        elif existing_application.status == 'Approved':
+            # If already approved, inform the user (or handle accordingly)
+            pass
+        # You can add an else case if you want to handle other statuses.
+
+    else:
+        # If not applied yet, create a new application with status 'Pending'
+        TaskApplication.objects.create(task=task, freelancer=request.user, status='Pending')
+
+    # Redirect to the task list or task details page
+    return redirect('freelancer_task_list')  # Adjust the redirection as needed
