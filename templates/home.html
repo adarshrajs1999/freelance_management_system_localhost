@@ -23,6 +23,14 @@
 
     <style>
 
+        html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow-x: hidden !important;
+}
+
+
+
  /* General footer styling */
     #contact {
         padding: 40px 20px;
@@ -305,19 +313,22 @@
 <!-- Banner Area Starts -->
 <div
     style="background-image: url('{% static 'images/home-banner.jpg' %}');
-           background-size: cover;
-           background-position: center;
-           width: 100%;
-           height: 600px;
-           position: relative;
-           color: white;
-           box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.7);
-           border-radius: 20px;
-           overflow: hidden;"
+           background-size: cover !important;
+           background-position: center !important;
+           width: 100vw !important;
+           height: 600px !important;
+           position: relative !important;
+           color: white !important;
+           box-shadow: inset 0 0 70px rgba(0, 0, 0, 0.7) !important;
+           border-radius: 0 !important;
+           margin: 0 !important;
+           padding: 0 !important;
+           overflow: hidden !important;
+           box-sizing: border-box !important;"
     class="d-flex justify-content-center align-items-center">
 
-    <div class="content text-center">
-        <div class="container">
+    <div class="content text-center" style="margin: 0 !important; padding: 0 !important;">
+        <div class="container" style="margin: 0 !important; padding: 0 !important; max-width: 100% !important;">
             <!-- Title Section -->
             <h1
                 style="font-family: 'Poppins', sans-serif;
@@ -364,13 +375,12 @@
                     Find your freelance project works quickly.
                 </span>
             </p>
-
-
-            </div>
         </div>
     </div>
 </div>
 <!-- Banner Area Ends -->
+
+
 
 
 
@@ -431,7 +441,17 @@
     </div>
 
 <!-- Footer start -->
-<footer class="container-fluid" id="contact" style="background-color: var(--primary-color); color: #fff; padding: 80px 0; font-family: Arial, sans-serif; width: 100%; box-sizing: border-box;">
+<footer
+    id="contact"
+    style="background-color: var(--primary-color) !important;
+           color: #fff !important;
+           padding: 150px 0 !important;
+           font-family: Arial, sans-serif !important;
+           width: 100vw !important;
+           margin: 0 !important;
+           padding: 0 !important;
+           box-sizing: border-box !important;">
+
     <div style="text-align: center; margin-bottom: 20px;">
         <h5 style="color: white; font-size: 1.8em;">Contact Us</h5>
     </div>
@@ -462,6 +482,7 @@
     </div>
 </footer>
 <!-- Footer ends -->
+
 
 
     <!-- Bootstrap JS and dependencies -->
