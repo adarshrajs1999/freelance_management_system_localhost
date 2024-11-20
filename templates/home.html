@@ -382,66 +382,54 @@
 
 
 
-
-
-
-
-
-
  {% endblock %}
 
 
 
-
-
-
-
-
-        <div class="container">
-            <div class="section-title">Start Your Freelance Journey With Us</div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <i class="bi bi-person-check" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5>Register as a Freelancer</h5>
-                        <p>Showcase your skills and get hired for projects that match your expertise.</p>
-                        <a href="{% url 'register_freelancer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
-                    </div>
+       <div class="container">
+    <div class="section-title">Start Your Freelance Journey With Us</div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="icon-container">
+                    <i class="bi bi-person-check" style="font-size: 3rem;"></i>
                 </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <i class="bi bi-person-lines-fill" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5>Register as a Customer</h5>
-                        <p>Find freelance projects seamlessly to learn and grow professionaly.</p>
-                        <a href="{% url 'register_customer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="feature-card">
-                        <div class="icon-container">
-                            <i class="bi bi-chat-dots" style="font-size: 3rem;"></i>
-                        </div>
-                        <h5>Connect with Us</h5>
-                        <p>Find your freelancer works so that you can collaborate with live projects and earn.</p>
-                        <a href="{% url 'login_view' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
-                    </div>
-                </div>
+                <h5>Register as a Freelancer</h5>
+                <p>Join our platform as a freelancer, showcase your skills, and get hired for projects that match your expertise.</p>
+                <a href="{% url 'register_freelancer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="icon-container">
+                    <i class="bi bi-person-lines-fill" style="font-size: 3rem;"></i>
+                </div>
+                <h5>Register as a Customer</h5>
+                <p>Sign up as a customer to post your freelance project requirements, connect with talented freelancers, and grow your business.</p>
+                <a href="{% url 'register_customer' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card">
+                <div class="icon-container">
+                     <i class="bi bi-box-arrow-in-right" style="font-size: 3rem;"></i>
+                </div>
+                <h5>Login and Start Your Journey</h5>
+                <p>Already registered? Log in to start exploring freelance opportunities, connect with clients, and grow professionally.</p>
+                <a href="{% url 'login_view' %}" class="btn btn-custom btn-primary-custom"><i class="fas fa-arrow-right"></i> Get Started</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <div class="testimonial">
             <h5>"This platform has made freelance work so much easier!"</h5>
             <p>Our users love how easy it is to find and get freelancer works.</p>
         </div>
 
-    </div>
 
-<!-- Footer start -->
-<footer
+    <footer
     id="contact"
     style="background-color: var(--primary-color) !important;
            color: #fff !important;
