@@ -26,6 +26,7 @@ class FreelancerProfile(models.Model):
         return f"{self.user.username}'s Freelancer Profile - {self.phone_number}"  # Add phone number
 
 
+
 class CustomerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="customer_profile")
     phone_number = models.CharField(max_length=15, blank=True, null=True)

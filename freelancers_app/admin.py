@@ -12,6 +12,7 @@ class UserAdmin(BaseUserAdmin):
     # Fields to display in the admin list view
     list_display = ('username', 'email', 'role', 'is_active', 'is_staff')
     list_filter = ('role', 'is_active', 'is_staff', 'is_superuser')
+    readonly_fields = ('role',)
 
     # Fields to include in the edit form in admin
     fieldsets = (
@@ -37,26 +38,70 @@ class UserAdmin(BaseUserAdmin):
         return form
 
 
-# Admin view for TaskSubmission
 class TaskSubmissionAdmin(admin.ModelAdmin):
-    readonly_fields = ('freelancer',)
+    list_display = ('freelancer', 'task', 'git_link', 'file_upload', 'description', 'submission_date')
+    readonly_fields = ('task', 'freelancer')  # Make 'task' and 'freelancer' fields read-only
+
+
+admin.site.register(TaskSubmission, TaskSubmissionAdmin)
+
+
+
 
 # Register models with the custom admin classes
 admin.site.register(User, UserAdmin)
+
+
+
 admin.site.register(Task)
-admin.site.register(TaskSubmission, TaskSubmissionAdmin)
 
-# Register FreelancerProfile with the custom admin class
-@admin.register(FreelancerProfile)
+
 class FreelancerProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'phone_number', 'is_approved')
+    list_display = ('user', 'phone_number', 'communication_address', 'is_approved')
+    readonly_fields = ('user',)  # Make 'user' field read-only
 
 
-# Register CustomerProfile with the custom admin class
-@admin.register(CustomerProfile)
+
+admin.site.register(FreelancerProfile, FreelancerProfileAdmin)
+
+
 class CustomerProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'company_name', 'business_area')
+    # Define the fields to display in the admin panel
+    list_display = ('user', 'phone_number', 'company_name', 'business_area','communication_address')
 
-admin.site.register(Customer_Tasks)
+    # Make the 'user' field read-only
+    readonly_fields = ('user',)
 
-admin.site.register(TaskApplication)
+
+
+# Register the model with the custom admin
+admin.site.register(CustomerProfile, CustomerProfileAdmin)
+
+from django.contrib import admin
+from .models import Customer_Tasks
+
+
+class CustomerTasksAdmin(admin.ModelAdmin):
+    # Specify the fields to display in the admin interface
+    list_display = (
+    'customer', 'title', 'is_approved', 'deadline', 'is_completed', 'payment_amount', 'file_upload', 'task_url')
+
+    # Specify which fields are read-only
+    readonly_fields = ('customer',)
+
+    # Optionally, you can exclude the customer field from the form (if you don't want to show it in the form at all)
+    # exclude = ('customer',)
+
+    # Optionally, you can also customize the form layout
+    # fields = ('customer', 'title', 'description', 'deadline', 'is_approved', 'is_completed', 'payment_amount', 'file_upload', 'task_url')
+
+
+admin.site.register(Customer_Tasks, CustomerTasksAdmin)
+
+
+class TaskApplicationAdmin(admin.ModelAdmin):
+    list_display = ('freelancer', 'task', 'status', 'applied_on')
+    readonly_fields = ('task', 'freelancer')  # Make 'task' and 'freelancer' fields read-only
+
+
+admin.site.register(TaskApplication, TaskApplicationAdmin)
