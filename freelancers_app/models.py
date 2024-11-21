@@ -38,6 +38,7 @@ class CustomerProfile(models.Model):
 
 
 class Task(models.Model):
+    category = models.CharField(max_length=200,null=True,blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)

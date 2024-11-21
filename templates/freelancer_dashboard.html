@@ -12,21 +12,22 @@
 
     <h2 class="text-center mb-4">Available Tasks</h2>
 
-    <!-- Search Box with Icon Button -->
-    <div class="input-group mb-3" style="max-width: 300px; margin: 0 auto;">
-        <input type="text" id="taskSearch" class="form-control" placeholder="Search by Title..." onkeyup="filterTasks()">
-        <div class="input-group-append">
-            <a class="btn btn-outline-secondary" type="button" onclick="filterTasks()">
-                <i class="fas fa-search"></i>
-            </a>
-        </div>
+  <!-- Search Box with Icon Button -->
+<div class="input-group mb-3" style="max-width: 400px; margin: 0 auto;">
+    <input type="text" id="taskSearch" class="form-control" placeholder="Search by Category or Title..." onkeyup="filterTasks()">
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="button" onclick="filterTasks()">
+            <i class="fas fa-search"></i>
+        </button>
     </div>
+</div>
 
     <!-- Task List Table -->
     <div class="table-responsive-lg" > <!-- Larger table container for responsive behavior -->
         <table class="table table-bordered table-striped" style="width: 100%; font-size: 1.1rem;" id="taskTable">
             <thead class="thead-dark">
                 <tr>
+                    <th>Category</th>
                     <th>Title</th>
                     <th>Description</th>
                     <th>Payment</th>
@@ -39,6 +40,7 @@
 
                {% for task in tasks %}
 <tr>
+    <td>{{ task.category }}</td>
     <td>{{ task.title }}</td>
     <td>{{ task.description }}</td>
     <td>Rs. {{ task.payment_amount }}</td>
@@ -78,9 +80,9 @@
 </div>
 
 <script>
-    // JavaScript function to filter tasks by title
+    // JavaScript function to filter tasks by category or title
     function filterTasks() {
-        var input, filter, table, rows, title, i, txtValue;
+        var input, filter, table, rows, category, title, i, txtValueCategory, txtValueTitle;
         input = document.getElementById("taskSearch");
         filter = input.value.toUpperCase();
         table = document.getElementById("taskTable");
@@ -88,10 +90,22 @@
 
         // Loop through all rows except the header row
         for (i = 1; i < rows.length; i++) {
-            title = rows[i].getElementsByTagName("td")[0];
-            if (title) {
-                txtValue = title.textContent || title.innerText;
-                rows[i].style.display = txtValue.toUpperCase().indexOf(filter) > -1 ? "" : "none";
+            category = rows[i].getElementsByTagName("td")[0]; // Category is in the first column
+            title = rows[i].getElementsByTagName("td")[1];    // Title is in the second column
+
+            if (category && title) {
+                txtValueCategory = category.textContent || category.innerText;
+                txtValueTitle = title.textContent || title.innerText;
+
+                // Check if either category or title matches the filter
+                if (
+                    txtValueCategory.toUpperCase().indexOf(filter) > -1 ||
+                    txtValueTitle.toUpperCase().indexOf(filter) > -1
+                ) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
             }
         }
     }
