@@ -37,6 +37,29 @@
     border: none !important; /* Removes any default border */
 }
 
+/* Footer link hover effect */
+.footer-link {
+    color: rgb(151,148,127) !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--button-color) !important;
+}
+
+/* Footer icon hover effect */
+.contact-icon {
+    color: rgb(151,148,127) !important;
+    transition: color 0.3s ease;
+}
+
+.contact-icon:hover {
+    color: var(--button-color) !important;
+}
+
+
+
 .custom-toggler .navbar-toggler-icon {
     background-image: none !important; /* Remove default toggler icon */
     width: 20px;
@@ -170,10 +193,7 @@
             background-color: var(--button-color);
         }
 
-        .btn-primary-custom:hover {
-            background-color: var(--button-hover-color);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
+
 
         .section-title {
             font-size: 2.4rem;
@@ -447,10 +467,10 @@
         </div>
 
 
-  <footer
+<footer
     id="contact"
     style="background-color: var(--primary-color) !important;
-           color: rgb(151,1485,127) !important;
+           color: rgb(151,148,127) !important;
            padding: 100px 0 !important; /* Increased padding for more height */
            font-family: Arial, sans-serif !important;
            width: 100vw !important;
@@ -465,21 +485,21 @@
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-envelope" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
+        <i class="fas fa-envelope contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
         <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
-            <a href="mailto:deityommarketing@gmail.com" style="color: rgb(151,148,127) !important; text-decoration: none;">deityommarketing@gmail.com</a>
+            <a href="mailto:deityommarketing@gmail.com" class="footer-link">deityommarketing@gmail.com</a>
         </p>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-phone-alt" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
+        <i class="fas fa-phone-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
         <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
-            <a href="tel:+919074598533" style="color: rgb(151,148,127) !important; text-decoration: none;">+91 90745 98533</a>
+            <a href="tel:+919074598533" class="footer-link">+91 90745 98533</a>
         </p>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-map-marker-alt" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
+        <i class="fas fa-map-marker-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
         <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
             Ground Floor, Omkar Tower, Palayam, Kozhikode 673002, Kerala
         </p>
@@ -488,7 +508,7 @@
     <!-- Terms and Conditions Link -->
     <div style="text-align: center; margin-top: 15px;">
         <p style="margin: 0;">
-            <a href="{% url 'terms_and_conditions' %}" style="font-size: 1em; color: rgb(151,148,127) !important; text-decoration: underline;">Terms and Conditions</a>
+            <a href="{% url 'terms_and_conditions' %}" class="footer-link" style="font-size: 1em; text-decoration: underline;">Terms and Conditions</a>
         </p>
     </div>
 
@@ -496,6 +516,7 @@
         <p style="font-size: 0.9em; color: rgb(151,148,127) !important;">&copy; 2024 Omkaar Tourist Home. All rights reserved.</p>
     </div>
 </footer>
+
 
 
 
