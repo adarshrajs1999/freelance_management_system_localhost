@@ -292,3 +292,6 @@ def delete_task(request, task_id):
     task.delete()
     messages.success(request, 'Task deleted successfully!')
     return redirect('create_customer_task')  # Redirect to dashboard after deletion
+
+def terms_and_conditions(request):
+    return render(request,'terms_and_conditions.html')

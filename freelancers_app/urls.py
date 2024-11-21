@@ -38,6 +38,7 @@ urlpatterns = [
     path('apply/<int:task_id>/', views.apply_for_task, name='apply_for_task'),
     path('task/update/<int:task_id>/', views.update_task, name='update_task'),
     path('task/delete/<int:task_id>/', views.delete_task, name='delete_task'),
+    path('terms_and_conditions/',views.terms_and_conditions,name='terms_and_conditions')
 
 
 
