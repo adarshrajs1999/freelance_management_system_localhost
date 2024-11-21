@@ -5,7 +5,7 @@
     <!-- Card Container -->
     <div class="card shadow-lg p-4" style="border-radius: 16px; background-color: #fff; color: #333; width: 100%; max-width: 400px;">
         <!-- Top portion with primary color -->
-        <div class="text-center mb-4" style="background-color: #00796b; padding: 20px; border-radius: 12px 12px 0 0;">
+        <div class="text-center mb-4" style="background-color:var(--button-color); padding: 20px; border-radius: 12px 12px 0 0;">
             <h2 style="font-family: 'Roboto', sans-serif; font-weight: 700; color: #fff;">Login Here</h2>
             <p style="font-size: 14px; opacity: 0.85; color: #fff;">Login to continue your journey with us!</p>
         </div>
@@ -33,7 +33,7 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-transparent border-light">
-                            <i class="fas fa-user" style="color: #333;"></i>
+                            <i class="fas fa-user" style="color: var(--button-color);"></i>
                         </span>
                     </div>
                     <input type="text" class="form-control" id="username" name="username" required placeholder="Enter your username" style="background-color: #f9f9f9; color: #333; border: 1px solid #ddd;">
@@ -45,7 +45,7 @@
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text bg-transparent border-light">
-                            <i class="fas fa-lock" style="color: #333;"></i>
+                            <i class="fas fa-lock" style="color: var(--button-color);"></i>
                         </span>
                     </div>
                     <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password" style="background-color: #f9f9f9; color: #333; border: 1px solid #ddd;">
@@ -53,7 +53,7 @@
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-block py-2" style="background: #00796b; border: none; color: #fff; font-weight: bold; border-radius: 25px;">Login</button>
+            <button type="submit" class="btn btn-block py-2" style="background-color: var(--button-color); border: none; color: #fff; font-weight: bold; border-radius: 25px;">Login</button>
         </form>
 
         <!-- Register and Forgot links -->
@@ -69,8 +69,9 @@
 
 <!-- Custom styles -->
 <style>
+
     body {
-        background-color: #f4f8fc;
+        background-color: var(--primary-color);
         font-family: 'Roboto', sans-serif;
     }
     .card {
@@ -81,7 +82,7 @@
         transition: background 0.3s ease-in-out, transform 0.2s ease;
     }
     .btn:hover {
-        background: #004d40;
+        background: var(--button-color);
         transform: translateY(-2px);
     }
     .form-control:focus {
