@@ -105,10 +105,10 @@
         }
 
         .navbar-nav .nav-link {
-            color: #708090 !important;
+            color: var(--text-color) !important;
             font-size: 1.1rem;
             font-weight: 500;
-            margin-right: 15px;
+            margin-right: 0px;
             transition: color 0.3s ease;
         }
 
@@ -120,12 +120,13 @@
             font-size: 1.8rem;
             color: white !important;
             font-weight: 600;
-            margin-left: 40px;
+            margin-left: 5px;
         }
 
         .content {
             margin-top: 150px; /* Reduced to ensure better spacing on mobile */
         }
+
 
         h1 {
             font-size: 2.8rem;
@@ -319,7 +320,7 @@
                 <li class="nav-item"><a class="nav-link" href="{% url 'register_customer' %}"><i class="fas fa-user-plus"></i> Register as Customer</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'login_view' %}"><i class="fas fa-sign-in-alt"></i> Login </a></li>
 
-                <li class="nav-item"><a class="nav-link" href="{% url 'logout_view' %}" onclick="return confirmLogout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout_view' %}" onclick="return confirmLogout()" style="margin-right:30px !important;"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
 
 
             </ul>
