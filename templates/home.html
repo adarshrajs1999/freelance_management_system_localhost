@@ -111,7 +111,7 @@
             --primary-color: #fff;
             --button-color:  rgb(130, 50, 60) ;
             --button-hover-color: #218838;
-            --text-color: rgb(151,148,127);
+            --text-color: rgb(85, 84, 69);
             --bg-color: #f5f9fd;
             --card-bg-color: #ffffff;
             --card-hover-shadow: rgba(0, 0, 0, 0.15);
@@ -470,37 +470,36 @@
 <footer
     id="contact"
     style="background-color: var(--primary-color) !important;
-           color: rgb(151,148,127) !important;
+           color: var(--text-color) !important;
            padding: 100px 0 !important; /* Increased padding for more height */
            font-family: Arial, sans-serif !important;
            width: 100vw !important;
            margin: 0 !important;
-           padding: 100px !important;
            box-sizing: border-box !important;
            position: relative !important; /* Ensure it stays at the bottom */
            overflow: hidden !important;">
 
     <div style="text-align: center; margin-bottom: 20px;">
-        <h5 style="color: rgb(151,148,127) !important; font-size: 1.8em;">Contact Us</h5>
+        <h5 style="color: var(--text-color) !important; font-size: 1.8em;">Contact Us</h5>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-envelope contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
-        <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
-            <a href="mailto:deityommarketing@gmail.com" class="footer-link">deityommarketing@gmail.com</a>
+        <i class="fas fa-envelope contact-icon" style="font-size: 1.6em; margin-right: 12px; color: var(--text-color) !important;"></i>
+        <p style="margin: 0; font-size: 1.1em; color: var(--text-color) !important;">
+            <a href="mailto:deityommarketing@gmail.com" class="footer-link" style="color: var(--text-color) !important;">deityommarketing@gmail.com</a>
         </p>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-phone-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
-        <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
-            <a href="tel:+919074598533" class="footer-link">+91 90745 98533</a>
+        <i class="fas fa-phone-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: var(--text-color) !important;"></i>
+        <p style="margin: 0; font-size: 1.1em; color: var(--text-color) !important;">
+            <a href="tel:+919074598533" class="footer-link" style="color: var(--text-color) !important;">+91 90745 98533</a>
         </p>
     </div>
 
     <div class="contact-item" style="display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
-        <i class="fas fa-map-marker-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: rgb(151,148,127) !important;"></i>
-        <p style="margin: 0; font-size: 1.1em; color: rgb(151,148,127) !important;">
+        <i class="fas fa-map-marker-alt contact-icon" style="font-size: 1.6em; margin-right: 12px; color: var(--text-color) !important;"></i>
+        <p style="margin: 0; font-size: 1.1em; color: var(--text-color) !important;">
             Ground Floor, Omkar Tower, Palayam, Kozhikode 673002, Kerala
         </p>
     </div>
@@ -508,14 +507,15 @@
     <!-- Terms and Conditions Link -->
     <div style="text-align: center; margin-top: 15px;">
         <p style="margin: 0;">
-            <a href="{% url 'terms_and_conditions' %}" class="footer-link" style="font-size: 1em; text-decoration: underline;">Terms and Conditions</a>
+            <a href="{% url 'terms_and_conditions' %}" class="footer-link" style="font-size: 1em; text-decoration: underline; color: var(--text-color) !important;">Terms and Conditions</a>
         </p>
     </div>
 
     <div style="text-align: center; margin-top: 30px;">
-        <p style="font-size: 0.9em; color: rgb(151,148,127) !important;">&copy; 2024 Omkaar Tourist Home. All rights reserved.</p>
+        <p style="font-size: 0.9em; color: var(--text-color) !important;">&copy; 2024 Omkaar Tourist Home. All rights reserved.</p>
     </div>
 </footer>
+
 
 
 
