@@ -7,7 +7,7 @@
     View & Edit Your Profile
 </a>
 
-<div class="container-fluid mt-5 customer-task" style="width:100%;margin-top:100px !important;">
+<div class="container-fluid mt-5 customer-task" style="width:100%;margin-top:100px !important; background-color:var(--primary-color) !important;">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10 col-sm-12">
             <div class="card">
@@ -131,13 +131,15 @@
         background-color: #f7f7f7;
     }
 
+
+
     .customer-task .card {
         border-radius: 15px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
 
     .customer-task .card-header {
-        background-color: #00796b;
+        background-color: var(--button-color);
         color: white;
         font-size: 1.5rem;
         padding: 1.5rem;
@@ -158,15 +160,17 @@
     }
 
     .customer-task .btn-primary {
-        background-color: #00796b;
+        background-color: var(--button-color);
         padding: 10px 20px;
         font-size: 1.1rem;
         border-radius: 50px;
         transition: background-color 0.3s;
+        border:none;
     }
 
     .customer-task .btn-primary:hover {
-        background-color: green;
+        background-color: var(--button-color);
+        opacity: 0.9;
     }
 
     .customer-task .alert {
