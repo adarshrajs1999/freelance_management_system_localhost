@@ -1,7 +1,7 @@
 {% extends 'home.html' %}
 
 {% block content %}
-    <div class="container" style="max-width: 450px; margin-top: 100px;">
+    <div class="container" style="max-width: 450px; margin-top: 200px;">
         <!-- Card Container for a more professional look -->
         <div class="card shadow-lg p-4">
             <h2 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #333;">Forgot Username</h2>
@@ -44,7 +44,7 @@
             border-radius: 10px;
         }
         .btn-primary {
-            background-color: #00796b;
+            background-color: var(--button-color);
             border: none;
             padding: 10px 20px;
             font-size: 1.1rem;
@@ -52,7 +52,8 @@
             width: 100%;
         }
         .btn-primary:hover {
-            background-color: green;
+            background-color: var(--button-color);
+            opacity:0.9
         }
         .form-control {
             border-radius: 5px;
