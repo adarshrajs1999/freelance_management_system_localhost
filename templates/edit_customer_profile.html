@@ -38,7 +38,7 @@
                         <td>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-user" style="color: #00796b;"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-user" style="color: var(--button-color);"></i></span>
                                 </div>
                                 {{ field }}
                             </div>
@@ -59,7 +59,7 @@
                         <td>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-address-card" style="color: #00796b;"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-address-card" style="color: var(--button-color);"></i></span>
                                 </div>
                                 {{ field }}
                             </div>
@@ -80,7 +80,7 @@
                         <td>
                             <div class="input-group">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-lock" style="color: #00796b;"></i></span>
+                                    <span class="input-group-text"><i class="fas fa-lock" style="color: var(--button-color);"></i></span>
                                 </div>
                                 {{ field }}
                             </div>
@@ -107,7 +107,7 @@
         border-radius: 10px;
     }
     .btn-primary {
-        background-color: #00796b;
+        background-color: var(--button-color);
         border: none;
         padding: 10px 20px;
         font-size: 1.1rem;
@@ -115,7 +115,8 @@
         width: 100%;
     }
     .btn-primary:hover {
-        background-color: green;
+        background-color: var(--button-color);
+        opacity:0.9;
     }
     .input-group-text {
         background-color: #f1f3f5;
