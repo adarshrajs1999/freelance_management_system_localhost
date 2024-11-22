@@ -1,12 +1,12 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div class="container" style="max-width: 600px; margin-top: 100px;">
+<div class="container" style="max-width: 600px; margin-top: 200px;">
     <!-- Stylish Card Container -->
     <div class="card shadow-lg p-4" style="border-radius: 20px; background: linear-gradient(145deg, #ffffff, #f1f3f5);">
 
-        <!-- Card Header with Primary Color -->
-        <div class="card-header" style="background-color: #00796b; color: white; border-radius: 20px 20px 0 0; text-align: center;">
+        <!-- Card Header with Custom Color -->
+        <div class="card-header" style="background-color: var(--button-color); color: white; border-radius: 20px 20px 0 0; text-align: center;">
             <h2 class="mb-0" style="font-family: 'Poppins', sans-serif; font-weight: bold;">Submit Your Task</h2>
             <p class="text-muted" style="font-size: 14px;color:white !important;">Please fill out the details below to submit your task.</p>
         </div>
@@ -19,8 +19,8 @@
             <div class="form-group mb-4">
                 <label for="git_link" class="font-weight-bold" style="font-size: 16px; color: #555;">Add Project URL Link</label>
                 <div class="input-group">
-                    <span class="input-group-text" style="background: #00796b; color: white; border: none; border-radius: 8px 0 0 8px;">
-                        <i class="fas fa-link"></i>
+                    <span class="input-group-text" style="background: var(--button-color); color: white; border: none; border-radius: 8px 0 0 8px;">
+                        <i class="fas fa-link" style="color:var(--primary-color) !important;"></i>
                     </span>
                     <input type="url" class="form-control" id="git_link" name="git_link" placeholder="Enter your project URL" required style="border-radius: 0 8px 8px 0; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.1);">
                 </div>
@@ -41,7 +41,7 @@
 
             <!-- Submit Button -->
             <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-block py-2" style="font-size: 16px; border-radius: 50px; background: linear-gradient(90deg, #00796b, #004d40); border: none; color: white; transition: transform 0.3s;">
+                <button type="submit" class="btn btn-primary btn-block py-2" style="font-size: 16px; border-radius: 50px; background-color: var(--button-color); border: none; color: white; transition: transform 0.3s;">
                     Submit Task
                 </button>
             </div>
@@ -61,7 +61,7 @@
     }
 
     .btn-primary:hover {
-        background: linear-gradient(90deg, #004d40, #00796b);
+        background-color: var(--button-color-dark);
         transform: scale(1.05);
     }
 
@@ -73,7 +73,7 @@
     input:focus {
         outline: none !important;
         box-shadow: 0 0 5px rgba(0, 121, 107, 0.8);
-        border-color: #00796b;
+        border-color: var(--button-color);
     }
 
     /* Responsive Adjustments */

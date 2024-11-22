@@ -8,22 +8,19 @@
     View & Edit Your Profile
 </a>
 
-<div class="container-fluid task-list mt-5 px-5"> <!-- Wider container with padding for full width -->
+<div class="container-fluid task-list mt-5 px-5" style="background-color:var(--primary-color); !important;">
+    <h2 class="text-center mb-4" style="color:var(--text-color) !important;">Available Tasks</h2>
 
-    <h2 class="text-center mb-4">Available Tasks</h2>
-
-  <!-- Search Box with Icon Button -->
-<div class="input-group mb-3" style="max-width: 400px; margin: 0 auto;">
-    <input type="text" id="taskSearch" class="form-control" placeholder="Search by Category or Title..." onkeyup="filterTasks()">
-    <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="button" onclick="filterTasks()">
-            <i class="fas fa-search"></i>
-        </button>
+    <div class="input-group mb-3" style="max-width: 400px; margin: 0 auto;">
+        <input type="text" id="taskSearch" class="form-control" placeholder="Search by Category or Title..." onkeyup="filterTasks()">
+        <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" onclick="filterTasks()">
+                <i class="fas fa-search" style="color:#fff !important;"></i>
+            </button>
+        </div>
     </div>
-</div>
 
-    <!-- Task List Table -->
-    <div class="table-responsive-lg" > <!-- Larger table container for responsive behavior -->
+    <div class="table-responsive-lg">
         <table class="table table-bordered table-striped" style="width: 100%; font-size: 1.1rem;" id="taskTable">
             <thead class="thead-dark">
                 <tr>
@@ -37,50 +34,38 @@
                 </tr>
             </thead>
             <tbody>
-
-               {% for task in tasks %}
-<tr>
-    <td>{{ task.category }}</td>
-    <td>{{ task.title }}</td>
-    <td>{{ task.description }}</td>
-    <td>Rs. {{ task.payment_amount }}</td>
-    <td>{{ task.deadline }}</td>
-    <td>
-        <a href="{% url 'task_detail' task.id %}" class="btn btn-info btn-sm">View Details</a>
-    </td>
-
-<td>
-    {% if applied_tasks|get_item:task.id %}
-        {% if applied_tasks|get_item:task.id == 'Approved' %}
-            <a href="{% url 'submit_task' task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
-        {% elif applied_tasks|get_item:task.id == 'Rejected' %}
-            <!-- If the task was rejected, show the Apply Again button -->
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="badge badge-danger">Rejected</span>
-
-            <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm" onclick="return confirmApply()">Apply Again</a>
-        {% else %}
-            <span class="badge badge-info">{{ applied_tasks|get_item:task.id }}</span>
-        {% endif %}
-    {% else %}
-        <!-- If the task has not been applied for, show the Apply button -->
-        <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm" onclick="return confirmApply()" >Apply</a>
-    {% endif %}
-</td>
-
-
-
-
-</tr>
-{% endfor %}
-
-
+                {% for task in tasks %}
+                <tr>
+                    <td>{{ task.category }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>Rs. {{ task.payment_amount }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>
+                        <a href="{% url 'task_detail' task.id %}" class="btn btn-info btn-sm">View Details</a>
+                    </td>
+                    <td>
+                        {% if applied_tasks|get_item:task.id %}
+                            {% if applied_tasks|get_item:task.id == 'Approved' %}
+                                <a href="{% url 'submit_task' task.id %}" class="btn btn-primary btn-sm">Submit Task</a>
+                            {% elif applied_tasks|get_item:task.id == 'Rejected' %}
+                                <span class="badge badge-danger">Rejected</span>
+                                <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm" onclick="return confirmApply()">Apply Again</a>
+                            {% else %}
+                                <span class="badge badge-info">{{ applied_tasks|get_item:task.id }}</span>
+                            {% endif %}
+                        {% else %}
+                            <a href="{% url 'apply_for_task' task.id %}" class="btn btn-warning btn-sm same-size-btn" onclick="return confirmApply()">Apply</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    // JavaScript function to filter tasks by category or title
     function filterTasks() {
         var input, filter, table, rows, category, title, i, txtValueCategory, txtValueTitle;
         input = document.getElementById("taskSearch");
@@ -88,16 +73,14 @@
         table = document.getElementById("taskTable");
         rows = table.getElementsByTagName("tr");
 
-        // Loop through all rows except the header row
         for (i = 1; i < rows.length; i++) {
-            category = rows[i].getElementsByTagName("td")[0]; // Category is in the first column
-            title = rows[i].getElementsByTagName("td")[1];    // Title is in the second column
+            category = rows[i].getElementsByTagName("td")[0];
+            title = rows[i].getElementsByTagName("td")[1];
 
             if (category && title) {
                 txtValueCategory = category.textContent || category.innerText;
                 txtValueTitle = title.textContent || title.innerText;
 
-                // Check if either category or title matches the filter
                 if (
                     txtValueCategory.toUpperCase().indexOf(filter) > -1 ||
                     txtValueTitle.toUpperCase().indexOf(filter) > -1
@@ -112,16 +95,13 @@
 </script>
 
 <style>
-
-    /* Define a shared class for buttons */
-.same-size-btn {
-    width: 100px; /* Set a fixed width for both buttons */
-    text-align: center; /* Center the text within the button */
-    font-size: 1rem; /* Ensure consistent font size */
-    padding: 10px 15px; /* Adjust padding for a balanced look */
-    border-radius: 20px; /* Keep the rounded style */
-}
-
+    .same-size-btn {
+        width: 120px;
+        text-align: center;
+        font-size: 1rem;
+        padding: 10px;
+        border-radius: 20px;
+    }
 
     .task-list {
         background-color: #f7f7f7;
@@ -134,34 +114,27 @@
         color: #FF6A13;
     }
 
-    /* Table Styling */
     .task-list .table {
         border-radius: 10px;
-        max-width: 100%; /* Ensures full-width on large screens */
+        max-width: 100%;
+        border: 2px solid #dee2e6;
     }
 
     .task-list .table th,
     .task-list .table td {
         vertical-align: middle;
         padding: 15px;
-        font-size: 1.1rem; /* Larger font for readability */
+        font-size: 1.1rem;
+        border: 2px solid #dee2e6;
     }
 
-    /* Button and Search Box Styling */
     .task-list .btn {
         font-size: 1rem;
         padding: 10px 15px;
         border-radius: 20px;
-    }
-
-    .task-list .btn-info{
-        background-color: #17a2b8;
-        border-color: #17a2b8;
-    }
-
-    .task-list .btn-primary {
-        background-color: #FF6A13;
-        border-color: #FF6A13;
+        background-color: var(--button-color);
+        border-color: var(--button-color);
+        color: white;
     }
 
     .custom-btn {
@@ -173,7 +146,6 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Mobile-Friendly Styling */
     @media (max-width: 768px) {
         .task-list h2 {
             font-size: 1.7rem;
@@ -190,7 +162,6 @@
             font-size: 0.9rem;
         }
 
-        /* Full-width buttons for small screens */
         .task-list .btn-info, .task-list .btn-primary {
             display: block;
             width: 100%;
@@ -198,7 +169,6 @@
         }
     }
 
-    /* Stacked Table Layout for Extra Small Screens */
     @media (max-width: 576px) {
         .task-list h2 {
             font-size: 1.5rem;
@@ -208,7 +178,6 @@
             overflow-x: auto;
         }
 
-        /* Stack table cells vertically */
         .table-responsive-lg table th,
         .table-responsive-lg table td {
             display: block;
