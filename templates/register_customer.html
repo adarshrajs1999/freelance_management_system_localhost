@@ -84,7 +84,7 @@
     }
 
     .customer-registration .card-header {
-        background-color: #00796b;
+        background-color: var(--button-color);
         color: white;
         font-size: 1.5rem;
         padding: 1.5rem;
@@ -99,20 +99,22 @@
     }
 
     .customer-registration .form-control:focus {
-        border-color: #FF6A13;
+        border-color: var(--button-color);
         box-shadow: 0 0 5px rgba(255, 106, 19, 0.25);
     }
 
     .customer-registration .btn-primary {
-        background-color: #00796b;
+        background-color: var(--button-color);
         padding: 10px 20px;
         font-size: 1.1rem;
         border-radius: 50px;
         transition: background-color 0.3s;
+         border: none; /* Remove any border */
     }
 
     .customer-registration .btn-primary:hover {
-        background-color: green;
+        background-color: var(--button-color);
+        opacity: 0.9;
     }
 
     .customer-registration .alert {
@@ -182,6 +184,7 @@
         .customer-registration .btn-primary {
             font-size: 1rem;
             padding: 10px 20px;
+
         }
 
         .customer-registration .text-center {

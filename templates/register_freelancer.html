@@ -76,7 +76,7 @@
 <style>
     /* Custom CSS for error messages */
     .error-message {
-        color: red;
+        color: red; /* Retained red for errors */
         font-size: 0.9em;
         margin-top: 5px;
     }
@@ -107,8 +107,8 @@
     }
 
     .freelancer-registration .form-control:focus {
-        border-color: #FF6A13;
-        box-shadow: 0 0 5px rgba(255, 106, 19, 0.25);
+        border-color: var(--button-color); /* Changed from green to button color */
+        box-shadow: 0 0 5px rgba(255, 106, 19, 0.25); /* Adjust to match button color */
     }
 
     .freelancer-registration .btn-primary {
@@ -120,7 +120,10 @@
         border: none;
     }
 
-
+    .freelancer-registration .btn-primary:hover {
+         background-color: var(--button-color);
+        opacity: 0.9;
+    }
 
     .freelancer-registration .alert {
         font-size: 1rem;
@@ -137,7 +140,7 @@
     }
 
     .freelancer-registration .text-center a {
-        color: #007bff;
+        color: var(--button-color); /* Changed link color from green */
         text-decoration: none;
     }
 
@@ -212,4 +215,5 @@
         }
     }
 </style>
+
 {% endblock %}
