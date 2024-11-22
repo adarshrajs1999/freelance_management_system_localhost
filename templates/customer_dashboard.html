@@ -2,10 +2,12 @@
 
 {% block content %}
 
-<a href="{% url 'edit_customer_profile' %}" class="btn btn-info d-block mb-4 mx-auto" style="text-decoration:none; width: fit-content;margin-top:300px !important;">
-    <i class="fas fa-user-plus mr-2"></i>
+<a href="{% url 'edit_customer_profile' %}" class="btn d-block mb-4 mx-auto" style="text-decoration:none; width: fit-content; margin-top:300px !important;
+   background-color: var(--button-color) !important; border-radius: 50px; padding: 12px 30px; font-size: 16px; color: #fff; display: flex; align-items: center; justify-content: center; transition: background-color 0.3s ease, transform 0.3s ease;">
+    <i class="fas fa-user-edit mr-2" style="font-size: 18px;color:white;"></i>
     View & Edit Your Profile
 </a>
+
 
 <div class="container-fluid mt-5 customer-task" style="width:100%;margin-top:100px !important; background-color:var(--primary-color) !important;">
     <div class="row justify-content-center">
