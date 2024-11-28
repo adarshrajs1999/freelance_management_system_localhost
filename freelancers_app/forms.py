@@ -39,6 +39,26 @@ class FreelancerRegistrationForm(UserCreationForm):
             )
         return user
 
+    def clean_password1(self):
+        password = self.cleaned_data.get('password1')
+        email = self.cleaned_data.get('email')
+
+        # Allow password to be the same as the email
+        if password and email and password == email:
+            return password  # Accept password as the same as email
+        return password
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
+
+        # Allow password to be the same as the email
+        if username and email and username == email:
+            return username  # Accept password as the same as email
+        return username
+
+
+
 
 class CustomerRegistrationForm(UserCreationForm):
     class Meta:
