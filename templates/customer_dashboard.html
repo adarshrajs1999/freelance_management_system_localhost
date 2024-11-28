@@ -60,10 +60,7 @@
                                     <th><label for="file_upload">Upload File (Optional)</label></th>
                                     <td>{{ form.file_upload }}</td>
                                 </tr>
-                                <tr>
-                                    <th><label for="task_url">Task URL (Optional)</label></th>
-                                    <td>{{ form.task_url }}</td>
-                                </tr>
+
                             </table>
                         </div>
 
@@ -88,6 +85,7 @@
                                         <th>Task Description</th>
                                         <th>Deadline</th>
                                         <th>Payment Amount</th>
+
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -97,11 +95,12 @@
                                             <td>{{ task.title }}</td>
                                             <td>{{ task.description }}</td>
                                             <td>{{ task.deadline }}</td>
+
                                             <td>Rs.{{ task.payment_amount }}</td>
 
                                           <td>
 <a href="{% url 'update_task' task.id %}" class="btn btn-warning btn-sm" style="background-color: var(--button-color); color: white !important;">
-    <i class="fas fa-edit" style="color: white !important;"></i> Edit
+    <i class="fas fa-edit" style="color: white !important;"></i> View&Edit
 </a>
 <a href="{% url 'delete_task' task.id %}" class="btn btn-danger btn-sm" onclick="return confirmDelete()" style="background-color: var(--button-color); color: white !important;">
     <i class="fas fa-trash-alt" style="color: white !important;"></i> Delete

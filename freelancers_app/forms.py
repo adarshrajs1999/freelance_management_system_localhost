@@ -119,7 +119,7 @@ class CustomerTaskForm(forms.ModelForm):
             'deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'payment_amount': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter payment amount'}),
             'file_upload': forms.ClearableFileInput(attrs={'class': 'form-control'}),
-            'task_url': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'Enter task URL (optional)'}),
+
         }
         labels = {
             'title': 'Task Title',
@@ -127,7 +127,7 @@ class CustomerTaskForm(forms.ModelForm):
             'deadline': 'Deadline',
             'payment_amount': 'Payment Amount (Rs.)',
             'file_upload': 'Upload File (Optional)',
-            'task_url': 'Task URL (Optional)',
+
         }
 
 
