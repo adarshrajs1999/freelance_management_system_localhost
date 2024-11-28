@@ -75,7 +75,7 @@ class CustomerProfileForm(forms.ModelForm):
 class CustomerProfileEditForm(forms.ModelForm):
     class Meta:
         model = CustomerProfile
-        fields = ['company_name', 'business_area']
+        fields = ['company_name', 'business_area','phone_number','communication_address']
 
 
 class TaskForm(forms.ModelForm):

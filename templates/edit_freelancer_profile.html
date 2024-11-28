@@ -69,26 +69,6 @@
                 </table>
             </div>
 
-            <!-- Password Form Fields -->
-            <h5 class="text-secondary mt-3">Update Password</h5>
-            <hr>
-            <div class="table-responsive mb-3">
-                <table class="table table-borderless">
-                    {% for field in password_form %}
-                    <tr>
-                        <td class="text-end align-middle col-4"><label for="{{ field.id_for_label }}" class="font-weight-bold">{{ field.label_tag }}</label></td>
-                        <td>
-                            <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="fas fa-lock" style="color: var(--button-color);"></i></span>
-                                </div>
-                                {{ field }}
-                            </div>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
 
             <!-- Submit Button -->
             <div class="d-grid gap-2 mt-4">

@@ -111,8 +111,9 @@ def login_view(request):
 @login_required
 def freelancer_task_list(request):
     tasks = Task.objects.filter(is_completed=False)
-    applications = TaskApplication.objects.filter(freelancer=request.user)
-    applied_tasks = {application.task.id: application.status for application in TaskApplication.objects.filter(freelancer=request.user)}
+    freelancer = FreelancerProfile.objects.get(user=request.user)
+    applications = TaskApplication.objects.filter(freelancer=freelancer)
+    applied_tasks = {application.task.id: application.status for application in TaskApplication.objects.filter(freelancer=freelancer)}
 
     return render(request, 'freelancer_dashboard.html', {
         'tasks': tasks,
