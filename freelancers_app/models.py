@@ -89,12 +89,12 @@ class TaskApplication(models.Model):
         ('Rejected', 'Rejected'),
     ]
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    freelancer = models.ForeignKey(User, on_delete=models.CASCADE)
+    freelancer = models.ForeignKey(FreelancerProfile, on_delete=models.CASCADE)
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='Pending')
     applied_on = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.freelancer.username} - {self.task.title} - {self.status}"
+        return f"{self.freelancer} - {self.task.title} - {self.status}"
 
 
 
