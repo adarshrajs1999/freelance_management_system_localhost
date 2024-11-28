@@ -17,6 +17,7 @@ class User(AbstractUser):
 
 class FreelancerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="freelancer_profile")
+    name = models.CharField(max_length=200, blank=True, null=True)
     phone_number = models.CharField(max_length=15)
     communication_address = models.CharField(max_length=500)
     resume = models.FileField(upload_to='resumes/')
@@ -29,6 +30,7 @@ class FreelancerProfile(models.Model):
 
 class CustomerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="customer_profile")
+    name = models.CharField(max_length=200, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
     communication_address = models.CharField(max_length=500)
     company_name = models.CharField(max_length=100, blank=True, null=True)
@@ -44,7 +46,7 @@ class Task(models.Model):
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
-    payment_amount = models.CharField(null=True,blank=True,default="Amount not specified.")
+    payment_amount = models.CharField(null=True,blank=True)
     file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
     task_url = models.URLField(max_length=200, null=True, blank=True)  # New field for task URL
 

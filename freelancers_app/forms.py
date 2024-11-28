@@ -33,6 +33,7 @@ class FreelancerRegistrationForm(UserCreationForm):
             user.save()
             FreelancerProfile.objects.create(
                 user=user,
+                name=self.cleaned_data['name'],
                 phone_number=self.cleaned_data['phone_number'],
                 communication_address=self.cleaned_data['communication_address'],
                 resume=self.cleaned_data['resume']
@@ -79,23 +80,41 @@ class CustomerRegistrationForm(UserCreationForm):
             raise ValidationError("This email address is already registered.")
         return email
 
+    def clean_password1(self):
+        password = self.cleaned_data.get('password1')
+        email = self.cleaned_data.get('email')
+
+        # Allow password to be the same as the email
+        if password and email and password == email:
+            return password  # Accept password as the same as email
+        return password
+
+    def clean_username(self):
+        username = self.cleaned_data.get('username')
+        email = self.cleaned_data.get('email')
+
+        # Allow password to be the same as the email
+        if username and email and username == email:
+            return username  # Accept password as the same as email
+        return username
+
 
 class FreelancerProfileForm(forms.ModelForm):
     class Meta:
         model = FreelancerProfile
-        fields = ['phone_number', 'communication_address', 'resume']
+        fields = ['name', 'phone_number', 'communication_address', 'resume']
 
 class CustomerProfileForm(forms.ModelForm):
     class Meta:
         model = CustomerProfile
-        fields = ['phone_number', 'communication_address', 'company_name','business_area']
+        fields = ['name','phone_number', 'communication_address', 'company_name','business_area']
 
 
 
 class CustomerProfileEditForm(forms.ModelForm):
     class Meta:
         model = CustomerProfile
-        fields = ['company_name', 'business_area','phone_number','communication_address']
+        fields = ['name', 'company_name', 'business_area','phone_number','communication_address']
 
 
 class TaskForm(forms.ModelForm):
@@ -119,7 +138,7 @@ class UserEditForm(forms.ModelForm):
 class FreelancerProfileEditForm(forms.ModelForm):
     class Meta:
         model = FreelancerProfile
-        fields = ['phone_number', 'communication_address', 'resume']
+        fields = ['name', 'phone_number', 'communication_address', 'resume']
 
 
 class PasswordUpdateForm(PasswordChangeForm):
