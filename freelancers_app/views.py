@@ -170,54 +170,13 @@ def logout_view(request):
     return redirect('home')
 
 
-@login_required
-def edit_profile(request, profile_class, user_form_class, profile_form_class, template_name, redirect_url):
-    profile, _ = profile_class.objects.get_or_create(user=request.user)
-    user_form = user_form_class(instance=request.user)
-    profile_form = profile_form_class(instance=profile)
-    password_form = PasswordUpdateForm(user=request.user)
-
-    if request.method == 'POST':
-        user_form = user_form_class(request.POST, instance=request.user)
-        profile_form = profile_form_class(request.POST, request.FILES, instance=profile)
-        password_form = PasswordUpdateForm(request.user, request.POST)
-        if all(form.is_valid() for form in [user_form, profile_form, password_form]):
-            user_form.save()
-            profile_form.save()
-            password_form.save()
-            update_session_auth_hash(request, password_form.user)
-            messages.success(request, "Your profile has been updated successfully!")
-            return redirect(redirect_url)
-
-    return render(request, template_name, {
-        'user_form': user_form,
-        'profile_form': profile_form,
-        'password_form': password_form
-    })
 
 
-@login_required
-def edit_freelancer_profile(request):
-    return edit_profile(
-        request,
-        profile_class=FreelancerProfile,
-        user_form_class=UserEditForm,
-        profile_form_class=FreelancerProfileEditForm,
-        template_name='edit_freelancer_profile.html',
-        redirect_url='edit_freelancer_profile'
-    )
 
 
-@login_required
-def edit_customer_profile(request):
-    return edit_profile(
-        request,
-        profile_class=CustomerProfile,
-        user_form_class=UserEditForm,
-        profile_form_class=CustomerProfileEditForm,
-        template_name='edit_customer_profile.html',
-        redirect_url='edit_customer_profile'
-    )
+
+
+
 
 
 def forgot_username(request):
@@ -313,3 +272,49 @@ def delete_task(request, task_id):
 
 def terms_and_conditions(request):
     return render(request,'terms_and_conditions.html')
+
+
+@login_required
+def edit_freelancer_profile(request):
+    freelancer_profile = get_object_or_404(FreelancerProfile, user=request.user)
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)  # Edit the user data (like email, username)
+        profile_form = FreelancerProfileEditForm(request.POST, request.FILES,
+                                                 instance=freelancer_profile)  # Edit the freelancer profile
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()  # Save the changes to the user
+            profile_form.save()  # Save the changes to the freelancer profile
+            messages.success(request, "Your freelancer profile has been updated successfully!")
+            return redirect('edit_freelancer_profile')  # Or to any other page as necessary
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = FreelancerProfileEditForm(instance=freelancer_profile)
+
+    return render(request, 'edit_freelancer_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
+
+@login_required
+def edit_customer_profile(request):
+    customer_profile = get_object_or_404(CustomerProfile, user=request.user)
+    if request.method == 'POST':
+        user_form = UserEditForm(request.POST, instance=request.user)  # Edit the user data (like email, username)
+        profile_form = CustomerProfileEditForm(request.POST, request.FILES,
+                                               instance=customer_profile)  # Edit the customer profile
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()  # Save the changes to the user
+            profile_form.save()  # Save the changes to the customer profile
+            messages.success(request, "Your customer profile has been updated successfully!")
+            return redirect('edit_customer_profile')  # Or to any other page as necessary
+    else:
+        user_form = UserEditForm(instance=request.user)
+        profile_form = CustomerProfileEditForm(instance=customer_profile)
+
+    return render(request, 'edit_customer_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
