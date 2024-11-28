@@ -110,15 +110,32 @@ def login_view(request):
 
 @login_required
 def freelancer_task_list(request):
+    # Fetch tasks that are not completed (available tasks)
     tasks = Task.objects.filter(is_completed=False)
-    freelancer = FreelancerProfile.objects.get(user=request.user)
-    applications = TaskApplication.objects.filter(freelancer=freelancer)
-    applied_tasks = {application.task.id: application.status for application in TaskApplication.objects.filter(freelancer=freelancer)}
 
+    # Get freelancer profile of the logged-in user
+    freelancer = FreelancerProfile.objects.get(user=request.user)
+
+    # Fetch all the applications by the freelancer
+    applications = TaskApplication.objects.filter(freelancer=freelancer)
+
+    # Map task ID to application status
+    applied_tasks = {application.task.id: application.status for application in applications}
+
+    # Fetch completed tasks for the freelancer (tasks that are marked as completed)
+    completed_tasks = Task.objects.filter(
+        taskapplication__freelancer=freelancer,
+        is_completed=True
+    )
+
+    # Rendering the template with context
     return render(request, 'freelancer_dashboard.html', {
         'tasks': tasks,
         'applied_tasks': applied_tasks,  # Task IDs mapped to statuses
+        'completed_tasks': completed_tasks,  # Tasks the freelancer has completed
     })
+
+
 
 @login_required
 def submit_task(request, task_id):
