@@ -236,9 +236,9 @@ def create_customer_task(request):
 @login_required
 def apply_for_task(request, task_id):
     task = get_object_or_404(Task, id=task_id)
-    freelancer = FreelancerProfile.objects.filter(user=request.user)
+    freelancer = FreelancerProfile.objects.get(user=request.user)
     # Check if the user has already applied for the task
-    existing_application = TaskApplication.objects.filter(task=task, freelancer=freelancer).first()
+    existing_application = TaskApplication.objects.get(task=task, freelancer=freelancer)
 
     if existing_application:
         if existing_application.status == 'Rejected':
