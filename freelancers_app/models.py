@@ -45,10 +45,10 @@ class Task(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
-    is_completed = models.BooleanField(default=False)
     payment_amount = models.CharField(null=True,blank=True)
     file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
     task_url = models.URLField(max_length=200, null=True, blank=True)  # New field for task URL
+    is_completed = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.title} - Deadline: {self.deadline if self.deadline else 'No Deadline'}"  # Show deadline if present
