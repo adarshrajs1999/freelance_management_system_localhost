@@ -1,0 +1,40 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+myenv/
+venv/
+env/
+.venv/
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.sqlite3
+db.sqlite3
+media/
+static/
+
+# VSCode
+.vscode/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Jupyter Notebooks
+.ipynb_checkpoints
+
+# Python packaging
+build/
+dist/
+*.egg-info/
+
+.idea/
+
