@@ -102,20 +102,37 @@ def register_customer(request):
     return render(request, 'register_customer.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
-
 def login_view(request):
     if request.method == 'POST':
         username, password = request.POST.get('username'), request.POST.get('password')
         user = authenticate(request, username=username, password=password)
+
         if user:
-            if user.role == 'freelancer' and not FreelancerProfile.objects.get(user=user).is_approved:
-                messages.error(request, "Your account is not approved by the admin yet.")
-            else:
+            # Check if the user is a staff member (Django admin)
+            if user.is_staff:
+                messages.error(request, "Invalid username or password.")
+                return render(request, 'login.html')
+
+            if user.role == 'freelancer':
+                # Handle freelancer role
+                if not FreelancerProfile.objects.get(user=user).is_approved:
+                    messages.error(request, "Your account is not approved by the admin yet.")
+                else:
+                    login(request, user)
+                    return redirect('freelancer_task_list')  # Redirect to freelancer task list if approved
+            elif user.role == 'admin':
+                # Handle admin role
                 login(request, user)
-                return redirect('freelancer_task_list' if user.role == 'freelancer' else 'create_customer_task')
+                return redirect('admin_panel')  # Redirect to admin panel
+            else:
+                # For any other roles (you can customize this)
+                login(request, user)
+                return redirect('create_customer_task')  # Redirect to customer task creation page
         else:
             messages.error(request, "Invalid username or password.")
+
     return render(request, 'login.html')
+
 
 
 
