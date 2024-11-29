@@ -231,28 +231,37 @@ def create_customer_task(request):
     return render(request, 'customer_dashboard.html', {'form': form,'tasks': tasks})
 
 
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+from .models import Task, TaskApplication, FreelancerProfile
 
 
 @login_required
 def apply_for_task(request, task_id):
+    # Get the task object, raise 404 if not found
     task = get_object_or_404(Task, id=task_id)
-    freelancer = FreelancerProfile.objects.get(user=request.user)
-    # Check if the user has already applied for the task
-    existing_application = TaskApplication.objects.get(task=task, freelancer=freelancer)
 
-    if existing_application:
+    # Get the freelancer profile of the current user
+    freelancer = FreelancerProfile.objects.get(user=request.user)
+
+    try:
+        # Check if the user has already applied for the task
+        existing_application = TaskApplication.objects.get(task=task, freelancer=freelancer)
+
         if existing_application.status == 'Rejected':
             # Update the status to 'Pending' if it was rejected
             existing_application.status = 'Pending'
             existing_application.save()
         elif existing_application.status == 'Approved':
             # If already approved, inform the user (or handle accordingly)
+            # You might want to show a message or prevent further action
             pass
-        # You can add an else case if you want to handle other statuses.
+        # Handle other statuses if necessary
 
-    else:
+    except TaskApplication.DoesNotExist:
         # If not applied yet, create a new application with status 'Pending'
-        TaskApplication.objects.create(task=task, freelancer=request.user, status='Pending')
+        TaskApplication.objects.create(task=task, freelancer=freelancer, status='Pending')
 
     # Redirect to the task list or task details page
     return redirect('freelancer_task_list')  # Adjust the redirection as needed
