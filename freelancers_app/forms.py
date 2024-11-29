@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
 from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission
 from django import forms
-from .models import Customer_Tasks
+from .models import Customer_Task
 
 
 
@@ -147,12 +147,12 @@ class FreelancerProfileEditForm(forms.ModelForm):
 class PasswordUpdateForm(PasswordChangeForm):
     pass
 
-# forms.py
+
 
 
 class CustomerTaskForm(forms.ModelForm):
     class Meta:
-        model = Customer_Tasks
+        model = Customer_Task
         exclude = ['customer', 'is_approved', 'is_completed']  # Exclude system-managed fields
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter task title'}),

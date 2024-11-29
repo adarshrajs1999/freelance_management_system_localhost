@@ -21,7 +21,7 @@ from .models import Task, TaskApplication
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import CustomerTaskForm
-from .models import Customer_Tasks
+from .models import Customer_Task
 
 
 
@@ -216,7 +216,7 @@ def forgot_username(request):
 @login_required
 def create_customer_task(request):
     customer_profile = CustomerProfile.objects.get(user=request.user)
-    tasks = Customer_Tasks.objects.filter(customer=customer_profile)
+    tasks = Customer_Task.objects.filter(customer=customer_profile)
     if request.method == 'POST':
         form = CustomerTaskForm(request.POST, request.FILES)
         if form.is_valid():
@@ -259,7 +259,7 @@ def apply_for_task(request, task_id):
 
 
 def update_task(request, task_id):
-    task = get_object_or_404(Customer_Tasks, id=task_id)
+    task = get_object_or_404(Customer_Task, id=task_id)
     if request.method == 'POST':
         form = CustomerTaskForm(request.POST, instance=task)
         if form.is_valid():
@@ -273,7 +273,7 @@ def update_task(request, task_id):
 
 
 def delete_task(request, task_id):
-    task = get_object_or_404(Customer_Tasks, id=task_id)
+    task = get_object_or_404(Customer_Task, id=task_id)
     task.delete()
     messages.success(request, 'Task deleted successfully!')
     return redirect('create_customer_task')  # Redirect to dashboard after deletion

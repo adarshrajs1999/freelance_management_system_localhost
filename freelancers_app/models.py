@@ -54,7 +54,7 @@ class Task(models.Model):
         return f"{self.title} - Deadline: {self.deadline if self.deadline else 'No Deadline'}"  # Show deadline if present
 
 
-class Customer_Tasks(models.Model):
+class Customer_Task(models.Model):
     customer = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='customer_tasks')
     is_approved = models.BooleanField(default=False)
     title = models.CharField(max_length=200)
