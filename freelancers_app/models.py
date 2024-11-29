@@ -56,11 +56,9 @@ class Task(models.Model):
 
 class Customer_Task(models.Model):
     customer = models.ForeignKey(CustomerProfile, on_delete=models.CASCADE, related_name='customer_tasks')
-    is_approved = models.BooleanField(default=False)
-    title = models.CharField(max_length=200)
+    work_category = models.CharField(max_length=200,null=True,blank=True)
     description = models.TextField()
     deadline = models.DateField(null=True, blank=True)
-    is_completed = models.BooleanField(default=False)
     payment_amount = models.CharField(null=True,blank=True)
     file_upload = models.FileField(upload_to='task_documents/', null=True, blank=True)
 

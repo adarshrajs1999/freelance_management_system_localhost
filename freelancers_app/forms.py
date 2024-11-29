@@ -153,9 +153,9 @@ class PasswordUpdateForm(PasswordChangeForm):
 class CustomerTaskForm(forms.ModelForm):
     class Meta:
         model = Customer_Task
-        exclude = ['customer', 'is_approved', 'is_completed']  # Exclude system-managed fields
+        exclude = ['customer']  # Exclude system-managed fields
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter task title'}),
+            'work_category': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter your work category'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter task description', 'rows': 4}),
             'deadline': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'payment_amount': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter payment amount'}),
@@ -163,13 +163,14 @@ class CustomerTaskForm(forms.ModelForm):
 
         }
         labels = {
-            'title': 'Task Title',
+            'work_category': 'Work Category',
             'description': 'Task Description',
             'deadline': 'Deadline',
             'payment_amount': 'Payment Amount (Rs.)',
             'file_upload': 'Upload File (Optional)',
 
         }
+
 
 
 class TaskForm(forms.ModelForm):

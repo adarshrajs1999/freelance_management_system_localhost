@@ -12,10 +12,24 @@
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <tbody>
-                            <tr>
-                                <td><strong>{{ form.title.label }}</strong></td>
-                                <td>{{ form.title }}</td>
-                            </tr>
+
+
+                        <!-- Replace work_category with a custom dropdown -->
+<select name="work_category" class="form-control">
+    <option value="" disabled selected>Select your work category</option>
+    <option value="Backend">Backend</option>
+    <option value="Frontend">Frontend</option>
+    <option value="Full Stack">Full Stack</option>
+    <option value="Digital Marketing">Digital Marketing</option>
+    <option value="Graphic Design">Graphic Design</option>
+    <option value="Video Editing">Video Editing</option>
+    <option value="Photo Editing">Photo Editing</option>
+    <option value="Others">Others</option>
+</select>
+
+
+
+
                             <tr>
                                 <td><strong>{{ form.description.label }}</strong></td>
                                 <td>{{ form.description }}</td>
@@ -32,7 +46,6 @@
                                 <td><strong>{{ form.file_upload.label }}</strong></td>
                                 <td>{{ form.file_upload }}</td>
                             </tr>
-
                         </tbody>
                     </table>
                 </div>

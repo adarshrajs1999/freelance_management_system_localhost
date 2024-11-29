@@ -84,7 +84,7 @@ from .models import Customer_Task
 class CustomerTasksAdmin(admin.ModelAdmin):
     # Specify the fields to display in the admin interface
     list_display = (
-    'customer', 'title', 'is_approved', 'deadline', 'is_completed', 'payment_amount', 'file_upload')
+    'customer', 'work_category',  'deadline',  'payment_amount', 'file_upload')
 
     # Specify which fields are read-only
     readonly_fields = ('customer',)
