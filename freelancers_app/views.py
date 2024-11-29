@@ -16,10 +16,19 @@ from .forms import (
     CustomerProfileEditForm,
     PasswordUpdateForm, CustomerProfileForm, TaskForm
 )
+from django.shortcuts import get_object_or_404, redirect
+from .models import Task, TaskApplication
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from .forms import CustomerTaskForm
+from .models import Customer_Tasks
+
+
 
 
 def home(request):
     return render(request, "home.html")
+
 
 
 def register_user(request, user_form_class, profile_form_class=None, role=None, redirect_url=None, template_name=None):
@@ -40,6 +49,7 @@ def register_user(request, user_form_class, profile_form_class=None, role=None, 
         user_form = user_form_class()
         profile_form = profile_form_class() if profile_form_class else None
     return render(request, template_name, {'user_form': user_form, 'profile_form': profile_form})
+
 
 
 def register_freelancer(request):
@@ -108,6 +118,7 @@ def login_view(request):
     return render(request, 'login.html')
 
 
+
 @login_required
 def freelancer_task_list(request):
     # Fetch tasks that are not completed (available tasks)
@@ -134,6 +145,7 @@ def freelancer_task_list(request):
         'applied_tasks': applied_tasks,  # Task IDs mapped to statuses
         'completed_tasks': completed_tasks,  # Tasks the freelancer has completed
     })
+
 
 
 
@@ -197,11 +209,8 @@ def forgot_username(request):
     return render(request, 'forgot_username.html')
 
 
-# views.py
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .forms import CustomerTaskForm
-from .models import Customer_Tasks
+
+
 
 
 @login_required
@@ -222,8 +231,7 @@ def create_customer_task(request):
     return render(request, 'customer_dashboard.html', {'form': form,'tasks': tasks})
 
 
-from django.shortcuts import get_object_or_404, redirect
-from .models import Task, TaskApplication
+
 
 @login_required
 def apply_for_task(request, task_id):

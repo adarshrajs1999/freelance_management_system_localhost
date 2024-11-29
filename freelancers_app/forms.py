@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.core.exceptions import ValidationError
 from .models import User, FreelancerProfile, CustomerProfile, Task, TaskSubmission
+from django import forms
+from .models import Customer_Tasks
+
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -145,8 +148,7 @@ class PasswordUpdateForm(PasswordChangeForm):
     pass
 
 # forms.py
-from django import forms
-from .models import Customer_Tasks
+
 
 class CustomerTaskForm(forms.ModelForm):
     class Meta:
