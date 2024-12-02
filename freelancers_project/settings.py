@@ -15,9 +15,10 @@ from pathlib import Path
 import environ  # Import django-environ
 
 # Initialize environment variables
+import environ  # Import django-environ
 env = environ.Env()
 environ.Env.read_env()  # Read the .env file if it exists
-SECRET_KEY = env('SECRET_KEY')
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -129,3 +130,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+environ.Env.read_env(str(BASE_DIR / '.env'))  # Ensure .env is read correctly
