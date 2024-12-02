@@ -8,11 +8,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-import environ
-
-# Initialize environment variables
-env = environ.Env()
-environ.Env.read_env()  # Reads the .env file if it exists
 
 
 import os
@@ -22,6 +17,7 @@ import environ  # Import django-environ
 # Initialize environment variables
 env = environ.Env()
 environ.Env.read_env()  # Read the .env file if it exists
+SECRET_KEY = env('SECRET_KEY')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,8 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')  # Use SECRET_KEY from .env file
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
@@ -104,6 +99,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')  # Use email from .env
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')  # Use email password from .env
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+EMAIL_USE_TLS=True  # TLS for encryption (True or False)
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
