@@ -9,22 +9,22 @@ env/
 .venv/
 
 # Django stuff:
-*.log
-*.pot
-*.pyc
-*.pyo
-*.sqlite3
-db.sqlite3
-media/
-static/
+*.log              # Django logs
+*.pot              # Translation files
+*.pyc              # Compiled Python files
+*.pyo              # Optimized Python files
+*.sqlite3          # SQLite databases (if you're using SQLite for local dev)
+db.sqlite3         # SQLite database file
+media/             # Uploaded files (ignore this on git if hosting separately)
+static/            # Static files directory
 
-# VSCode
+# VSCode and IDE settings
 .vscode/
 
-# macOS
+# macOS system files
 .DS_Store
 
-# Windows
+# Windows system files
 Thumbs.db
 ehthumbs.db
 
@@ -36,7 +36,8 @@ build/
 dist/
 *.egg-info/
 
+# PyCharm or JetBrains IDEs
 .idea/
 
+# Environment variables (ensure sensitive info is excluded from version control)
 .env
-
