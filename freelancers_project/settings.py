@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-!gn9p^4!go6h1+@!)p47sa^t9j+slbkqn84$8skf8^@#r6-ew!'
+# SECRET_KEY = 'django-insecure-!gn9p^4!go6h1+@!)p47sa^t9j+slbkqn84$8skf8^@#r6-ew!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['deityomfreelancer.com','www.deityomfreelancer.com']
 
 
 # Application definition
@@ -167,4 +167,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory where files are stored
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+SECRET_KEY = 'w&hzm4t3v)yrflcu80(^dcjioa8_p)%i22pjx=!hjpo*3b9k+l'
