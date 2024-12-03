@@ -58,10 +58,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'freelancers_project.wsgi.application'
 
-from dotenv import load_dotenv
+
 import os
 
-load_dotenv()
+
 
 DATABASES = {
     'default': {
