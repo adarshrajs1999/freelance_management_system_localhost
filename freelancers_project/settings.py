@@ -61,6 +61,8 @@ WSGI_APPLICATION = 'freelancers_project.wsgi.application'
 
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
 
 
 DATABASES = {
